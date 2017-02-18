@@ -1,2 +1,2 @@
-# adl-main
-Adventure Lookup Main Repository.  The entire site lives here.
+# Adventure Lookup
+Adventure Lookup's new main repository.  The entire site will live here.
