@@ -1,0 +1,14 @@
+#adl-filters {
+  .filter {
+    @extend .row;
+    @extend .py-2;
+  }
+  .line {
+    border-bottom: 2px solid $hr-border-color;
+  }
+}
+
+#adl-description {
+  font-style: italic;
+  border-bottom: 2px solid $hr-border-color;
+}
