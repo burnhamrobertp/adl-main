@@ -1,0 +1,11 @@
+.bg-dark {
+  background-color: darken($body-bg, 15%);
+}
+
+a.navbar-brand {
+  padding: 3px;
+
+  img {
+    height: 100%;
+  }
+}

@@ -7,10 +7,11 @@
 
     <title>Adventure Lookup</title>
 
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
+    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
-
-Content.
-
+    @include('layout.navbar')
+    @include('layout.body')
 </body>
 </html>
