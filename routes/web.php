@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('default');
+    $out['template'] = 'adventures';
+    return view('default', $out);
 });

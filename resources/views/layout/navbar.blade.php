@@ -18,7 +18,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="#">Register / Login</a>
                     </li>
                 </ul>
             </div>

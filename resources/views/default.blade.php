@@ -12,6 +12,6 @@
 </head>
 <body>
     @include('layout.navbar')
-    @include('layout.body')
+    @include($template)
 </body>
 </html>

@@ -1,3 +1,6 @@
+$white:  #fff !default;
+
+$body-bg: darken($white, 10%);
 
 // Brands
 $brand-primary: #3097D1;
@@ -5,3 +8,11 @@ $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
+
+$grid-gutter-width-base: 0;
+$container-max-widths: (
+  sm: 590px,
+  md: 820px,
+  lg: 1110px,
+  xl: 1340px
+) !default;
