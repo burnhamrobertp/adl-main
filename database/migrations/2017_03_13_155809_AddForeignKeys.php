@@ -40,16 +40,18 @@ class AddForeignKeys extends Migration
     public function down()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->dropColumn(['edition_id', 'publisher_id']);
+            $table->dropForeign(['edition_id']);
+            $table->dropForeign(['publisher_id']);
         });
         Schema::table('module_ratings', function (Blueprint $table) {
-            $table->dropColumn(['user_id', 'module_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['module_id']);
         });
         Schema::table('contributors', function (Blueprint $table) {
-            $table->dropColumn(['contributor_type_id']);
+            $table->dropForeign(['contributor_type_id']);
         });
         Schema::table('creatures', function (Blueprint $table) {
-            $table->dropColumn(['creature_type_id']);
+            $table->dropForeign(['creature_type_id']);
         });
     }
 }
