@@ -4,25 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Modules extends Model
+class Module extends Model
 {
     public function edition()
     {
-        return $this->belongsTo('App\Editions');
+        return $this->belongsTo('App\Edition');
     }
 
     public function publisher()
     {
-        return $this->belongsTo('App\Publishers');
+        return $this->belongsTo('App\Publisher');
     }
 
     public function setting()
     {
-        return $this->belongsTo('App\Settings');
+        return $this->belongsTo('App\Setting');
     }
 
     public function ratings()
     {
-        return $this->hasMany('App\ModuleRatings');
+        return $this->hasMany('App\ModuleRating');
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContributorTypes extends Model
+class ContributorType extends Model
 {
     //
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModuleRatings extends Model
+class ModuleRating extends Model
 {
     public function user()
     {

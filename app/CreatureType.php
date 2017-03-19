@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CreatureTypes extends Model
+class CreatureType extends Model
 {
     public function creatures()
     {
-        return $this->hasMany('App\Creatures');
+        return $this->hasMany('App\Creature');
     }
 }
