@@ -14,7 +14,7 @@ class AddEditionOrder extends Migration
     public function up()
     {
         Schema::table('editions', function (Blueprint $table) {
-            $table->smallIncrements('order')->after('name');
+            $table->smallInteger('order')->nullable()->after('name');
         });
     }
 
