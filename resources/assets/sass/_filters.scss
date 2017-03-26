@@ -1,4 +1,7 @@
 #adl-filters {
+  height: 100%;
+  background-color: darken($white, 5%);
+
   .filter {
     @extend .row;
     @extend .py-2;
