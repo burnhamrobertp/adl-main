@@ -2,9 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    context: path.resolve(__dirname, './resources/assets/'),
+    context: path.resolve(__dirname, './resources/assets/js/'),
     entry: {
-        app: './js/app.js'
+        app: './app.js'
     },
     output: {
         filename: '[name].js',
