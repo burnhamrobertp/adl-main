@@ -5,6 +5,13 @@
   .filter {
     @extend .row;
     @extend .py-2;
+
+    span.subLabel {
+      @extend .pl-1;
+
+      font-size: 0.8em;
+      font-style: italic;
+    }
   }
   .line {
     border-bottom: 2px solid $hr-border-color;
