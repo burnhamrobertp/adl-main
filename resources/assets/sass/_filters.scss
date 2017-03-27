@@ -9,6 +9,13 @@
   .line {
     border-bottom: 2px solid $hr-border-color;
   }
+
+  button {
+    @extend .btn;
+    @extend .btn-secondary;
+    @extend .btn-sm;
+    @extend .mr-1;
+  }
 }
 
 #adl-description {

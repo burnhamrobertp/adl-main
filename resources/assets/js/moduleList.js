@@ -15,7 +15,7 @@ class ModuleList extends React.Component {
                         <div id="adl-adventures">
                             <div className="p-3 row">
                                 <div className="col">
-                                    <label htmlFor="adl-search-sortby">Sort By: </label>
+                                    <label htmlFor="adl-search-sortby">Sort By:</label>
                                     <select id="adl-search-sortby">
                                         <option>Rating</option>
                                     </select>
