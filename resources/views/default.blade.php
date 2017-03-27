@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Adventure Lookup</title>
-
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
-    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
-    @include('layout.navbar')
-    @include($template)
+
+<div id="root"></div>
+<script type="text/javascript" src="js/commons.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 /public/hot
 /public/css/app*.css
 /public/js/app*.js
-/public/mix-manifest.json
+/public/js/commons.js
 /storage/*.key
 /vendor
 /.vagrant
@@ -12,3 +12,4 @@ Homestead.json
 Homestead.yaml
 .env
 npm-debug.log
+yarn-error.log
