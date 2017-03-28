@@ -3,8 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import ModuleList from './moduleList'
-import Navbar from './navbar'
+import ModuleList from './viewmodels/moduleList/moduleList'
+import Navbar from './components/navbar/navbar'
 
 const App = () => (
     <Router>

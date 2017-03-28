@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filters from './filters';
+import Filters from './components/filters';
 
 class ModuleList extends React.Component {
     render() {
