@@ -13,7 +13,7 @@ class Navbar extends React.Component {
                         </button>
 
                         <a className="navbar-brand" href="#">
-                            <img src="/media/adl_logo.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
+                            <img src="/media/adl_logo.svg" className="d-inline-block align-top" alt="" />
                                 Adventure Lookup
                         </a>
 

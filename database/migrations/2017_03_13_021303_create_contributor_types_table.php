@@ -17,7 +17,6 @@ class CreateContributorTypesTable extends Migration
             $table->increments('id');
             $table->char('name');
             $table->smallInteger('default_order', false, true);
-            $table->timestamps();
         });
     }
 

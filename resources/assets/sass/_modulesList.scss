@@ -5,4 +5,8 @@
   .adventure {
     border-top: 2px solid $hr-border-color;
   }
+
+  select {
+    @extend .ml-1;
+  }
 }

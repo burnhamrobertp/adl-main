@@ -12,11 +12,11 @@ class Filters extends React.Component {
                 </div>
 
                 <Filter id="edition" label="Edition">
-                    <button type="button" className="btn btn-secondary btn-sm">1e</button>
-                    <button type="button" className="btn btn-secondary btn-sm">AD&D</button>
-                    <button type="button" className="btn btn-secondary btn-sm">3e</button>
-                    <button type="button" className="btn btn-secondary btn-sm">4e</button>
-                    <button type="button" className="btn btn-secondary btn-sm">5e</button>
+                    <button type="button">1e</button>
+                    <button type="button">AD&D</button>
+                    <button type="button">3e</button>
+                    <button type="button">4e</button>
+                    <button type="button">5e</button>
                 </Filter>
 
                 <Filter id="level" label="Level Range">
@@ -34,10 +34,10 @@ class Filters extends React.Component {
                 </Filter>
                 
                 <Filter id="length" label="Adventure Length">
-                    <button type="button" className="btn btn-secondary btn-sm">One-shot</button>
-                    <button type="button" className="btn btn-secondary btn-sm">Short</button>
-                    <button type="button" className="btn btn-secondary btn-sm">Medium</button>
-                    <button type="button" className="btn btn-secondary btn-sm">Long</button>
+                    <button type="button">One-shot</button>
+                    <button type="button">Short</button>
+                    <button type="button">Medium</button>
+                    <button type="button">Long</button>
                 </Filter>
                 
                 <Filter id="search" label="Search" sublabel="(item, creature, etc)">

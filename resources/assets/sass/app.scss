@@ -1,11 +1,10 @@
-
 // Variables
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
 @import "general";
-@import "adventures";
-@import "nav";
+@import "modulesList";
+@import "navbar";
 @import "filters";

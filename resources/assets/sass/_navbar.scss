@@ -6,6 +6,7 @@ a.navbar-brand {
   padding: 3px;
 
   img {
-    height: 100%;
+    @extend .mr-2;
+    height: 30px;
   }
 }

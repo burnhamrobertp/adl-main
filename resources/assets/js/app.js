@@ -3,14 +3,14 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import ModuleList from './moduleList'
-import Navbar from './navbar'
+import Home from './scenes/home/home'
+import Navbar from './components/navbar/navbar'
 
 const App = () => (
     <Router>
         <div>
             <Navbar/>
-            <Route exact path="/" component={ModuleList}/>
+            <Route exact path="/" component={Home}/>
         </div>
     </Router>
 );

@@ -18,7 +18,12 @@ class Filter extends React.Component {
 
                     <div className="col-11">
                         <div className="pr-2">
-                            <div><label htmlFor={this.enableInputId}>{this.props.label}</label></div>
+                            <div>
+                                <label htmlFor={this.enableInputId}>
+                                    {this.props.label}
+                                    <span className="subLabel">{this.props.sublabel}</span>
+                                </label>
+                            </div>
 
                             {this.props.children}
                         </div>

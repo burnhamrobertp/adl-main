@@ -16,12 +16,11 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->timestamps();
         });
 
         Schema::table('modules', function (Blueprint $table) {
             $table->integer('setting_id', false, true)->after('publisher_id');
-            $table->foreign('setting_id')->references('id')->on('publishers');
+            $table->foreign('setting_id')->references('id')->on('settings');
         });
     }
 
@@ -32,11 +31,11 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
-
         Schema::table('modules', function (Blueprint $table) {
             $table->dropForeign(['setting_id']);
             $table->dropColumn('setting_id');
         });
+
+        Schema::dropIfExists('settings');
     }
 }
