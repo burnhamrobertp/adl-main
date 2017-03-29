@@ -14,8 +14,8 @@ class AddModuleLevels extends Migration
     public function up()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->smallInteger('min_level', false, true)->after('name');
-            $table->smallInteger('max_level', false, true)->after('min_level');
+            $table->smallInteger('min_level', false, true)->after('name')->nullable();
+            $table->smallInteger('max_level', false, true)->after('min_level')->nullable();
         });
     }
 
