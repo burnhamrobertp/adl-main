@@ -1,8 +1,26 @@
-import React from 'react';
+import React from 'react'
+import $ from "jquery";
 
-import Filters from './components/filters';
+import Filters from './components/filters'
 
 class ModuleList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {modules: []};
+    }
+
+    componentDidMount() {
+        this.moduleList();
+    }
+
+    moduleList() {
+        return $.getJSON('api/modules/')
+            .then((data) => {
+                this.setState({ modules: data})
+            });
+    }
+
     render() {
         return (
             <div className="container">

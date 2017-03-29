@@ -14,7 +14,7 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        $sorted = Module::all()->sortBy('order');
+        $sorted = Module::with('edition', 'publisher', 'setting')->get()->sortBy('order');
 
         return $sorted->values()->all();
     }
