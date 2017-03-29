@@ -24,6 +24,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Module::class, function (Faker\Generator $faker) {
+    $hasLevels = $faker->boolean();
+    $minLevel = $hasLevels ? $faker->numberBetween(1, 7) : null;
+    $maxLevel = $hasLevels ? $faker->numberBetween($minLevel, $minLevel+$faker->numberBetween(1, 10)) : null;
+
     return [
         'edition_id' => function() {
             return App\Edition::all()->random()->id;
@@ -35,6 +39,8 @@ $factory->define(App\Module::class, function (Faker\Generator $faker) {
             return App\Setting::all()->random()->id;
         },
         'name' => $faker->company,
+        'min_level' => $minLevel,
+        'max_level' => $maxLevel,
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
     ];
