@@ -31,11 +31,11 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
-
         Schema::table('modules', function (Blueprint $table) {
             $table->dropForeign(['setting_id']);
             $table->dropColumn('setting_id');
         });
+
+        Schema::dropIfExists('settings');
     }
 }
