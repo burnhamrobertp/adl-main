@@ -20,7 +20,7 @@ class CreateSettingsTable extends Migration
 
         Schema::table('modules', function (Blueprint $table) {
             $table->integer('setting_id', false, true)->after('publisher_id');
-            $table->foreign('setting_id')->references('id')->on('publishers');
+            $table->foreign('setting_id')->references('id')->on('settings');
         });
     }
 
