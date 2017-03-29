@@ -22,3 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Module::class, function (Faker\Generator $faker) {
+    return [
+        'edition_id' => function() {
+            return App\Edition::all()->random()->id;
+        },
+        'publisher_id' => function() {
+            return App\Publisher::all()->random()->id;
+        },
+        'setting_id' => function() {
+            return App\Setting::all()->random()->id;
+        },
+        'name' => $faker->company,
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
