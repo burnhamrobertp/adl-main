@@ -41,6 +41,8 @@ $factory->define(App\Module::class, function (Faker\Generator $faker) {
         'name' => $faker->company,
         'min_level' => $minLevel,
         'max_level' => $maxLevel,
+        'summary' => $faker->boolean() ? $faker->realText() : null,
+        'description' => $faker->boolean() ? $faker->realText(1000) : null,
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
     ];
