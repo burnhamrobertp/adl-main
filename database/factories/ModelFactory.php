@@ -38,6 +38,9 @@ $factory->define(App\Module::class, function (Faker\Generator $faker) {
         'setting_id' => function() {
             return App\Setting::all()->random()->id;
         },
+        'length_id' => function() {
+            return App\ModuleLength::all()->random()->id;
+        },
         'name' => $faker->company,
         'min_level' => $minLevel,
         'max_level' => $maxLevel,

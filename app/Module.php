@@ -21,6 +21,11 @@ class Module extends Model
         return $this->belongsTo('App\Setting');
     }
 
+    public function length()
+    {
+        return $this->belongsTo('App\ModuleLength');
+    }
+
     public function ratings()
     {
         return $this->hasMany('App\ModuleRating');
