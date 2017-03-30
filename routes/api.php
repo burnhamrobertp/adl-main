@@ -66,6 +66,14 @@ Route::group([ 'prefix' => 'items' ], function() {
     Route::delete('{item}', 'ItemsController@destroy');
 });
 
+Route::group([ 'prefix' => 'moduleLengths' ], function() {
+    Route::get('', 'ModuleLengthsController@index');
+    Route::get('{moduleLength}', 'ModuleLengthsController@get');
+    Route::post('', 'ModuleLengthsController@store');
+    Route::post('{moduleLength}', 'ModuleLengthsController@update');
+    Route::delete('{moduleLength}', 'ModuleLengthsController@destroy');
+});
+
 Route::group([ 'prefix' => 'modules' ], function() {
     Route::get('', 'ModulesController@index');
     Route::get('{module}', 'ModulesController@get');
