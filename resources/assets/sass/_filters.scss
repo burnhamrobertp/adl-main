@@ -13,9 +13,6 @@
       font-style: italic;
     }
   }
-  .line {
-    border-bottom: 2px solid $hr-border-color;
-  }
 
   button {
     @extend .btn;
