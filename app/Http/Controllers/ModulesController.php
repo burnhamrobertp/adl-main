@@ -14,7 +14,7 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        $sorted = Module::with('edition', 'publisher', 'setting', 'length')->get()->sortBy('order');
+        $sorted = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating')->get()->sortBy('order');
 
         return $sorted->values()->all();
     }
@@ -27,7 +27,7 @@ class ModulesController extends Controller
      */
     public function get(Module $module)
     {
-        return $module;
+        return $module->with('edition', 'publisher', 'setting', 'length', 'avgRating')->find($module->id);
     }
 
     /**

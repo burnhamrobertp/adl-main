@@ -30,4 +30,32 @@ class Module extends Model
     {
         return $this->hasMany('App\ModuleRating');
     }
+
+    /**
+     * Average ModuleRatings as aggregate
+     *
+     * @return mixed
+     */
+    public function avgRating()
+    {
+        return $this->ratings()
+            ->selectRaw('avg(rating) as aggregate, module_id')
+            ->groupBy('module_id');
+    }
+
+    /**
+     * Fetches the avgRating attribute directly
+     *
+     * @return int|null
+     */
+    public function getAvgRatingAttribute()
+    {
+        if ( ! array_key_exists('avgRating', $this->relations)) {
+            $this->load('avgRating');
+        }
+
+        $relation = $this->getRelation('avgRating')->first();
+
+        return ($relation) ? $relation->aggregate : null;
+    }
 }
