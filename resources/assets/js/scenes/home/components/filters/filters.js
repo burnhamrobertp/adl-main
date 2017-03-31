@@ -12,28 +12,9 @@ class Filters extends React.Component {
         super(props);
 
         this.state = {
-            editions: [],
-            lengths: []
+            editions: window.editions,
+            lengths: window.moduleLengths
         };
-    }
-
-    componentDidMount() {
-        this.editionsList();
-        this.lengthsList();
-    }
-
-    editionsList() {
-        return $.getJSON('api/editions')
-            .then((data) => {
-                this.setState({ editions: data })
-            });
-    }
-
-    lengthsList() {
-        return $.getJSON('api/moduleLengths')
-            .then((data) => {
-                this.setState({ lengths: data })
-            });
     }
 
     render() {
