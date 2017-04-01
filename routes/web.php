@@ -12,6 +12,14 @@
 */
 
 Route::get('/', function () {
-    $out['template'] = 'adventures';
+    $out = [
+        'contributorTypes' => \App\ContributorType::all()->toJson(),
+        'creatureTypes' => \App\CreatureType::all()->toJson(),
+        'editions' => App\Edition::all()->toJson(),
+        'moduleLengths' => \App\ModuleLength::all()->toJson(),
+        'settings' => \App\Setting::all()->toJson(),
+        'template' => 'adventures'
+    ];
+
     return view('default', $out);
 });

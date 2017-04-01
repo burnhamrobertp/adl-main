@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ContributorTypesSeeder::class);
         $this->call(CreatureTypesSeeder::class);
+        $this->call(ModuleLengthsSeeder::class);
         $this->call(EditionsSeeder::class);
         $this->call(PublishersSeeder::class);
         $this->call(SettingsSeeder::class);

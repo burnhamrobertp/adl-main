@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Adventure Lookup</title>
+
+    <script>
+        window.contributorTypes = {!! $contributorTypes !!};
+        window.creatureTypes = {!! $creatureTypes !!};
+        window.editions = {!! $editions !!};
+        window.moduleLengths = {!! $moduleLengths !!};
+        window.settings = {!! $settings !!};
+    </script>
 </head>
 <body>
 

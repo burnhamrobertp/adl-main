@@ -1,14 +1,14 @@
 import React from 'react'
 import $ from "jquery";
 
-import Filters from './components/filters'
+import Filters from './components/filters/filters'
 import Modules from './components/modules'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {modules: []};
+        this.state = { modules: [] };
     }
 
     componentDidMount() {

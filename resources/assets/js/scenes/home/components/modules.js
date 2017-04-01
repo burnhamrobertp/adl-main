@@ -15,6 +15,7 @@ class Modules extends React.Component {
                     <div className="col">
                         <label htmlFor="adl-search-sortby">Sort By:</label>
                         <select id="adl-search-sortby">
+                            <option>Name</option>
                             <option>Rating</option>
                         </select>
                     </div>
