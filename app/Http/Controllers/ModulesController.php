@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ModulesController extends Controller
 {
@@ -14,9 +15,28 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        $sorted = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating')->get()->sortBy('order');
+        // Filters array
+        $f = Input::all();
 
-        return $sorted->values()->all();
+        $sorted = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating');
+
+        if (isset($f['min_level'])) {
+            $sorted->where('min_level', '>=', $f['min_level']);
+        }
+
+        if (isset($f['max_level'])) {
+            $sorted->where('max_level', '<=', $f['max_level']);
+        }
+
+        if (isset($f['editions'])) {
+            $sorted->whereIn('edition_id', $f['editions']);
+        }
+
+        if (isset($f['module_lengths'])) {
+            $sorted->whereIn('length_id', $f['module_lengths']);
+        }
+
+        return $sorted->get()->sortBy('order')->values()->all();
     }
 
     /**
