@@ -13,11 +13,11 @@
 
 Route::get('/', function () {
     $out = [
-        'contributorTypes' => \App\ContributorType::all()->toJson(),
-        'creatureTypes' => \App\CreatureType::all()->toJson(),
-        'editions' => App\Edition::all()->toJson(),
-        'moduleLengths' => \App\ModuleLength::all()->toJson(),
-        'settings' => \App\Setting::all()->toJson(),
+        'contributorTypes' => \App\ContributorType::all()->sortBy('name')->toJson(),
+        'creatureTypes' => \App\CreatureType::all()->sortBy('name')->toJson(),
+        'editions' => App\Edition::all()->sortBy('order')->toJson(),
+        'moduleLengths' => \App\ModuleLength::all()->sortBy('order')->toJson(),
+        'settings' => \App\Setting::all()->sortBy('name')->toJson(),
         'template' => 'adventures'
     ];
 
