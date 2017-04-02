@@ -9,7 +9,7 @@ class EditionFilter extends React.Component {
 
     render() {
         let buttons = this.props.editions.map((edition) =>
-            <button key={edition.id} type="button">{edition.name}</button>
+            <button key={edition.id} value={edition.id} type="button">{edition.name}</button>
         );
 
         return (

@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 
 import EditionFilter from './editionFilter';
+import SettingFilter from './settingFilter';
 import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
@@ -13,7 +14,8 @@ class Filters extends React.Component {
 
         this.state = {
             editions: window.editions,
-            lengths: window.moduleLengths
+            lengths: window.moduleLengths,
+            settings: window.settings
         };
     }
 
@@ -26,6 +28,8 @@ class Filters extends React.Component {
                 </div>
 
                 <EditionFilter editions={this.state.editions} />
+
+                <SettingFilter settings={this.state.settings} />
 
                 <LevelFilter/>
 
