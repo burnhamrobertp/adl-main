@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "webpack",
+    "dev": "webpack -w",
     "build": "webpack -p"
   },
   "devDependencies": {
