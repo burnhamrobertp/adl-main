@@ -13,7 +13,7 @@ export function getEditions() {
  * Get adventure length filters
  * @returns {{type: string, payload: *}}
  */
-export function getAdventureLength() {
+export function getAdventureLengths() {
     return {
         type    : 'GET_FILTER_LENGTHS',
         payload : window.moduleLengths
@@ -38,12 +38,12 @@ export function setEditions( edition, active ) {
 
 /**
  * Set active adventure lengths
- * @param lenght
+ * @param length
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setAdventureLength( lenght, active ) {
-    active = updateArray( active, lenght );
+export function setAdventureLength( length, active ) {
+    active = updateArray( active, length );
     
     return {
         type    : 'SET_FILTER_LENGTHS',

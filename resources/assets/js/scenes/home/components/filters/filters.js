@@ -5,12 +5,12 @@ import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
-import {getEditions, getAdventureLength, setEditions, setAdventureLength} from '../../../../actions/filters';
+import {getEditions, getAdventureLengths, setEditions, setAdventureLength} from '../../../../actions/filters';
 
 class Filters extends React.Component {
     componentDidMount() {
         this.props.getEditions();
-        this.props.getAdventureLength()
+        this.props.getAdventureLengths()
     }
 
     render() {
@@ -68,4 +68,4 @@ function mapStateToProps( state ) {
     };
 }
 
-export default connect( mapStateToProps, {getEditions, getAdventureLength, setEditions, setAdventureLength} )( Filters );
+export default connect( mapStateToProps, {getEditions, getAdventureLengths, setEditions, setAdventureLength} )( Filters );
