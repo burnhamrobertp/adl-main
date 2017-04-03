@@ -1,20 +1,24 @@
 import React from 'react';
 
-import $ from 'jquery';
 import Filter from './filter';
 
 class EditionFilter extends React.Component {
     constructor(props) {
         super(props);
 
-        this._selectedEditions = [];
+        this._selected = [];
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(e) {
-        $(e.target).toggleClass('active');
-        this._selectedEditions.push(e.target.value);
-        this.props.handleFilter('editions', this._selectedEditions);
+        e.target.classList.toggle('active');
+        // toggle the that the value is selected
+        if (this._selected.includes(e.target.value))
+            this._selected.splice(this._selected.indexOf(e.target.value), 1);
+        else
+            this._selected.push(e.target.value);
+
+        this.props.handleFilter('editions', this._selected);
     }
 
     render() {
