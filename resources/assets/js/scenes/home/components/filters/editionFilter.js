@@ -3,18 +3,20 @@ import React from 'react';
 import Filter from './filter';
 
 class EditionFilter extends React.Component {
-    constructor(props) {
-        super(props);
+    
+    renderButtons(){
+        if(this.props.editions.length > 0){
+            return this.props.editions.map((edition) =>
+                <button key={edition.id} type="button">{edition.name}</button>
+            );
+        }
+        return null;
     }
-
+    
     render() {
-        let buttons = this.props.editions.map((edition) =>
-            <button key={edition.id} type="button">{edition.name}</button>
-        );
-
         return (
             <Filter id="edition" label="Edition">
-                {buttons}
+                {this.renderButtons()}
             </Filter>
         );
     }

@@ -10,7 +10,6 @@ class Modules extends React.Component {
     }
     
     renderModuleList(){
-        console.log(this.props);
         return this.props.modules.map((module) =>
             <Module key={module.id} data={module} />
         );

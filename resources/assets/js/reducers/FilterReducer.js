@@ -1,6 +1,6 @@
 
 const DEFAULT_STATE = {
-    edition: [],
+    editions: [],
     minLevel: 0,
     maxLevel: 20,
     adventureLength: [],
@@ -10,11 +10,15 @@ const DEFAULT_STATE = {
 
 export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case 'CHANGE_SERCH':
+        case 'GET_FILTER_LENGTHS':
             return Object.assign({}, state, {
-                search: action.payload
+                editions: action.payload
             });
-        
+        case 'GET_FILTER_EDITIONS':
+            return Object.assign({}, state, {
+                adventureLength: action.payload
+            });
+    
         default:
             return state;
     }
