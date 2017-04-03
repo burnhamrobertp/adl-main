@@ -5,7 +5,7 @@ import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
-import {getEditions, getAdventureLengths, setEditions, setAdventureLength} from '../../../../actions/filters';
+import {getEditions, getAdventureLengths, setEditions, setAdventureLength} from 'js/actions/filters';
 
 class Filters extends React.Component {
     componentDidMount() {
