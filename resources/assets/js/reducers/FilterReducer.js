@@ -6,6 +6,8 @@ const DEFAULT_STATE = {
     adventureLength: [],
     search: '',
     digitalCopy: false,
+    activeEditions: [],
+    activeAdventureLength: [],
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -18,7 +20,15 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, state, {
                 adventureLength: action.payload
             });
-    
+        case 'SET_FILTER_EDITIONS':
+            return Object.assign({}, state, {
+                activeEditions: action.payload
+            });
+        case 'SET_FILTER_LENGTHS':
+            
+            return Object.assign({}, state, {
+                activeAdventureLength: action.payload
+            });
         default:
             return state;
     }

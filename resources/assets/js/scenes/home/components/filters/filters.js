@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import EditionFilter from './editionFilter';
 import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
+import {getEditions, getAdventureLength, setEditions, setAdventureLength} from '../../../../actions/filters';
 
-import {getEditions, getAdventureLength} from '../../../../actions/filters';
 class Filters extends React.Component {
     componentDidMount() {
         this.props.getEditions();
         this.props.getAdventureLength()
     }
+
     render() {
         return (
             <div id="adl-filters" className="bg-faded">
@@ -21,13 +21,21 @@ class Filters extends React.Component {
                     Enable the filters of your choice and the results will update to match.
                 </div>
 
-                <EditionFilter editions={this.props.editions} />
+                <EditionFilter
+                    editions={this.props.editions}
+                    click={this.props.setEditions}
+                    activeListings={this.props.activeEditions}
+                />
 
-                <LevelFilter/>
+                <LevelFilter />
 
-                <LengthFilter lengths={this.props.adventureLength} />
+                <LengthFilter
+                    lengths={this.props.adventureLength}
+                    click={this.props.setAdventureLength}
+                    activeListings={this.props.activeAdventureLength}
+                />
 
-                <SearchFilter/>
+                <SearchFilter />
 
                 <Filter id="digitalcopy" label="Digital Copy Available" />
             </div>
@@ -43,6 +51,8 @@ Notification.defaultProps = {
     adventureLength: [],
     search: '',
     digitalCopy: false,
+    activeEditions: [],
+    activeAdventureLength: []
 };
 
 function mapStateToProps( state ) {
@@ -52,8 +62,10 @@ function mapStateToProps( state ) {
         maxLevel: state.filters.maxLevel,
         adventureLength: state.filters.adventureLength,
         search: state.filters.search,
-        digitalCopy: state.filters.digitalCopy
+        digitalCopy: state.filters.digitalCopy,
+        activeEditions: state.filters.activeEditions,
+        activeAdventureLength: state.filters.activeAdventureLength
     };
 }
 
-export default connect( mapStateToProps, {getEditions, getAdventureLength} )( Filters );
+export default connect( mapStateToProps, {getEditions, getAdventureLength, setEditions, setAdventureLength} )( Filters );
