@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 import EditionFilter from './editionFilter';
 import SettingFilter from './settingFilter';
@@ -12,11 +11,7 @@ class Filters extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            editions: window.editions,
-            lengths: window.moduleLengths,
-            settings: window.settings
-        };
+        this.state = {filters: {}};
     }
 
     render() {
@@ -27,15 +22,15 @@ class Filters extends React.Component {
                     Enable the filters of your choice and the results will update to match.
                 </div>
 
-                <EditionFilter editions={this.state.editions} />
+                <EditionFilter handleFilter={this.props.handleFilter} editions={this.props.editions} />
 
-                <SettingFilter settings={this.state.settings} />
+                <SettingFilter handleFilter={this.props.handleFilter} settings={this.props.settings} />
 
-                <LevelFilter/>
+                <LevelFilter handleFilter={this.props.handleFilter} />
 
-                <LengthFilter lengths={this.state.lengths} />
+                <LengthFilter handleFilter={this.props.handleFilter} lengths={this.props.moduleLengths} />
 
-                <SearchFilter/>
+                <SearchFilter handleFilter={this.props.handleFilter} />
 
                 <Filter id="digitalcopy" label="Digital Copy Available" />
             </div>
