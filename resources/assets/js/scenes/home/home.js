@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from "jquery";
 
 import Filters from './components/filters/filters'
 import Modules from './components/modules'
@@ -10,18 +9,7 @@ class Home extends React.Component {
 
         this.state = { modules: [] };
     }
-
-    componentDidMount() {
-        this.moduleList();
-    }
-
-    moduleList() {
-        return $.getJSON('api/modules/')
-            .then((data) => {
-                this.setState({ modules: data})
-            });
-    }
-
+    
     render() {
         return (
             <div className="container">
@@ -31,7 +19,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="col-8 equalH">
-                        <Modules modules={this.state.modules} />
+                        <Modules />
                     </div>
                 </div>
             </div>
