@@ -18,29 +18,29 @@ class ModulesController extends Controller
         // Filters array
         $f = Input::all();
 
-        $sorted = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating');
+        $modules = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating');
 
-        if (isset($f['min_level'])) {
-            $sorted->where('min_level', '>=', $f['min_level']);
+        if (isset($f['minLevel'])) {
+            $modules->where('min_level', '>=', $f['minLevel']);
         }
 
-        if (isset($f['max_level'])) {
-            $sorted->where('max_level', '<=', $f['max_level']);
+        if (isset($f['maxLevel'])) {
+            $modules->where('max_level', '<=', $f['maxLevel']);
         }
 
         if (isset($f['setting'])) {
-            $sorted->where('setting_id', $f['setting']);
+            $modules->where('setting_id', $f['setting']);
         }
 
         if (isset($f['editions'])) {
-            $sorted->whereIn('edition_id', $f['editions']);
+            $modules->whereIn('edition_id', $f['editions']);
         }
 
-        if (isset($f['module_lengths'])) {
-            $sorted->whereIn('length_id', $f['module_lengths']);
+        if (isset($f['moduleLengths'])) {
+            $modules->whereIn('length_id', $f['moduleLengths']);
         }
 
-        return $sorted->get()->sortBy('name')->values()->all();
+        return $modules->get()->sortBy('name')->values()->all();
     }
 
     /**
