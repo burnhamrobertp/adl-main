@@ -28,6 +28,10 @@ class ModulesController extends Controller
             $sorted->where('max_level', '<=', $f['max_level']);
         }
 
+        if (isset($f['setting'])) {
+            $sorted->where('setting_id', $f['setting']);
+        }
+
         if (isset($f['editions'])) {
             $sorted->whereIn('edition_id', $f['editions']);
         }
@@ -36,7 +40,7 @@ class ModulesController extends Controller
             $sorted->whereIn('length_id', $f['module_lengths']);
         }
 
-        return $sorted->get()->sortBy('order')->values()->all();
+        return $sorted->get()->sortBy('name')->values()->all();
     }
 
     /**
