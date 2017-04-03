@@ -18,7 +18,6 @@ Route::get('/', function () {
         'editions' => App\Edition::all()->sortBy('order')->values()->toJson(),
         'moduleLengths' => \App\ModuleLength::all()->sortBy('order')->values()->toJson(),
         'settings' => \App\Setting::all()->sortBy('name')->values()->toJson(),
-        'template' => 'adventures'
     ];
 
     return view('default', $out);
