@@ -17,6 +17,7 @@ class SettingFilter extends React.Component {
         return (
             <Filter id="settigns" label="Campaign Setting">
                 <select>
+                    <option value="" />
                     {options}
                 </select>
             </Filter>
