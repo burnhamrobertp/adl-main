@@ -14,8 +14,10 @@ class ModulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ModuleListFilter $moduleListFilter)
+    public function index(Request $request, ModuleListFilter $moduleListFilter)
     {
+        $this->validate($request, $moduleListFilter->rules());
+
         // Filters array
         $f = Input::all();
 

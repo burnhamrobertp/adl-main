@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ModuleListFilter
 {
+    public function rules(): array
+    {
+        return [
+            'minLevel' => 'integer|nullable',
+            'maxLevel' => 'integer|nullable',
+            'setting' => 'integer|nullable',
+            'editions' => 'array',
+            'editions.*' => 'integer|distinct',
+            'moduleLengths' => 'array',
+            'moduleLengths.*' => 'integer|distinct'
+        ];
+    }
+
     public function filter(Builder $modules, array $filters): Builder
     {
         if (isset($filters['minLevel'])) {
