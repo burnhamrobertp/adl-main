@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ContributorType;
+use App\Models\Data\ContributorType;
 use Illuminate\Http\Request;
 
 class ContributorTypesController extends Controller

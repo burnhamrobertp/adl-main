@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Publisher extends Model
 {
     //
 }

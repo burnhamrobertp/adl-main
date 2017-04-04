@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
+use App\Models\Data\Item;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
+use App\Models\Data\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 

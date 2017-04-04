@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Setting;
+use App\Models\Data\Setting;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller

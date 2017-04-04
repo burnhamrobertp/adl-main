@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CreatureType;
+use App\Models\Data\CreatureType;
 use Illuminate\Http\Request;
 
 class CreatureTypesController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,27 +8,27 @@ class Module extends Model
 {
     public function edition()
     {
-        return $this->belongsTo('App\Edition');
+        return $this->belongsTo('App\Models\Data\Edition');
     }
 
     public function publisher()
     {
-        return $this->belongsTo('App\Publisher');
+        return $this->belongsTo('App\Models\Data\Publisher');
     }
 
     public function setting()
     {
-        return $this->belongsTo('App\Setting');
+        return $this->belongsTo('App\Models\Data\Setting');
     }
 
     public function length()
     {
-        return $this->belongsTo('App\ModuleLength');
+        return $this->belongsTo('App\Models\Data\ModuleLength');
     }
 
     public function ratings()
     {
-        return $this->hasMany('App\ModuleRating');
+        return $this->hasMany('App\Models\Data\ModuleRating');
     }
 
     /**

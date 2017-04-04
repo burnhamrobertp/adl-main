@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ModuleLength;
+use App\Models\Data\ModuleLength;
 use Illuminate\Http\Request;
 
 class ModuleLengthsController extends Controller
