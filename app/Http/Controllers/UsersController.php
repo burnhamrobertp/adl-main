@@ -22,7 +22,7 @@ class UsersController extends Controller
     /**
      * Fetches a specific User by id
      *
-     * @param \App\User $user
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function get(User $user)
@@ -51,7 +51,7 @@ class UsersController extends Controller
      * Update the specified User in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -67,7 +67,7 @@ class UsersController extends Controller
     /**
      * Remove the specified User from storage
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

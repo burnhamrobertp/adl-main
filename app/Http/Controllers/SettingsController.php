@@ -51,7 +51,7 @@ class SettingsController extends Controller
      * Update the specified setting in storage
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Setting $setting
+     * @param  Setting $setting
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Setting $setting)
@@ -67,7 +67,7 @@ class SettingsController extends Controller
     /**
      * Remove the specified setting from storage
      *
-     * @param  \App\Setting $setting
+     * @param  Setting $setting
      * @return \Illuminate\Http\Response
      */
     public function destroy(Setting $setting)

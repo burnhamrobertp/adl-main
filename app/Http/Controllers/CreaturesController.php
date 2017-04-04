@@ -22,7 +22,7 @@ class CreaturesController extends Controller
     /**
      * Fetches a specific Creature by id
      *
-     * @param \App\Creature $creature
+     * @param Creature $creature
      * @return \Illuminate\Http\Response
      */
     public function get(Creature $creature)
@@ -51,7 +51,7 @@ class CreaturesController extends Controller
      * Update the specified Creature in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Creature  $creature
+     * @param  Creature  $creature
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Creature $creature)
@@ -67,7 +67,7 @@ class CreaturesController extends Controller
     /**
      * Remove the specified Creature from storage
      *
-     * @param  \App\Creature  $creature
+     * @param  Creature  $creature
      * @return \Illuminate\Http\Response
      */
     public function destroy(Creature $creature)

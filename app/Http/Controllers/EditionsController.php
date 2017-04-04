@@ -22,7 +22,7 @@ class EditionsController extends Controller
     /**
      * Fetches a specific edition by id
      *
-     * @param \App\Edition $edition
+     * @param Edition $edition
      * @return \Illuminate\Http\Response
      */
     public function get(Edition $edition)
@@ -51,7 +51,7 @@ class EditionsController extends Controller
      * Update the specified edition in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Edition  $edition
+     * @param  Edition  $edition
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Edition $edition)
@@ -67,7 +67,7 @@ class EditionsController extends Controller
     /**
      * Remove the specified edition from storage
      *
-     * @param  \App\Edition  $edition
+     * @param  Edition  $edition
      * @return \Illuminate\Http\Response
      */
     public function destroy(Edition $edition)

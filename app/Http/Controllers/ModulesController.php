@@ -30,7 +30,7 @@ class ModulesController extends Controller
     /**
      * Fetches a specific Module by id
      *
-     * @param \App\Module $module
+     * @param Module $module
      * @return \Illuminate\Http\Response
      */
     public function get(Module $module)
@@ -59,7 +59,7 @@ class ModulesController extends Controller
      * Update the specified Module in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Module  $module
+     * @param  Module  $module
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Module $module)
@@ -75,7 +75,7 @@ class ModulesController extends Controller
     /**
      * Remove the specified Module from storage
      *
-     * @param  \App\Module  $module
+     * @param  Module  $module
      * @return \Illuminate\Http\Response
      */
     public function destroy(Module $module)

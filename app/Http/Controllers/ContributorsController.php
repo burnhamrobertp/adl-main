@@ -22,7 +22,7 @@ class ContributorsController extends Controller
     /**
      * Fetches a specific Contributor by id
      *
-     * @param \App\Contributor $contributor
+     * @param Contributor $contributor
      * @return \Illuminate\Http\Response
      */
     public function get(Contributor $contributor)
@@ -51,7 +51,7 @@ class ContributorsController extends Controller
      * Update the specified Contributor in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contributor  $contributor
+     * @param  Contributor  $contributor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Contributor $contributor)
@@ -67,7 +67,7 @@ class ContributorsController extends Controller
     /**
      * Remove the specified Contributor from storage
      *
-     * @param  \App\Contributor  $contributor
+     * @param  Contributor  $contributor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Contributor $contributor)

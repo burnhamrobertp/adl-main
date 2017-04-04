@@ -22,7 +22,7 @@ class ContributorTypesController extends Controller
     /**
      * Fetches a specific ContributorType by id
      *
-     * @param \App\ContributorType $contributorType
+     * @param ContributorType $contributorType
      * @return \Illuminate\Http\Response
      */
     public function get(ContributorType $contributorType)
@@ -51,7 +51,7 @@ class ContributorTypesController extends Controller
      * Update the specified ContributorType in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ContributorType  $contributorType
+     * @param  ContributorType  $contributorType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ContributorType $contributorType)
@@ -67,7 +67,7 @@ class ContributorTypesController extends Controller
     /**
      * Remove the specified ContributorType from storage
      *
-     * @param  \App\ContributorType  $contributorType
+     * @param  ContributorType  $contributorType
      * @return \Illuminate\Http\Response
      */
     public function destroy(ContributorType $contributorType)
