@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data\Module;
+use App\Models\ModuleListFilter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -13,34 +14,17 @@ class ModulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModuleListFilter $moduleListFilter)
     {
         // Filters array
         $f = Input::all();
 
         $modules = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating');
+        $modules = $moduleListFilter->filter($modules, $f);
 
-        if (isset($f['minLevel'])) {
-            $modules->where('min_level', '>=', $f['minLevel']);
-        }
-
-        if (isset($f['maxLevel'])) {
-            $modules->where('max_level', '<=', $f['maxLevel']);
-        }
-
-        if (isset($f['setting'])) {
-            $modules->where('setting_id', $f['setting']);
-        }
-
-        if (isset($f['editions'])) {
-            $modules->whereIn('edition_id', $f['editions']);
-        }
-
-        if (isset($f['moduleLengths'])) {
-            $modules->whereIn('length_id', $f['moduleLengths']);
-        }
-
-        return $modules->get()->sortBy('name')->values()->all();
+        return response()->json(
+            $modules->get()->sortBy('name')->values()->all()
+        );
     }
 
     /**
