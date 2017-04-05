@@ -44,7 +44,7 @@ class Filters extends React.Component {
 }
 
 
-Notification.defaultProps = {
+Filters.defaultProps = {
     editions: [],
     minLevel: 0,
     maxLevel: 20,

@@ -35,7 +35,7 @@ class Modules extends React.Component {
     }
 }
 
-Notification.defaultProps = {
+Modules.defaultProps = {
     modules : []
 };
 
