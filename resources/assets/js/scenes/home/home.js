@@ -4,11 +4,6 @@ import Filters from './components/filters/filters'
 import Modules from './components/modules'
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { modules: [] };
-    }
     
     render() {
         return (
