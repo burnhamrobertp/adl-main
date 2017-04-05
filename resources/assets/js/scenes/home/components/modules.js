@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 
 import Module from './module'
-import {getModules} from '../../../actions/modules';
+import {getModules} from 'js/actions/modules';
 
 class Modules extends React.Component {
     componentDidMount() {
