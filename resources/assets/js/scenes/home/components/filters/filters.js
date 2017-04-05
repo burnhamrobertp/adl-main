@@ -5,7 +5,7 @@ import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
-import {getEditions, getAdventureLengths, setEditions, setAdventureLength} from 'js/actions/filters';
+import {getEditions, getAdventureLengths, setEditions, setAdventureLengths} from 'js/actions/filters';
 
 class Filters extends React.Component {
     componentDidMount() {
@@ -31,7 +31,7 @@ class Filters extends React.Component {
 
                 <LengthFilter
                     lengths={this.props.adventureLength}
-                    click={this.props.setAdventureLength}
+                    click={this.props.setAdventureLengths}
                     activeListings={this.props.activeAdventureLength}
                 />
 
@@ -60,12 +60,12 @@ function mapStateToProps( state ) {
         editions: state.filters.editions,
         minLevel: state.filters.minLevel,
         maxLevel: state.filters.maxLevel,
-        adventureLength: state.filters.adventureLength,
+        adventureLength: state.filters.adventureLengths,
         search: state.filters.search,
         digitalCopy: state.filters.digitalCopy,
         activeEditions: state.filters.activeEditions,
-        activeAdventureLength: state.filters.activeAdventureLength
+        activeAdventureLength: state.filters.activeAdventureLengths
     };
 }
 
-export default connect( mapStateToProps, {getEditions, getAdventureLengths, setEditions, setAdventureLength} )( Filters );
+export default connect( mapStateToProps, {getEditions, getAdventureLengths, setEditions, setAdventureLengths} )( Filters );

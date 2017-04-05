@@ -42,7 +42,7 @@ export function setEditions( edition, active ) {
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setAdventureLength( length, active ) {
+export function setAdventureLengths( length, active ) {
     active = updateArray( active, length );
     
     return {
