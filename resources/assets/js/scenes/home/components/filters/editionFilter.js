@@ -1,20 +1,32 @@
 import React from 'react';
 
 import Filter from './filter';
+import Button from '../atoms/Button';
 
 class EditionFilter extends React.Component {
-    constructor(props) {
-        super(props);
+    
+    renderButtons(){
+        
+        if(this.props.editions.length > 0){
+            
+            return this.props.editions.map((edition) =>
+                <Button
+                    key={edition.id}
+                    name={edition.name}
+                    click={this.props.click}
+                    active={this.props.activeListings.includes(edition.name)}
+                    activeListings={this.props.activeListings}
+                />
+            );
+            
+        }
+        return null;
     }
-
+    
     render() {
-        let buttons = this.props.editions.map((edition) =>
-            <button key={edition.id} type="button">{edition.name}</button>
-        );
-
         return (
             <Filter id="edition" label="Edition">
-                {buttons}
+                {this.renderButtons()}
             </Filter>
         );
     }

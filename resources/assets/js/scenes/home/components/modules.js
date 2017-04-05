@@ -1,13 +1,20 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
 import Module from './module'
+import {getModules} from 'js/actions/modules';
 
 class Modules extends React.Component {
-    render() {
-        const modules = this.props.modules;
-        let modulesList = modules.map((module) =>
+    componentDidMount() {
+        this.props.getModules();
+    }
+    
+    renderModuleList(){
+        return this.props.modules.map((module) =>
             <Module key={module.id} data={module} />
         );
+    }
+    render() {
 
         return (
             <div id="adl-adventures">
@@ -22,10 +29,20 @@ class Modules extends React.Component {
                     <div id="adl-search-summary" className="col float-right text-right">{this.props.modules.length} Adventures Found</div>
                 </div>
 
-                {modulesList}
+                {this.renderModuleList()}
             </div>
         )
     }
 }
 
-export default Modules;
+Modules.defaultProps = {
+    modules : []
+};
+
+function mapStateToProps( state ) {
+    return {
+        modules : state.modules.index
+    };
+}
+
+export default connect( mapStateToProps, {getModules} )( Modules );
