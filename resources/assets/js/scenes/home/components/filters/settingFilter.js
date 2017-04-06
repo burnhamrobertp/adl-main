@@ -3,22 +3,20 @@ import React from 'react';
 import Filter from './filter';
 
 class SettingFilter extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {settings: props.settings};
+    renderOptions() {
+        if (this.props.settings.length > 0) {
+            return this.props.settings.map((setting) =>
+                <option key={setting.id} value={setting.id}>{setting.name}</option>
+            );
+        }
     }
 
     render() {
-        const options = this.state.settings.map((setting) =>
-            <option key={setting.id} value={setting.id}>{setting.name}</option>
-        );
-
         return (
             <Filter id="settigns" label="Campaign Setting">
                 <select>
                     <option value="" />
-                    {options}
+                    {this.renderOptions()}
                 </select>
             </Filter>
         );
