@@ -10,6 +10,17 @@ export function getEditions() {
 }
 
 /**
+ * Get settings
+ * @returns {{type: string, payload: *}}
+ */
+export function getSettings() {
+    return {
+        type    : 'GET_FILTER_SETTINGS',
+        payload : window.settings
+    };
+}
+
+/**
  * Get adventure length filters
  * @returns {{type: string, payload: *}}
  */
@@ -27,12 +38,24 @@ export function getAdventureLengths() {
  * @returns {{type: string, payload: *}}
  */
 export function setEditions( edition, active ) {
-    
+
     active = updateArray( active, edition );
-    
+
     return {
         type    : 'SET_FILTER_EDITIONS',
         payload : active
+    };
+}
+
+/**
+ * Set active setting
+ * @param setting
+ * @returns {{type: string, payload: *}}
+ */
+export function setFilterSetting( setting ) {
+    return {
+        type    : 'SET_FILTER_SETTING',
+        payload : setting
     };
 }
 
@@ -44,7 +67,7 @@ export function setEditions( edition, active ) {
  */
 export function setAdventureLengths( length, active ) {
     active = updateArray( active, length );
-    
+
     return {
         type    : 'SET_FILTER_LENGTHS',
         payload : active
@@ -54,7 +77,7 @@ export function setAdventureLengths( length, active ) {
 function updateArray( active, variable ) {
     return new Promise( ( cb ) => {
         let array = active.map( ( item ) => item )
-        
+
         if( array.includes( variable ) ) {
             array.splice( array.indexOf( variable ), 1 );
         } else {
