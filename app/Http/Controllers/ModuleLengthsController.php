@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ModuleLength;
+use App\Models\Data\ModuleLength;
 use Illuminate\Http\Request;
 
 class ModuleLengthsController extends Controller
@@ -20,7 +20,7 @@ class ModuleLengthsController extends Controller
     /**
      * Fetches a specific ModuleLength by id
      *
-     * @param \App\ModuleLength $moduleLength
+     * @param ModuleLength $moduleLength
      * @return \Illuminate\Http\Response
      */
     public function get(ModuleLength $moduleLength)
@@ -49,7 +49,7 @@ class ModuleLengthsController extends Controller
      * Update the specified ModuleLength in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ModuleLength  $moduleLength
+     * @param  ModuleLength  $moduleLength
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ModuleLength $moduleLength)
@@ -65,7 +65,7 @@ class ModuleLengthsController extends Controller
     /**
      * Remove the specified ModuleLength from storage
      *
-     * @param  \App\ModuleLength  $moduleLength
+     * @param  ModuleLength  $moduleLength
      * @return \Illuminate\Http\Response
      */
     public function destroy(ModuleLength $moduleLength)

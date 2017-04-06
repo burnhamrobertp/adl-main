@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
+use App\Models\Data\Module;
+use App\Models\ModuleListFilter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ModulesController extends Controller
 {
@@ -12,22 +14,30 @@ class ModulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, ModuleListFilter $moduleListFilter)
     {
-        $sorted = Module::with('edition', 'publisher', 'setting', 'length')->get()->sortBy('order');
+        $this->validate($request, $moduleListFilter->rules());
 
-        return $sorted->values()->all();
+        // Filters array
+        $f = Input::all();
+
+        $modules = Module::with('edition', 'publisher', 'setting', 'length', 'avgRating');
+        $modules = $moduleListFilter->filter($modules, $f);
+
+        return response()->json(
+            $modules->get()->sortBy('name')->values()->all()
+        );
     }
 
     /**
      * Fetches a specific Module by id
      *
-     * @param \App\Module $module
+     * @param Module $module
      * @return \Illuminate\Http\Response
      */
     public function get(Module $module)
     {
-        return $module;
+        return $module->with('edition', 'publisher', 'setting', 'length', 'avgRating')->find($module->id);
     }
 
     /**
@@ -51,7 +61,7 @@ class ModulesController extends Controller
      * Update the specified Module in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Module  $module
+     * @param  Module  $module
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Module $module)
@@ -67,7 +77,7 @@ class ModulesController extends Controller
     /**
      * Remove the specified Module from storage
      *
-     * @param  \App\Module  $module
+     * @param  Module  $module
      * @return \Illuminate\Http\Response
      */
     public function destroy(Module $module)

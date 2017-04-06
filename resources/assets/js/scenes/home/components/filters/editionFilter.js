@@ -4,11 +4,8 @@ import Filter from './filter';
 import Button from '../atoms/Button';
 
 class EditionFilter extends React.Component {
-    
-    renderButtons(){
-        
-        if(this.props.editions.length > 0){
-            
+    renderButtons() {
+        if (this.props.editions.length > 0) {
             return this.props.editions.map((edition) =>
                 <Button
                     key={edition.id}
@@ -17,8 +14,7 @@ class EditionFilter extends React.Component {
                     active={this.props.activeListings.includes(edition.name)}
                     activeListings={this.props.activeListings}
                 />
-            );
-            
+            ); 
         }
         return null;
     }

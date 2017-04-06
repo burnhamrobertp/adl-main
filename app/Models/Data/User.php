@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Data;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,6 +19,6 @@ class User extends Authenticatable
 
     public function ratings()
     {
-        return $this->hasMany('App\ModuleRating');
+        return $this->hasMany('App\Models\Data\ModuleRating');
     }
 }

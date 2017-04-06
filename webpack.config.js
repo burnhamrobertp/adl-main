@@ -13,8 +13,8 @@ module.exports = {
 
     resolve: {
         modules: [
+            path.resolve(__dirname, 'resources', 'assets', 'js'),
             path.resolve(__dirname, 'resources', 'assets'),
-            path.resolve(__dirname, 'resources'),
             'node_modules'
         ]
     },

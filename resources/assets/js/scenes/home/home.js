@@ -4,7 +4,6 @@ import Filters from './components/filters/filters'
 import Modules from './components/modules'
 
 class Home extends React.Component {
-    
     render() {
         return (
             <div className="container">

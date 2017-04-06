@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModuleLength extends Model
+class ContributorType extends Model
 {
     public $timestamps = false;
 }

@@ -12,10 +12,10 @@ class ModuleLengthsSeeder extends Seeder
     public function run()
     {
         DB::table('module_lengths')->insert([
-            ['name' => 'Short'],
-            ['name' => 'Moderate'],
-            ['name' => 'Long'],
-            ['name' => 'Epic'],
+            ['name' => 'Short', 'order' => 1],
+            ['name' => 'Moderate', 'order' => 2],
+            ['name' => 'Long', 'order' => 3],
+            ['name' => 'Epic', 'order' => 4],
         ]);
     }
 }

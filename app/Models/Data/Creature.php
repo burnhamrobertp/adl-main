@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,6 @@ class Creature extends Model
 {
     public function type()
     {
-        return $this->belongsTo('App\CreatureType');
+        return $this->belongsTo('App\Models\Data\CreatureType');
     }
 }

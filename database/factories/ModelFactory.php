@@ -50,3 +50,17 @@ $factory->define(App\Module::class, function (Faker\Generator $faker) {
         'updated_at' => $faker->unixTime
     ];
 });
+
+$factory->define(App\ModuleRating::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function() {
+            return App\User::all()->random()->id;
+        },
+        'module_id' => function() {
+            return App\Module::all()->random()->id;
+        },
+        'rating' => $faker->biasedNumberBetween(1, 10),
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});

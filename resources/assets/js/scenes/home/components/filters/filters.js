@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import EditionFilter from './editionFilter';
+import SettingFilter from './settingFilter';
 import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
@@ -26,6 +27,8 @@ class Filters extends React.Component {
                     click={this.props.setEditions}
                     activeListings={this.props.activeEditions}
                 />
+            
+                <SettingFilter />
 
                 <LevelFilter />
 
@@ -42,7 +45,6 @@ class Filters extends React.Component {
         )
     }
 }
-
 
 Filters.defaultProps = {
     editions: [],

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
+use App\Models\Data\Item;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller
@@ -22,7 +22,7 @@ class ItemsController extends Controller
     /**
      * Fetches a specific Item by id
      *
-     * @param \App\Item $item
+     * @param Item $item
      * @return \Illuminate\Http\Response
      */
     public function get(Item $item)
@@ -51,7 +51,7 @@ class ItemsController extends Controller
      * Update the specified Item in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
+     * @param  Item  $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Item $item)
@@ -67,7 +67,7 @@ class ItemsController extends Controller
     /**
      * Remove the specified Item from storage
      *
-     * @param  \App\Item  $item
+     * @param  Item  $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)

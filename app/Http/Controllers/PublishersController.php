@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Publisher;
+use App\Models\Data\Publisher;
 use Illuminate\Http\Request;
 
 class PublishersController extends Controller
@@ -51,7 +51,7 @@ class PublishersController extends Controller
      * Update the specified publisher in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Publisher  $publisher
+     * @param  Publisher  $publisher
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Publisher $publisher)
@@ -67,7 +67,7 @@ class PublishersController extends Controller
     /**
      * Remove the specified publisher from storage
      *
-     * @param  \App\Publisher  $publisher
+     * @param  Publisher  $publisher
      * @return \Illuminate\Http\Response
      */
     public function destroy(Publisher $publisher)

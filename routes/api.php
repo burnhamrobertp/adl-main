@@ -90,6 +90,14 @@ Route::group([ 'prefix' => 'publishers' ], function() {
     Route::delete('{publisher}', 'PublishersController@destroy');
 });
 
+Route::group([ 'prefix' => 'settings' ], function() {
+    Route::get('', 'SettingsController@index');
+    Route::get('{setting}', 'SettingsController@get');
+    Route::post('', 'SettingsController@store');
+    Route::post('{setting}', 'SettingsController@update');
+    Route::delete('{setting}', 'SettingsController@destroy');
+});
+
 // In particular will need tighter security
 /*
 Route::group([ 'prefix' => 'users' ], function() {
