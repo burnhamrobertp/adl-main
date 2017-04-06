@@ -27,6 +27,8 @@ class Filters extends React.Component {
                     click={this.props.setEditions}
                     activeListings={this.props.activeEditions}
                 />
+            
+                <SettingFilter />
 
                 <LevelFilter />
 
