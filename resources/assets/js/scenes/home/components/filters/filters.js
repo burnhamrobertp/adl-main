@@ -6,11 +6,12 @@ import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
-import {getEditions, getAdventureLengths, setEditions, setAdventureLengths} from 'js/actions/filters';
+import {getEditions, getSettings, getAdventureLengths, setEditions, setSetting, setAdventureLengths} from 'js/actions/filters';
 
 class Filters extends React.Component {
     componentDidMount() {
         this.props.getEditions();
+        this.props.getSettings();
         this.props.getAdventureLengths()
     }
 
@@ -28,7 +29,10 @@ class Filters extends React.Component {
                     activeListings={this.props.activeEditions}
                 />
             
-                <SettingFilter />
+                <SettingFilter
+                    settings={this.props.settings}
+                    change={this.props.setSetting}
+                />
 
                 <LevelFilter />
 
@@ -48,26 +52,30 @@ class Filters extends React.Component {
 
 Filters.defaultProps = {
     editions: [],
+    settings: [],
     minLevel: 0,
     maxLevel: 20,
     adventureLength: [],
     search: '',
     digitalCopy: false,
     activeEditions: [],
+    activeSetting: '',
     activeAdventureLength: []
 };
 
 function mapStateToProps( state ) {
     return {
         editions: state.filters.editions,
+        settings: state.filters.settings,
         minLevel: state.filters.minLevel,
         maxLevel: state.filters.maxLevel,
         adventureLength: state.filters.adventureLengths,
         search: state.filters.search,
         digitalCopy: state.filters.digitalCopy,
         activeEditions: state.filters.activeEditions,
+        activeSetting: state.filters.activeSetting,
         activeAdventureLength: state.filters.activeAdventureLengths
     };
 }
 
-export default connect( mapStateToProps, {getEditions, getAdventureLengths, setEditions, setAdventureLengths} )( Filters );
+export default connect( mapStateToProps, {getEditions, getSettings, getAdventureLengths, setEditions, setAdventureLengths, setSetting} )( Filters );

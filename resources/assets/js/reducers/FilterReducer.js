@@ -6,6 +6,7 @@ const DEFAULT_STATE = {
     search                 : '',
     digitalCopy            : false,
     activeEditions         : [],
+    activeSetting          : '',
     activeAdventureLengths : [],
 };
 
@@ -15,6 +16,10 @@ export default function( state = DEFAULT_STATE, action ) {
             return Object.assign( {}, state, {
                 editions : action.payload
             } );
+        case 'GET_FILTER_SETTINGS':
+            return Object.assign( {}, state, {
+                settings: action.payload
+            } );
         case 'GET_FILTER_LENGTHS':
             return Object.assign( {}, state, {
                 adventureLengths : action.payload
@@ -23,8 +28,12 @@ export default function( state = DEFAULT_STATE, action ) {
             return Object.assign( {}, state, {
                 activeEditions : action.payload
             } );
+        case 'SET_FILTER_SETTING':
+            return Object.assign( {}, state, {
+                activeSetting : action.payload
+            } );
         case 'SET_FILTER_LENGTHS':
-            
+
             return Object.assign( {}, state, {
                 activeAdventureLengths : action.payload
             } );
