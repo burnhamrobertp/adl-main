@@ -1,7 +1,11 @@
 import Axios from 'Axios';
 
-export function getModules() {
-    const data = Axios.get('api/modules/').then((response) => response.data);
+export function getModules(filters = {}) {
+    const data = Axios.get('api/modules/', {
+        params: filters
+    }).then((response) =>
+        response.data
+    );
 
     return {
         type: 'GET_MODULES',

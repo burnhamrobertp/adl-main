@@ -18,7 +18,7 @@ class Button extends React.Component {
     }
 
     click() {
-        this.props.click(this.props.name, this.props.activeListings);
+        this.props.click(this.props.id, this.props.activeListings);
     }
 
     render() {

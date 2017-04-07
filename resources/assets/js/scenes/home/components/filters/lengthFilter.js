@@ -9,9 +9,10 @@ class LengthFilter extends React.Component {
             return this.props.lengths.map((length) =>
                 <Button
                     key={length.id}
+                    id={length.id}
                     name={length.name}
                     click={this.props.click}
-                    active={this.props.activeListings.includes(length.name)}
+                    active={this.props.activeListings.includes(length.id)}
                     activeListings={this.props.activeListings}
                 />
             );

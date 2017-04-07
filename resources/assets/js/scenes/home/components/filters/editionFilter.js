@@ -9,9 +9,10 @@ class EditionFilter extends React.Component {
             return this.props.editions.map((edition) =>
                 <Button
                     key={edition.id}
+                    id={edition.id}
                     name={edition.name}
                     click={this.props.click}
-                    active={this.props.activeListings.includes(edition.name)}
+                    active={this.props.activeListings.includes(edition.id)}
                     activeListings={this.props.activeListings}
                 />
             );

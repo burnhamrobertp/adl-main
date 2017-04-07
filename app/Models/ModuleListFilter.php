@@ -22,7 +22,7 @@ class ModuleListFilter
             'editions.*' => 'integer|distinct',
             'moduleLengths' => 'array',
             'moduleLengths.*' => 'integer|distinct',
-            'search' => 'array'
+            'search' => 'array|nullable'
         ];
     }
 
