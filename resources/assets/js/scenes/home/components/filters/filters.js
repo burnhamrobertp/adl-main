@@ -18,7 +18,9 @@ class Filters extends React.Component {
 
     renderFilterButton() {
         return (
-            <button onClick={this.filterModules.bind(this)}>Filter</button>
+            <div className="text-right mt-2">
+                <button id="applyFilters" onClick={this.filterModules.bind(this)}>Apply Filters</button>
+            </div>
         )
     }
 
@@ -29,8 +31,6 @@ class Filters extends React.Component {
                     Adventure Lookup helps you quickly locate an adventure for your D&D campaign using a wide range of
                     categories. Enable the filters of your choice and the results will update to match.
                 </div>
-
-                {this.renderFilterButton()}
 
                 <EditionFilter
                     editions={this.props.editions}
@@ -54,6 +54,8 @@ class Filters extends React.Component {
                 <SearchFilter />
 
                 <Filter id="digitalcopy" label="Digital Copy Available"/>
+
+                {this.renderFilterButton()}
             </div>
         )
     }
