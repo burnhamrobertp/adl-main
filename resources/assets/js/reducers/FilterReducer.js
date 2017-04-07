@@ -1,10 +1,10 @@
 const DEFAULT_STATE = {
-    minLevel: 0,
-    maxLevel: 20,
-    search: '',
+    minLevel: null,
+    maxLevel: null,
+    search: null,
     digitalCopy: false,
     activeEditions: [],
-    activeSetting: '',
+    activeSetting: null,
     activeAdventureLengths: [],
 };
 
