@@ -4,8 +4,8 @@ import Filter from './filter';
 import Button from '../atoms/Button';
 
 class LengthFilter extends React.Component {
-    renderButtons(){
-        if(this.props.lengths.length > 0){
+    renderButtons() {
+        if (this.props.lengths.length > 0) {
             return this.props.lengths.map((length) =>
                 <Button
                     key={length.id}

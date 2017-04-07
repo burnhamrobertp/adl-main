@@ -1,10 +1,12 @@
-import { combineReducers } from 'redux';
-import FilterReducer from './FilterReducer.js';
-import ModulesReducer from './ModulesReducer.js';
+import {combineReducers} from 'redux';
+import LookupReducer from './LookupReducer';
+import FilterReducer from './FilterReducer';
+import ModulesReducer from './ModulesReducer';
 
-const rootReducers = combineReducers( {
-    filters : FilterReducer,
-    modules : ModulesReducer
-} );
+const rootReducers = combineReducers({
+    lookups: LookupReducer,
+    filters: FilterReducer,
+    modules: ModulesReducer
+});
 
 export default rootReducers;
