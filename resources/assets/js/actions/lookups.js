@@ -5,11 +5,11 @@ import Axios from 'Axios';
  * @returns {{type: string, payload: *}}
  */
 export function getEditions() {
-    const data = Axios.get( 'api/editions/' ).then( ( response ) => response.data );
+    const data = Axios.get('api/editions/').then((response) => response.data);
 
     return {
-        type    : 'GET_LOOKUP_EDITIONS',
-        payload : window.editions
+        type: 'GET_LOOKUP_EDITIONS',
+        payload: data
     };
 }
 
@@ -18,11 +18,11 @@ export function getEditions() {
  * @returns {{type: string, payload: *}}
  */
 export function getSettings() {
-    const data = Axios.get( 'api/settings/' ).then( ( response ) => response.data );
+    const data = Axios.get('api/settings/').then((response) => response.data);
 
     return {
-        type    : 'GET_LOOKUP_SETTINGS',
-        payload : window.settings
+        type: 'GET_LOOKUP_SETTINGS',
+        payload: data
     };
 }
 
@@ -31,10 +31,10 @@ export function getSettings() {
  * @returns {{type: string, payload: *}}
  */
 export function getAdventureLengths() {
-    const data = Axios.get( 'api/moduleLengths/' ).then( ( response ) => response.data );
+    const data = Axios.get('api/moduleLengths/').then((response) => response.data);
 
     return {
-        type    : 'GET_LOOKUP_LENGTHS',
-        payload : window.moduleLengths
+        type: 'GET_LOOKUP_LENGTHS',
+        payload: data
     };
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Filter from './filter';
-import Button from '../atoms/Button';
+import Button from '../atoms/button';
 
 class EditionFilter extends React.Component {
     renderButtons() {
@@ -14,11 +14,11 @@ class EditionFilter extends React.Component {
                     active={this.props.activeListings.includes(edition.name)}
                     activeListings={this.props.activeListings}
                 />
-            ); 
+            );
         }
         return null;
     }
-    
+
     render() {
         return (
             <Filter id="edition" label="Edition">

@@ -4,13 +4,12 @@
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setEditions( edition, active ) {
-
-    active = updateArray( active, edition );
+export function setEditions(edition, active) {
+    active = updateArray(active, edition);
 
     return {
-        type    : 'SET_FILTER_EDITIONS',
-        payload : active
+        type: 'SET_FILTER_EDITIONS',
+        payload: active
     };
 }
 
@@ -19,10 +18,10 @@ export function setEditions( edition, active ) {
  * @param setting
  * @returns {{type: string, payload: *}}
  */
-export function setFilterSetting( setting ) {
+export function setFilterSetting(setting) {
     return {
-        type    : 'SET_FILTER_SETTING',
-        payload : setting
+        type: 'SET_FILTER_SETTING',
+        payload: setting
     };
 }
 
@@ -32,24 +31,24 @@ export function setFilterSetting( setting ) {
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setAdventureLengths( length, active ) {
-    active = updateArray( active, length );
+export function setAdventureLengths(length, active) {
+    active = updateArray(active, length);
 
     return {
-        type    : 'SET_FILTER_LENGTHS',
-        payload : active
+        type: 'SET_FILTER_LENGTHS',
+        payload: active
     };
 }
 
-function updateArray( active, variable ) {
-    return new Promise( ( cb ) => {
-        let array = active.map( ( item ) => item )
+function updateArray(active, variable) {
+    return new Promise((cb) => {
+        let array = active.map((item) => item)
 
-        if( array.includes( variable ) ) {
-            array.splice( array.indexOf( variable ), 1 );
+        if (array.includes(variable)) {
+            array.splice(array.indexOf(variable), 1);
         } else {
-            array.push( variable );
+            array.push(variable);
         }
-        cb( array );
-    } )
+        cb(array);
+    })
 }

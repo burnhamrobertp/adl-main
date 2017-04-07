@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Filter from './filter';
-import Button from '../atoms/Button';
+import Button from '../atoms/button';
 
 class LengthFilter extends React.Component {
     renderButtons() {
@@ -18,7 +18,7 @@ class LengthFilter extends React.Component {
         }
         return null;
     }
-    
+
     render() {
         return (
             <Filter id="length" label="Adventure Length">
