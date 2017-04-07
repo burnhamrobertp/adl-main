@@ -19,10 +19,6 @@
     @extend .btn-secondary;
     @extend .btn-sm;
     @extend .mr-1;
-
-    &.active {
-      background-color: lighten(#FFC107, 10%);
-    }
   }
 }
 
