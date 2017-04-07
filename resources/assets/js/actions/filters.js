@@ -1,37 +1,4 @@
 /**
- * Get edition filters
- * @returns {{type: string, payload: *}}
- */
-export function getEditions() {
-    return {
-        type    : 'GET_FILTER_EDITIONS',
-        payload : window.editions
-    };
-}
-
-/**
- * Get settings
- * @returns {{type: string, payload: *}}
- */
-export function getSettings() {
-    return {
-        type    : 'GET_FILTER_SETTINGS',
-        payload : window.settings
-    };
-}
-
-/**
- * Get adventure length filters
- * @returns {{type: string, payload: *}}
- */
-export function getAdventureLengths() {
-    return {
-        type    : 'GET_FILTER_LENGTHS',
-        payload : window.moduleLengths
-    };
-}
-
-/**
  * Set active editions
  * @param edition
  * @param active

@@ -6,15 +6,9 @@ import LevelFilter from './levelFilter';
 import LengthFilter from './lengthFilter';
 import SearchFilter from './searchFilter';
 import Filter from './filter';
-import {getEditions, getSettings, getAdventureLengths, setEditions, setSetting, setAdventureLengths} from 'js/actions/filters';
+import {setEditions, setSetting, setAdventureLengths} from 'js/actions/filters';
 
 class Filters extends React.Component {
-    componentDidMount() {
-        this.props.getEditions();
-        this.props.getSettings();
-        this.props.getAdventureLengths()
-    }
-
     render() {
         return (
             <div id="adl-filters" className="bg-faded">
@@ -37,7 +31,7 @@ class Filters extends React.Component {
                 <LevelFilter />
 
                 <LengthFilter
-                    lengths={this.props.adventureLength}
+                    lengths={this.props.moduleLengths}
                     click={this.props.setAdventureLengths}
                     activeListings={this.props.activeAdventureLength}
                 />
@@ -65,11 +59,11 @@ Filters.defaultProps = {
 
 function mapStateToProps( state ) {
     return {
-        editions: state.filters.editions,
-        settings: state.filters.settings,
+        editions: state.lookups.editions,
+        settings: state.lookups.settings,
+        moduleLengths: state.lookups.moduleLengths,
         minLevel: state.filters.minLevel,
         maxLevel: state.filters.maxLevel,
-        adventureLength: state.filters.adventureLengths,
         search: state.filters.search,
         digitalCopy: state.filters.digitalCopy,
         activeEditions: state.filters.activeEditions,
@@ -78,4 +72,4 @@ function mapStateToProps( state ) {
     };
 }
 
-export default connect( mapStateToProps, {getEditions, getSettings, getAdventureLengths, setEditions, setAdventureLengths, setSetting} )( Filters );
+export default connect( mapStateToProps, {setEditions, setAdventureLengths, setSetting} )( Filters );
