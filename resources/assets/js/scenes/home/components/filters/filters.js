@@ -9,7 +9,7 @@ import SearchFilter from './searchFilter';
 import Filter from './filter';
 
 import {getModules} from 'js/actions/modules';
-import {setEditions, setSetting, setAdventureLengths} from 'js/actions/filters';
+import {setFilterEditions, setFilterSetting, setFilterMinLevel, setFilterMaxLevel, setFilterModuleLengths} from 'js/actions/filters';
 
 class Filters extends React.Component {
     filterModules() {
@@ -34,20 +34,25 @@ class Filters extends React.Component {
 
                 <EditionFilter
                     editions={this.props.editions}
-                    click={this.props.setEditions}
+                    click={this.props.setFilterEditions}
                     activeListings={this.props.filters.editions}
                 />
 
                 <SettingFilter
                     settings={this.props.settings}
-                    change={this.props.setSetting}
+                    change={this.props.setFilterSetting}
                 />
 
-                <LevelFilter />
+                <LevelFilter
+                    minLevel={this.props.filters.minLevel}
+                    minChange={this.props.setFilterMinLevel}
+                    maxLevel={this.props.filters.maxLevel}
+                    maxChange={this.props.setFilterMaxLevel}
+                />
 
                 <LengthFilter
                     lengths={this.props.moduleLengths}
-                    click={this.props.setAdventureLengths}
+                    click={this.props.setFilterModuleLengths}
                     activeListings={this.props.filters.moduleLengths}
                 />
 
@@ -68,9 +73,9 @@ function mapStateToProps(state) {
             maxLevel: state.filters.maxLevel,
             search: state.filters.search,
             digitalCopy: state.filters.digitalCopy,
-            editions: state.filters.activeEditions,
-            setting: state.filters.activeSetting,
-            moduleLengths: state.filters.activeAdventureLengths
+            editions: state.filters.editions,
+            setting: state.filters.setting,
+            moduleLengths: state.filters.moduleLengths
         },
         editions: state.lookups.editions,
         settings: state.lookups.settings,
@@ -78,4 +83,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {getModules, setEditions, setAdventureLengths, setSetting})(Filters);
+export default connect(mapStateToProps, {getModules, setFilterEditions, setFilterModuleLengths, setFilterSetting, setFilterMinLevel, setFilterMaxLevel})(Filters);

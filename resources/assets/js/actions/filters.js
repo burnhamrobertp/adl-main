@@ -4,7 +4,7 @@
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setEditions(edition, active) {
+export function setFilterEditions(edition, active) {
     active = updateArray(active, edition);
 
     return {
@@ -14,7 +14,7 @@ export function setEditions(edition, active) {
 }
 
 /**
- * Set active setting
+ * Set filter setting
  * @param setting
  * @returns {{type: string, payload: *}}
  */
@@ -26,12 +26,36 @@ export function setFilterSetting(setting) {
 }
 
 /**
+ * Set filter minLevel
+ * @param minLevel
+ * @returns {{type: string, payload: *}}
+ */
+export function setFilterMinLevel(minLevel) {
+    return {
+        type: 'SET_FILTER_SETTING',
+        payload: minLevel
+    };
+}
+
+/**
+ * Set filter maxLevel
+ * @param maxLevel
+ * @returns {{type: string, payload: *}}
+ */
+export function setFilterMaxLevel(maxLevel) {
+    return {
+        type: 'SET_FILTER_SETTING',
+        payload: maxLevel
+    };
+}
+
+/**
  * Set active adventure lengths
  * @param length
  * @param active
  * @returns {{type: string, payload: *}}
  */
-export function setAdventureLengths(length, active) {
+export function setFilterModuleLengths(length, active) {
     active = updateArray(active, length);
 
     return {
