@@ -11,6 +11,6 @@ class ModulesSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Module::class, 40)->create();
+        factory(App\Models\Data\Module::class, 40)->create();
     }
 }
