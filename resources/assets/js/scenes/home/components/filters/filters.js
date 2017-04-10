@@ -9,7 +9,13 @@ import SearchFilter from './searchFilter';
 import Filter from './filter';
 
 import {getModules} from 'js/actions/modules';
-import {setFilterEditions, setFilterSetting, setFilterMinLevel, setFilterMaxLevel, setFilterModuleLengths} from 'js/actions/filters';
+import {
+    setFilterEditions,
+    setFilterSetting,
+    setFilterMinLevel,
+    setFilterMaxLevel,
+    setFilterModuleLengths
+} from 'js/actions/filters';
 
 class Filters extends React.Component {
     filterModules() {
