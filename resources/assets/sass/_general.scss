@@ -1,3 +1,7 @@
+select {
+  @extend .custom-select;
+}
+
 .row.equalH {
   display: flex;
 }

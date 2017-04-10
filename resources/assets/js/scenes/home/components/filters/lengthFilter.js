@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Filter from './filter';
-import Button from '../atoms/Button';
+import Button from '../atoms/button';
 
 class LengthFilter extends React.Component {
     renderButtons() {
@@ -9,16 +9,17 @@ class LengthFilter extends React.Component {
             return this.props.lengths.map((length) =>
                 <Button
                     key={length.id}
+                    id={length.id}
                     name={length.name}
                     click={this.props.click}
-                    active={this.props.activeListings.includes(length.name)}
+                    active={this.props.activeListings.includes(length.id)}
                     activeListings={this.props.activeListings}
                 />
             );
         }
         return null;
     }
-    
+
     render() {
         return (
             <Filter id="length" label="Adventure Length">

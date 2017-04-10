@@ -11,6 +11,6 @@ class ModuleRatingsSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ModuleRating::class, 400)->create();
+        factory(App\Models\Data\ModuleRating::class, 400)->create();
     }
 }

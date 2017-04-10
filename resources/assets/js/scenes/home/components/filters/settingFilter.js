@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Filter from './filter';
+import Select from '../atoms/select';
 
 class SettingFilter extends React.Component {
     renderOptions() {
@@ -14,10 +15,10 @@ class SettingFilter extends React.Component {
     render() {
         return (
             <Filter id="settigns" label="Campaign Setting">
-                <select>
-                    <option value="" />
-                    {this.renderOptions()}
-                </select>
+                <Select
+                    settings={this.props.settings}
+                    change={this.props.change}
+                />
             </Filter>
         );
     }

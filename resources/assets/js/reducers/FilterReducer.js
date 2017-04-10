@@ -1,28 +1,35 @@
 const DEFAULT_STATE = {
-    minLevel               : 0,
-    maxLevel               : 20,
-    search                 : '',
-    digitalCopy            : false,
-    activeEditions         : [],
-    activeSetting          : '',
-    activeAdventureLengths : [],
+    minLevel: null,
+    maxLevel: null,
+    search: null,
+    digitalCopy: false,
+    editions: [],
+    setting: null,
+    moduleLengths: [],
 };
 
-export default function( state = DEFAULT_STATE, action ) {
-    switch( action.type ) {
+export default function (state = DEFAULT_STATE, action) {
+    switch (action.type) {
         case 'SET_FILTER_EDITIONS':
-            return Object.assign( {}, state, {
-                activeEditions : action.payload
-            } );
+            return Object.assign({}, state, {
+                editions: action.payload
+            });
         case 'SET_FILTER_SETTING':
-            return Object.assign( {}, state, {
-                activeSetting : action.payload
-            } );
+            return Object.assign({}, state, {
+                setting: action.payload
+            });
+        case 'SET_FILTER_MINLEVEL':
+            return Object.assign({}, state, {
+                minLevel: action.payload
+            });
+        case 'SET_FILTER_MAXLEVEL':
+            return Object.assign({}, state, {
+                maxLevel: action.payload
+            });
         case 'SET_FILTER_LENGTHS':
-
-            return Object.assign( {}, state, {
-                activeAdventureLengths : action.payload
-            } );
+            return Object.assign({}, state, {
+                moduleLengths: action.payload
+            });
         default:
             return state;
     }

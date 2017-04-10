@@ -1,29 +1,32 @@
 import React from 'react';
 
 import Filter from './filter';
+import Input from '../atoms/input';
 
-class EditionFilter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class LevelFilter extends React.Component {
     render() {
         return (
             <Filter id="level" label="Level Range">
                 <div className="input-group input-group-sm">
-                        <span className="input-group-addon">
-                            <label htmlFor="adl-filter-level-min">Min</label>
-                        </span>
-                    <input id="adl-filter-level-min" type="text" className="form-control" aria-label="Minimum adventure level"/>
+                    <span className="input-group-addon">
+                        <label htmlFor="adl-filter-level-min">Min</label>
+                    </span>
+                    <Input
+                        change={this.props.minChange}
+                        value={this.props.minLevel}
+                    />
 
                     <span className="input-group-addon">
-                            <label htmlFor="adl-filter-level-max">Max</label>
-                        </span>
-                    <input id="adl-filter-level-max" type="text" className="form-control" aria-label="Minimum adventure level"/>
+                        <label htmlFor="adl-filter-level-max">Max</label>
+                    </span>
+                    <Input
+                        change={this.props.maxChange}
+                        value={this.props.maxLevel}
+                    />
                 </div>
             </Filter>
         );
     }
 }
 
-export default EditionFilter;
+export default LevelFilter;
