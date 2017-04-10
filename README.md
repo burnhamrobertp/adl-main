@@ -1,6 +1,12 @@
 # Adventure Lookup
 Adventure Lookup's new main repository.  The entire site will live here.
 
+## Style Guide
+#### PHP
+Style should generally conform to PSR-1 and PSR-2 standards.
+#### Javascript / React
+Follow the AirBNB React style guide, found [here](https://github.com/airbnb/javascript/tree/master/react).
+
 ## Setup Development Environment
 
 To conveniently setup a local development system, you can either use the artisan php server (and a local mysql 
