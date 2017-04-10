@@ -1,20 +1,12 @@
 import React from 'react';
 
-const DEFAULT = {
-
-};
-
-const ACTIVE = {
-    background: '#ffce3a'
-};
-
 class Button extends React.Component {
-    getStyle() {
+    getClasses() {
         if (this.props.active) {
-            return ACTIVE;
+            return ['active'];
         }
 
-        return DEFAULT;
+        return [];
     }
 
     click() {
@@ -23,7 +15,7 @@ class Button extends React.Component {
 
     render() {
         return (
-            <button style={this.getStyle()} onClick={this.click.bind(this)}>
+            <button className={this.getClasses()} onClick={this.click.bind(this)}>
                 {this.props.name}
             </button>
         );
