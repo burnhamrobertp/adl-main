@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Filters from './components/filters/filters'
-import Modules from './components/modules'
+import Filters from './Filters'
+import Modules from './ModulesList'
 
 class Home extends React.Component {
     render() {

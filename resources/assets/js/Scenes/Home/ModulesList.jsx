@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-import Module from './module'
+import Module from './Components/Module'
 import {getModules} from 'js/actions/modules';
 
 class Modules extends React.Component {

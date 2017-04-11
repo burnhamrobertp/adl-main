@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Filter from './filter';
-import Button from '../atoms/button';
+import Filter from '../Components/Filter';
+import Button from '../Components/Button';
 
 class EditionFilter extends React.Component {
     renderButtons() {

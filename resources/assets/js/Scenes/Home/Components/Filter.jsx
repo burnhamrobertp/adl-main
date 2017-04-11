@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Used by each of the specific filters for layout purposes
+ */
 class Filter extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +33,7 @@ class Filter extends React.Component {
                     </div>
                 </div>
 
-                <div className="line"></div>
+                <div className="line" />
             </div>
         )
     }

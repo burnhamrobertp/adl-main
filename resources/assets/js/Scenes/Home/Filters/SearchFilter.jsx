@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filter from './filter';
+import Filter from '../Components/Filter';
 
 class EditionFilter extends React.Component {
     constructor(props) {

@@ -5,8 +5,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise';
-import Home from './scenes/home/home'
-import Navbar from './components/navbar/navbar'
+
+import Home from './Scenes/Home/Home'
+import Navbar from './Components/Navbar/Navbar'
 import reducers from './reducers/index.js';
 
 export const store = createStore(reducers, applyMiddleware(promise));

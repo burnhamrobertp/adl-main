@@ -1,17 +1,9 @@
 import React from 'react';
 
-import Filter from './filter';
-import Select from '../atoms/select';
+import Filter from '../Components/Filter';
+import Select from '../Components/Select';
 
 class SettingFilter extends React.Component {
-    renderOptions() {
-        if (this.props.settings.length > 0) {
-            return this.props.settings.map((setting) =>
-                <option key={setting.id} value={setting.id}>{setting.name}</option>
-            );
-        }
-    }
-
     render() {
         return (
             <Filter id="settigns" label="Campaign Setting">

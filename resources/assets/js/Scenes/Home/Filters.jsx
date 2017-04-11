@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import EditionFilter from './editionFilter';
-import SettingFilter from './settingFilter';
-import LevelFilter from './levelFilter';
-import LengthFilter from './lengthFilter';
-import SearchFilter from './searchFilter';
-import Filter from './filter';
+import EditionFilter from './Filters/EditionFilter';
+import SettingFilter from './Filters/SettingFilter';
+import LevelFilter from './Filters/LevelFilter';
+import LengthFilter from './Filters/LengthFilter';
+import SearchFilter from './Filters/SearchFilter';
+import Filter from './Components/Filter';
 
 import {getModules} from 'js/actions/modules';
 import {

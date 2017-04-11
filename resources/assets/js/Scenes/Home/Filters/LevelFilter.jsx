@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Filter from './filter';
-import Input from '../atoms/input';
+import Filter from '../Components/Filter';
+import Input from '../Components/Input';
 
 class LevelFilter extends React.Component {
     render() {

@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import LookupReducer from './LookupReducer';
-import FilterReducer from './FilterReducer';
-import ModulesReducer from './ModulesReducer';
+import LookupReducer from './lookupReducer';
+import FilterReducer from './filterReducer';
+import ModulesReducer from './modulesReducer';
 
 const rootReducers = combineReducers({
     lookups: LookupReducer,
