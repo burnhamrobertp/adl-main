@@ -7,19 +7,17 @@ class Module extends React.Component {
     }
 
     renderLevel() {
-        const level = module.min_level && module.max_level
-                ? <span>| Levels {module.min_level} - {module.max_level}</span>
-                : '';
+        if (!module.min_level || !module.max_level)
+            return;
 
-        return level;
+        return <span>| Levels {module.min_level} - {module.max_level}</span>
     }
 
     renderLength() {
-        const length = module.length
-            ? <span>| {module.length.name}</span>
-            : '';
+        if (!module.length)
+            return;
 
-        return length;
+        return <span>| {module.length.name}</span>;
     }
 
     render() {
