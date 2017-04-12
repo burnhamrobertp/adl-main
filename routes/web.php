@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', function () {
+Route::get('{all}', function () {
     $out = [
         'contributorTypes' => \App\Models\Data\ContributorType::all()->sortBy('name')->values()->toJson(),
         'creatureTypes' => \App\Models\Data\CreatureType::all()->sortBy('name')->values()->toJson(),
@@ -10,4 +10,4 @@ Route::get('/', function () {
     ];
 
     return view('default', $out);
-});
+})->where('all', '^(?!api).*$');
