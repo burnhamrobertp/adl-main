@@ -1,5 +1,6 @@
 const DEFAULT_STATE = {
-    index: []
+    index: [],
+    moduleHistory: []
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -7,6 +8,13 @@ export default function (state = DEFAULT_STATE, action) {
         case 'GET_MODULES':
             return Object.assign({}, state, {
                 index: action.payload
+            });
+        case 'GET_MODULE_DETAIL':
+            let moduleHistory = state.moduleHistory;
+            moduleHistory.push(action.payload);
+
+            return Object.assign({}, state, {
+                moduleHistory: moduleHistory
             });
 
         default:

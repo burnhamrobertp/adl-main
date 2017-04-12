@@ -8,12 +8,13 @@ class ModulesList extends React.Component {
     componentDidMount() {
         this.props.getModules();
     }
-    
-    renderModuleList(){
+
+    renderModuleList() {
         return this.props.modules.map((module) =>
-            <Module key={module.id} data={module} />
+            <Module key={module.id} data={module}/>
         );
     }
+
     render() {
 
         return (
@@ -26,7 +27,9 @@ class ModulesList extends React.Component {
                             <option>Rating</option>
                         </select>
                     </div>
-                    <div id="adl-search-summary" className="col float-right text-right">{this.props.modules.length} Adventures Found</div>
+                    <div id="adl-search-summary" className="col float-right text-right">
+                        {this.props.modules.length} Adventures Found
+                    </div>
                 </div>
 
                 {this.renderModuleList()}
@@ -35,10 +38,10 @@ class ModulesList extends React.Component {
     }
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps(state) {
     return {
-        modules : state.modules.index
+        modules: state.modules.index
     };
 }
 
-export default connect( mapStateToProps, {getModules} )( ModulesList );
+export default connect(mapStateToProps, {getModules})(ModulesList);
