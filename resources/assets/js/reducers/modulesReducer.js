@@ -1,6 +1,14 @@
 const DEFAULT_STATE = {
     index: [],
-    moduleHistory: []
+    moduleHistory: [],
+
+    currentModule: (moduleHistory) => {
+        const
+            historyLength = moduleHistory.length,
+            hasHistory = historyLength > 0;
+
+        return hasHistory ? moduleHistory[historyLength - 1] : {};
+    }
 };
 
 export default function (state = DEFAULT_STATE, action) {

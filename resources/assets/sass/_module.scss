@@ -1,11 +1,6 @@
-div.module {
-  div.module-header {
-    div.module-subheader {
-      font-size: 0.8em;
-    }
-
-    div.module-summary {
-      font-size: 0.9em;
-    }
-  }
+.moduleHeader {
+  @extend .bg-dark;
+  @extend .m-2;
+  @extend .p-2;
+  @extend .rounded;
 }

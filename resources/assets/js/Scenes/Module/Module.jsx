@@ -1,7 +1,11 @@
 import React from 'react'
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 
-import {getModule} from 'js/actions/modules';
+import {getModule} from 'js/actions/modules'
+
+import ModuleDetail from './ModuleDetail'
+import ModuleHeader from './ModuleHeader'
+import ModuleSidebar from './ModuleSidebar'
 
 class Module extends React.Component {
     componentDidMount() {
@@ -13,10 +17,11 @@ class Module extends React.Component {
             <div className="outerContainer p-2">
                 <div className="row">
                     <div className="col-8">
-
+                        <ModuleHeader module={this.props.module} />
+                        <ModuleDetail module={this.props.module} />
                     </div>
                     <div className="col">
-
+                        <ModuleSidebar module={this.props.module} />
                     </div>
                 </div>
             </div>
@@ -25,12 +30,8 @@ class Module extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const
-        historyLength = state.modules.moduleHistory.length,
-        hasHistory = historyLength > 0;
-
     return {
-        module: hasHistory ? state.modules.moduleHistory[historyLength-1] : {}
+        module: state.modules.currentModule(state.modules.moduleHistory)
     }
 }
 
