@@ -1,14 +1,13 @@
 html, body, #root, #root > div {
   margin: 0;
   padding: 0;
-  height: 100%;
-}
 
-div.outerContainer {
-  @extend .container;
+  div.outerContainer {
+    @extend .container;
 
-  min-height: 100%;
-  background-color: #ffffff;
+    min-height: 100%;
+    background-color: $white;
+  }
 }
 
 /* Overridden element styles */
@@ -18,4 +17,20 @@ select {
 
 div.line {
   border-bottom: 2px solid $hr-border-color;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* Classes */
+.bg-darker {
+  background-color: darken($body-bg, 15%);
+}
+.bg-dark {
+  background-color: darken($body-bg, 10%);
 }

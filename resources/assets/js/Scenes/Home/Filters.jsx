@@ -32,7 +32,7 @@ class Filters extends React.Component {
 
     render() {
         return (
-            <div id="adl-filters" className="bg-faded">
+            <div id="adl-filters">
                 <div id="adl-description" className="p-2">
                     Adventure Lookup helps you quickly locate an adventure for your D&D campaign using a wide range of
                     categories. Enable the filters of your choice and the results will update to match.

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Filters from './Filters'
-import Modules from './ModulesList'
+import ModulesList from './ModulesList'
 
 class Home extends React.Component {
     render() {
@@ -13,7 +13,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <Modules />
+                        <ModulesList />
                     </div>
                 </div>
             </div>

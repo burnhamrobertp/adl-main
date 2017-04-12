@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Module from './Components/Module'
 import {getModules} from 'js/actions/modules';
 
-class Modules extends React.Component {
+class ModulesList extends React.Component {
     componentDidMount() {
         this.props.getModules();
     }
@@ -35,14 +35,10 @@ class Modules extends React.Component {
     }
 }
 
-Modules.defaultProps = {
-    modules : []
-};
-
 function mapStateToProps( state ) {
     return {
         modules : state.modules.index
     };
 }
 
-export default connect( mapStateToProps, {getModules} )( Modules );
+export default connect( mapStateToProps, {getModules} )( ModulesList );
