@@ -6,7 +6,7 @@ $crudRoutes = [
     ['prefix' => 'creatures', 'parameter' => 'creature', 'controller' => 'CreaturesController'],
     ['prefix' => 'creatureTypes', 'parameter' => 'creatureType', 'controller' => 'CreatureTypesController'],
     ['prefix' => 'editions', 'parameter' => 'edition', 'controller' => 'EditionsController'],
-    ['prefix' => 'items', 'parameter' => 'item', 'controller' => 'ItemsControlller'],
+    ['prefix' => 'items', 'parameter' => 'item', 'controller' => 'ItemsController'],
     ['prefix' => 'moduleLengths', 'parameter' => 'moduleLength', 'controller' => 'ModuleLengthsController'],
     ['prefix' => 'modules', 'parameter' => 'module', 'controller' => 'ModulesController'],
     ['prefix' => 'publishers', 'parameter' => 'publisher', 'controller' => 'PublishersController'],
