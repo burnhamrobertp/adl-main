@@ -1,25 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Data\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Models\Data\Contributor::class, function (Faker\Generator $faker) {
     return [
+        'contributor_type_id' => function() {
+            return App\Models\Data\ContributorType::all()->random()->id;
+        },
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
     ];
 });
 
@@ -63,5 +51,17 @@ $factory->define(App\Models\Data\ModuleRating::class, function (Faker\Generator 
         'rating' => $faker->biasedNumberBetween(1, 10),
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Data\User::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
+        'remember_token' => str_random(10),
     ];
 });

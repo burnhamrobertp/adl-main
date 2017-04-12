@@ -6,9 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
+    public function contributors()
+    {
+        return $this->belongsToMany('App\Models\Data\Contributor');
+    }
+
     public function edition()
     {
         return $this->belongsTo('App\Models\Data\Edition');
+    }
+
+    public function length()
+    {
+        return $this->belongsTo('App\Models\Data\ModuleLength');
     }
 
     public function publisher()
@@ -19,11 +29,6 @@ class Module extends Model
     public function setting()
     {
         return $this->belongsTo('App\Models\Data\Setting');
-    }
-
-    public function length()
-    {
-        return $this->belongsTo('App\Models\Data\ModuleLength');
     }
 
     public function ratings()
