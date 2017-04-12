@@ -8,7 +8,7 @@ class Module extends Model
 {
     public function contributors()
     {
-        return $this->belongsToMany('App\Models\Data\Contributor');
+        return $this->belongsToMany('App\Models\Data\Contributor')->withPivot('order');
     }
 
     public function edition()

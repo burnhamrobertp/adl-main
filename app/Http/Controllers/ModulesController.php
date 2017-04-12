@@ -37,7 +37,7 @@ class ModulesController extends Controller
      */
     public function get(Module $module)
     {
-        return $module->with('edition', 'publisher', 'setting', 'length', 'avgRating')->find($module->id);
+        return $module->with('avgRating', 'contributors', 'edition', 'length', 'publisher', 'setting')->find($module->id);
     }
 
     /**
