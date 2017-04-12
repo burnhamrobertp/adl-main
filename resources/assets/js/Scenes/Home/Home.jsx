@@ -6,7 +6,7 @@ import Modules from './ModulesList'
 class Home extends React.Component {
     render() {
         return (
-            <div className="container">
+            <div className="outerContainer">
                 <div className="row">
                     <div className="col">
                         <Filters />
