@@ -26,7 +26,7 @@ class AddOrderModuleLengths extends Migration
     public function down()
     {
         Schema::table('module_lengths', function(Blueprint $table) {
-            $table->removeColumn('order');
+            $table->dropColumn('order');
         });
     }
 }

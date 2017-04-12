@@ -26,7 +26,7 @@ class AddEditionOrder extends Migration
     public function down()
     {
         Schema::table('editions', function (Blueprint $table) {
-            $table->removeColumn('order');
+            $table->dropColumn('order');
         });
     }
 }

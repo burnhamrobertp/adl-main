@@ -27,8 +27,8 @@ class AddModuleLevels extends Migration
     public function down()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->removeColumn('min_level');
-            $table->removeColumn('max_level');
+            $table->dropColumn('min_level');
+            $table->dropColumn('max_level');
         });
     }
 }

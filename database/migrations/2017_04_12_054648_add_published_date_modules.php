@@ -26,7 +26,7 @@ class AddPublishedDateModules extends Migration
     public function down()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->removeColumn('published_date');
+            $table->dropColumn('published_date');
         });
     }
 }

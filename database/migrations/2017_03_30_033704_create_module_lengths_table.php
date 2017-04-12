@@ -33,7 +33,7 @@ class CreateModuleLengthsTable extends Migration
     {
         Schema::table('modules', function (Blueprint $table) {
             $table->dropForeign(['length_id']);
-            $table->removeColumn('length_id');
+            $table->dropColumn('length_id');
         });
         Schema::dropIfExists('module_lengths');
     }

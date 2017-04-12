@@ -27,8 +27,8 @@ class AddModuleDetailColumns extends Migration
     public function down()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->removeColumn('description');
-            $table->removeColumn('summary');
+            $table->dropColumn('description');
+            $table->dropColumn('summary');
         });
     }
 }
