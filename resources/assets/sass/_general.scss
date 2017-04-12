@@ -2,12 +2,6 @@ select {
   @extend .custom-select;
 }
 
-.row.equalH {
-  display: flex;
-}
-.col.equalH {
-  flex: 1;
-}
 div.line {
   border-bottom: 2px solid $hr-border-color;
 }

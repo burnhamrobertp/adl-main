@@ -7,12 +7,12 @@ class Home extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row equalH">
-                    <div className="col equalH">
+                <div className="row">
+                    <div className="col">
                         <Filters />
                     </div>
 
-                    <div className="col-8 equalH">
+                    <div className="col-8">
                         <Modules />
                     </div>
                 </div>
