@@ -46,6 +46,7 @@ $factory->define(App\Models\Data\Module::class, function (Faker\Generator $faker
         'max_level' => $maxLevel,
         'summary' => $faker->boolean() ? $faker->realText() : null,
         'description' => $faker->boolean() ? $faker->realText(1000) : null,
+        'published_date' => $faker->date(),
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
     ];
