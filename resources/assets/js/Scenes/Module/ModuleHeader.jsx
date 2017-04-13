@@ -80,9 +80,14 @@ class ModuleHeader extends React.Component {
     }
 
     renderRating() {
+        if (!this.props.module.avg_rating)
+            return;
+
+        const rating = parseFloat(this.props.module.avg_rating[0].aggregate).toFixed(2);
+
         return (
             <div>
-                <h4>{this.props.module.avg_rating[0].aggregate}</h4>
+                <h4>{rating}</h4>
                 <h5 className="small text-capitalize">Rating</h5>
             </div>
         )

@@ -6,6 +6,7 @@ import {getModule} from 'js/actions/modules'
 import ModuleDetail from './ModuleDetail'
 import ModuleHeader from './ModuleHeader'
 import ModuleSidebar from './ModuleSidebar'
+import ModuleSummary from './ModuleSummary'
 
 class Module extends React.Component {
     componentDidMount() {
@@ -18,6 +19,7 @@ class Module extends React.Component {
                 <div className="row">
                     <div className="col-8">
                         <ModuleHeader module={this.props.module} />
+                        <ModuleSummary module={this.props.module} />
                         <ModuleDetail module={this.props.module} />
                     </div>
                     <div className="col">

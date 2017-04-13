@@ -4,3 +4,12 @@
   @extend .p-2;
   @extend .rounded;
 }
+
+.moduleSummary {
+  @extend .m-3;
+  @extend .p-2
+}
+
+.moduleDetail {
+  @extend .container-fluid;
+}
