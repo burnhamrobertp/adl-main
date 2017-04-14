@@ -37,6 +37,7 @@ class CreatureTypesSeeder extends Seeder
             // 5e
             ['name' => 'Celestial'],
             ['name' => 'Monstrosity'],
+            ['name' => 'Fiend'],
         ]);
     }
 }
