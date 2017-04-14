@@ -17,8 +17,9 @@ class CreateContributorsTable extends Migration
             $table->increments('id');
             $table->integer('contributor_type_id', false, true);
             $table->char('name');
-            $table->smallInteger('order', false, true);
             $table->timestamps();
+
+            $table->foreign('contributor_type_id')->references('id')->on('contributor_types');
         });
     }
 

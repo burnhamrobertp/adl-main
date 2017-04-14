@@ -17,8 +17,10 @@ class CreateCreaturesTable extends Migration
             $table->increments('id');
             $table->integer('creature_type_id', false, true);
             $table->string('name');
-            $table->integer('importance');
+            $table->boolean('unique')->default(false);
             $table->timestamps();
+
+            $table->foreign('creature_type_id')->references('id')->on('creature_types');
         });
     }
 

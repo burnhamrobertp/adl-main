@@ -16,6 +16,7 @@ class CreateModuleLengthsTable extends Migration
         Schema::create('module_lengths', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->smallInteger('order');
         });
 
         Schema::table('modules', function (Blueprint $table) {
