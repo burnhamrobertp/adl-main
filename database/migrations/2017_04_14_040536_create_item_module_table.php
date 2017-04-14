@@ -16,7 +16,7 @@ class CreateItemModuleTable extends Migration
         Schema::create('item_module', function (Blueprint $table) {
             $table->integer('item_id', false, true);
             $table->integer('module_id', false, true);
-            $table->smallInteger('order');
+            $table->smallInteger('order')->default(0);
 
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('module_id')->references('id')->on('modules');

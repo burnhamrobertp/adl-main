@@ -16,7 +16,7 @@ class CreateCreatureModuleTable extends Migration
         Schema::create('creature_module', function (Blueprint $table) {
             $table->integer('creature_id', false, true);
             $table->integer('module_id', false, true);
-            $table->smallInteger('order');
+            $table->smallInteger('order')->default(0);
 
             $table->foreign('creature_id')->references('id')->on('creatures');
             $table->foreign('module_id')->references('id')->on('modules');

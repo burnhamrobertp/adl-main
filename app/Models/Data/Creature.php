@@ -10,4 +10,9 @@ class Creature extends Model
     {
         return $this->belongsTo('App\Models\Data\CreatureType');
     }
+
+    public function modules()
+    {
+        return $this->belongsToMany('App\Models\Data\Module');
+    }
 }

@@ -10,10 +10,18 @@ class Module extends Model
     {
         return $this->belongsToMany('App\Models\Data\Contributor')->withPivot('order');
     }
+    public function creatures()
+    {
+        return $this->belongsToMany('App\Models\Data\Creature')->withPivot('order');
+    }
 
     public function edition()
     {
         return $this->belongsTo('App\Models\Data\Edition');
+    }
+    public function items()
+    {
+        return $this->belongsToMany('App\Models\Data\Item')->withPivot('order');
     }
 
     public function length()
