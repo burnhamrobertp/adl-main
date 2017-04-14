@@ -10,7 +10,9 @@ html, body, #root, #root > div {
   }
 }
 
-/* Overridden element styles */
+/**
+ * Overridden element styles
+ */
 select {
   @extend .custom-select;
 }
@@ -27,10 +29,19 @@ a {
   }
 }
 
-/* Classes */
+/**
+ * Classes
+ */
 .bg-darker {
   background-color: darken($body-bg, 15%);
 }
 .bg-dark {
   background-color: darken($body-bg, 10%);
+}
+
+/**
+ * Libraries
+ */
+.sk-spinner {
+  margin: 50px auto;
 }
