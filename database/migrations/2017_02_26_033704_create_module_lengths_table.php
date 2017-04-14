@@ -18,11 +18,6 @@ class CreateModuleLengthsTable extends Migration
             $table->string('name');
             $table->smallInteger('order');
         });
-
-        Schema::table('modules', function (Blueprint $table) {
-            $table->integer('length_id', false, true)->after('setting_id');
-            $table->foreign('length_id')->references('id')->on('module_lengths');
-        });
     }
 
     /**
@@ -32,10 +27,6 @@ class CreateModuleLengthsTable extends Migration
      */
     public function down()
     {
-        Schema::table('modules', function (Blueprint $table) {
-            $table->dropForeign(['length_id']);
-            $table->dropColumn('length_id');
-        });
         Schema::dropIfExists('module_lengths');
     }
 }
