@@ -16,7 +16,7 @@ class CreateContributorModuleTable extends Migration
         Schema::create('contributor_module', function (Blueprint $table) {
             $table->integer('contributor_id', false, true);
             $table->integer('module_id', false, true);
-            $table->smallInteger('order', false, true);
+            $table->smallInteger('order');
 
             $table->foreign('contributor_id')->references('id')->on('contributors');
             $table->foreign('module_id')->references('id')->on('modules');
