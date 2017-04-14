@@ -1,22 +1,26 @@
 import React from 'react'
+import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux';
 
 import Module from './Components/Module'
-import {getModules} from 'js/actions/modules';
+import {getModules, setModulesFetching} from 'js/actions/modules';
 
-class ModulesList extends React.Component {
+class ModulesList extends BaseComponent {
     componentDidMount() {
+        this.props.setModulesFetching(true);
         this.props.getModules();
     }
 
     renderModuleList() {
-        return this.props.modules.map((module) =>
-            <Module key={module.id} data={module}/>
-        );
+        if (this.props.isFetching)
+            return this.renderLoading();
+        else
+            return this.props.modules.map((module) =>
+                <Module key={module.id} data={module}/>
+            );
     }
 
     render() {
-
         return (
             <div id="adl-adventures">
                 <div className="p-3 row">
@@ -40,8 +44,9 @@ class ModulesList extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isFetching: state.modules.isFetchingIndex,
         modules: state.modules.index
     };
 }
 
-export default connect(mapStateToProps, {getModules})(ModulesList);
+export default connect(mapStateToProps, {getModules, setModulesFetching})(ModulesList);
