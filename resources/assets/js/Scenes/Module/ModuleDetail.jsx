@@ -1,5 +1,8 @@
 import React from 'react'
 
+import ModuleCreature from './Components/ModuleCreature'
+import ModuleItem from './Components/ModuleItem'
+
 class ModuleDetail extends React.Component {
     renderFormats() {
         return (
@@ -10,19 +13,15 @@ class ModuleDetail extends React.Component {
     }
 
     renderCreatures() {
-        return (
-            <div>
-                <h6>Notable Creatures</h6>
-            </div>
-        )
+        return this.props.module.creatures.map((creature) =>
+            <ModuleCreature key={creature.id} creature={creature} />
+        );
     }
 
     renderItems() {
-        return (
-            <div>
-                <h6>Items</h6>
-            </div>
-        )
+        return this.props.module.items.map((item) =>
+            <ModuleItem key={item.id} item={item} />
+        );
     }
 
     render() {
@@ -35,9 +34,11 @@ class ModuleDetail extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col m-2 p-2 bg-dark rounded">
+                        <h6>NPCs & Creatures</h6>
                         {this.renderCreatures()}
                     </div>
                     <div className="col m-2 p-2 bg-dark rounded">
+                        <h6>Items</h6>
                         {this.renderItems()}
                     </div>
                 </div>

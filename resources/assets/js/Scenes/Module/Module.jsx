@@ -16,7 +16,7 @@ class Module extends BaseComponent {
     }
 
     renderComponent() {
-        if (this.props.isFetching) {
+        if (this.props.isFetching || this.props.module.id === undefined) {
             return this.renderLoading();
         } else {
             return (

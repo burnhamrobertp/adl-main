@@ -8,11 +8,11 @@ class Module extends Model
 {
     public function contributors()
     {
-        return $this->belongsToMany('App\Models\Data\Contributor')->withPivot('order');
+        return $this->belongsToMany('App\Models\Data\Contributor')->withPivot('order')->orderBy('order', 'DESC');
     }
     public function creatures()
     {
-        return $this->belongsToMany('App\Models\Data\Creature')->withPivot('order');
+        return $this->belongsToMany('App\Models\Data\Creature')->withPivot('order')->orderBy('unique', 'DESC')->orderBy('order', 'DESC');
     }
 
     public function edition()
@@ -21,7 +21,7 @@ class Module extends Model
     }
     public function items()
     {
-        return $this->belongsToMany('App\Models\Data\Item')->withPivot('order');
+        return $this->belongsToMany('App\Models\Data\Item')->withPivot('order')->orderBy('order', 'DESC');
     }
 
     public function length()
