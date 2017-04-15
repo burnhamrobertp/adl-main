@@ -2,7 +2,7 @@ import React from 'react'
 import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux';
 
-import Module from './Components/Module'
+import Module from './Components/ModuleListModule'
 import {getModules, setModulesFetching} from 'js/actions/modules';
 
 class ModulesList extends BaseComponent {
@@ -16,22 +16,22 @@ class ModulesList extends BaseComponent {
             return this.renderLoading();
         else
             return this.props.modules.map((module) =>
-                <Module key={module.id} data={module}/>
+                <Module key={module.id} module={module}/>
             );
     }
 
     render() {
         return (
-            <div id="adl-adventures">
+            <div id="modules-list">
                 <div className="p-3 row">
                     <div className="col">
-                        <label htmlFor="adl-search-sortby">Sort By:</label>
-                        <select id="adl-search-sortby">
+                        <label htmlFor="search-sortby">Sort By:</label>
+                        <select id="search-sortby">
                             <option>Name</option>
                             <option>Rating</option>
                         </select>
                     </div>
-                    <div id="adl-search-summary" className="col float-right text-right">
+                    <div id="search-summary">
                         {this.props.modules.length} Adventures Found
                     </div>
                 </div>

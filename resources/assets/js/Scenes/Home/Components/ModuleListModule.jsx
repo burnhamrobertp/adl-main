@@ -1,0 +1,47 @@
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+class ModuleListModule extends React.Component {
+    moduleLink() {
+        return '/module/'+this.props.module.id;
+    }
+
+    renderLevel() {
+        if (!this.props.module.min_level || !this.props.module.max_level)
+            return;
+
+        return <span>| Levels {this.props.module.min_level} - {this.props.module.max_level}</span>
+    }
+
+    renderLength() {
+        if (!this.props.module.length)
+            return;
+
+        return <span>| {this.props.module.length.name}</span>;
+    }
+
+    render() {
+        return (
+            <Link to={this.moduleLink()}>
+                <div className="module">
+                    <div className="line"/>
+                    <div className="p-2 row">
+                        <div className="col-8">
+                            <h5>{this.props.module.name}</h5>
+                            <div className="module-subheader">{this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}</div>
+                            <div className="module-summary">{this.props.module.summary}</div>
+                        </div>
+                        <div className="col-2">
+                            Rating
+                        </div>
+                        <div className="col">
+                            <img src={this.props.module.small_cover} />
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        )
+    }
+}
+
+export default ModuleListModule;

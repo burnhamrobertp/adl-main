@@ -24,6 +24,8 @@ class CreateModulesTable extends Migration
             $table->smallInteger('max_level', false, true)->nullable();
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
+            $table->text('large_cover')->nullable();
+            $table->text('small_cover')->nullable();
             $table->date('published_date')->nullable();
             $table->timestamps();
 

@@ -15,6 +15,7 @@ $factory->define(App\Models\Data\Module::class, function (Faker\Generator $faker
     $hasLevels = $faker->boolean();
     $minLevel = $hasLevels ? $faker->numberBetween(1, 7) : null;
     $maxLevel = $hasLevels ? $faker->numberBetween($minLevel, $minLevel+$faker->numberBetween(1, 10)) : null;
+    $hasCover = $faker->boolean(90);
 
     return [
         'edition_id' => function() {
@@ -34,6 +35,8 @@ $factory->define(App\Models\Data\Module::class, function (Faker\Generator $faker
         'max_level' => $maxLevel,
         'summary' => $faker->boolean() ? $faker->realText() : null,
         'description' => $faker->boolean() ? $faker->realText(1000) : null,
+        'large_cover' => $hasCover ? $faker->imageUrl(375, 500) : '',
+        'small_cover' => $hasCover ? $faker->imageUrl(82, 110) : '',
         'published_date' => $faker->date(),
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime

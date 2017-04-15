@@ -33,10 +33,10 @@ a {
  * Classes
  */
 .bg-darker {
-  background-color: darken($body-bg, 15%);
+  background-color: $darker;
 }
 .bg-dark {
-  background-color: darken($body-bg, 10%);
+  background-color: $dark;
 }
 
 /**

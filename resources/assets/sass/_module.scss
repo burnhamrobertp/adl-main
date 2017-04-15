@@ -13,3 +13,19 @@
 .moduleDetail {
   @extend .container-fluid;
 }
+
+.moduleSidebar {
+  @extend .p-2;
+
+  .cover {
+    border: 3px solid $dark;
+    width: 350px;
+    height: 466px;
+    margin: 0 auto;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 #adl-filters {
   height: 100%;
-  background-color: darken($white, 5%);
+  background-color: $darkish;
 
   .filter {
     @extend .row;

@@ -4,7 +4,9 @@ import ModuleContributor from './Components/ModuleContributor'
 
 class ModuleSidebar extends React.Component {
     renderCover() {
-
+        return (
+            <img src={this.props.module.large_cover} />
+        )
     }
 
     renderContributors() {
