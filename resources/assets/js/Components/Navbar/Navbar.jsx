@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom'
 
 import NavProfile from './NavProfile'
 
@@ -21,6 +22,9 @@ class Navbar extends React.Component {
 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
+                                </li>
                             </ul>
 
                             <ul className="navbar-nav">
