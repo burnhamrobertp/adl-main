@@ -1,5 +1,7 @@
 <?php
 
+Auth::routes();
+
 Route::get('{all}', function () {
     $out = [
         'contributorTypes' => \App\Models\Data\ContributorType::all()->sortBy('name')->values()->toJson(),
