@@ -1,8 +1,9 @@
 .moduleHeader {
-  @extend .bg-dark;
   @extend .m-2;
   @extend .p-2;
   @extend .rounded;
+
+  background-color: $adl-gray-light;
 }
 
 .moduleSummary {
@@ -18,7 +19,7 @@
   @extend .p-2;
 
   .cover {
-    border: 3px solid $dark;
+    border: 3px solid $adl-gray-light;
     width: 350px;
     height: 466px;
     margin: 0 auto;

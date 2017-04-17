@@ -1,8 +1,15 @@
-a.navbar-brand {
-  padding: 3px;
+#adl-navbar {
+  @extend .container-fluid;
+  @extend .py-2;
 
-  img {
-    @extend .mr-2;
-    height: 30px;
+  background-color: $adl-gray-darker;
+
+  a.navbar-brand {
+    padding: 3px;
+
+    img {
+      @extend .mr-2;
+      height: 30px;
+    }
   }
 }

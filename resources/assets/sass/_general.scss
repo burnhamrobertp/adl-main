@@ -30,19 +30,13 @@ a {
 }
 
 /**
- * Classes
- */
-.bg-darker {
-  background-color: $darker;
-}
-.bg-dark {
-  background-color: $dark;
-}
-
-/**
  * Libraries
  */
 .sk-spinner {
   margin: 50px auto;
   text-align: center;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
 }

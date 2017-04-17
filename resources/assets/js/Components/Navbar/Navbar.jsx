@@ -1,9 +1,11 @@
 import React from 'react';
 
+import NavProfile from './NavProfile'
+
 class Navbar extends React.Component {
     render() {
         return (
-            <div className="container-fluid bg-darker py-2">
+            <div id="adl-navbar">
                 <div className="container">
                     <nav className="navbar navbar-toggleable-md navbar-light">
                         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -23,7 +25,7 @@ class Navbar extends React.Component {
 
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Register / Login</a>
+                                    <NavProfile />
                                 </li>
                             </ul>
                         </div>
