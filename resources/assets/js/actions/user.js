@@ -14,36 +14,31 @@ export function setLoginRegisterEmail(data) {
     }
 }
 
-export function setLoginRegisterPassword(data) {
+export function getLogin(email, password) {
+    const data = Axios.post('/login', {
+        email: email,
+        password: password
+    }).then((response) => {
+        return {
+            type: 'GET_LOGIN_SUCCESS',
+            payload: response.data
+        }
+    }).catch((error) => {
+        return {
+            type: 'GET_LOGIN_FAILURE',
+            payload: {
+                flashMessage: error.response.data.error,
+                flashMessageClasses: 'danger'
+            }
+        }
+    });
+
     return {
-        type: 'SET_LOGIN_REGISTER_PASSWORD',
+        type: 'IGNORED',
         payload: data
     }
 }
 
-export function getAttemptLogin(email, password) {
-    return Axios.post('/login', {
-        email: email,
-        password: password
-    }).then((response) => {
-        console.log('success', response);
-        return {
-            type: 'GET_LOGIN_SUCCESS',
-            payload: ''
-        }
-    }).catch((error) => {
-        switch(error.response.status) {
-            case '422':
-                return {
-                    type: 'GET_LOGIN_FALIURE',
-                    payload: { flashMessage: error.response.data.email, flashMessageClasses: []}
-                }
+export function getAttemptRegister(email, password) {
 
-            default:
-                return {
-                    type: 'GET_LOGIN_FAILURE',
-                    payload: ''
-                }
-        }
-    });
 }
