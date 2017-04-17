@@ -4,7 +4,9 @@ const DEFAULT_STATE = {
     display: null,
     loginRegisterModal: {
         isOpen: false,
-        email: null
+        email: null,
+        flashMessage: null,
+        flashMessageClasses: []
     }
 };
 
@@ -18,11 +20,20 @@ export default function (state = DEFAULT_STATE, action) {
             });
         case 'SET_LOGIN_REGISTER_EMAIL':
             return Object.assign({}, state, {
-
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    email: action.payload
+                })
             });
-        case 'SET_LOGIN_REGISTER_PASSWORD':
+        case 'GET_LOGIN_SUCCESS':
             return Object.assign({}, state, {
 
+            });
+        case 'GET_LOGIN_FAILURE':
+            return Object.assign({}, state, {
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    flashMessage: action.payload.flashMessage,
+                    flashMessageClasses: action.payload.flashMessageClasses
+                })
             });
 
         default:

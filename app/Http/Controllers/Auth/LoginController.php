@@ -40,7 +40,9 @@ class LoginController extends Controller
         if ($success) {
             $token = $this->generateToken($request);
         } else {
+            $this->incrementLoginAttempts($request);
 
+            return $this->sendFailedLoginResponse($request);
         }
     }
 
