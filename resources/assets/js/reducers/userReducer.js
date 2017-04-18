@@ -6,6 +6,8 @@ const DEFAULT_STATE = {
     email: '',
     verified: false,
 
+    isFetching: false,
+
     loginRegisterModal: {
         isOpen: false,
         email: '',
@@ -39,6 +41,10 @@ export default function (state = DEFAULT_STATE, action) {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
                     email: action.payload
                 })
+            });
+        case 'SET_USER_FETCHING':
+            return Object.assign({}, state, {
+                isFetching: action.payload
             });
         case 'GET_USER':
             return Object.assign({}, state, action.payload);

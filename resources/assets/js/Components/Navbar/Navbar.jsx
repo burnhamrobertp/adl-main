@@ -6,15 +6,20 @@ import NavRecentModules from './NavRecentModules'
 import NavProfile from './NavProfile'
 import NavLogin from './NavLogin'
 
-import {getUser} from 'js/actions/user';
+import {setUserFetching, getUser} from 'js/actions/user';
 
 class Navbar extends React.Component {
     componentDidMount() {
-        this.props.getUser();
+        this.props.setUserFetching(true);
+        this.props.getUser().then(() => {
+            this.props.setUserFetching(false);
+        });
     }
 
     renderLoginProfile() {
-        if (this.props.user.id)
+        if (this.props.user.isFetching)
+            return '';
+        else if (this.props.user.id)
             return <NavProfile />;
         else
             return <NavLogin />;
@@ -64,4 +69,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {getUser})(Navbar)
+export default connect(mapStateToProps, {setUserFetching, getUser})(Navbar)

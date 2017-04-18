@@ -14,6 +14,13 @@ export function setLoginRegisterEmail(data) {
     }
 }
 
+export function setUserFetching(data) {
+    return {
+        type: 'SET_USER_FETCHING',
+        payload: data
+    }
+}
+
 export function getUser() {
     const data = Axios.get('/user')
         .then((response) => response.data);
