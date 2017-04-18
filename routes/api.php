@@ -13,11 +13,7 @@ $crudRoutes = [
     ['prefix' => 'settings', 'parameter' => 'setting', 'controller' => 'SettingsController'],
 ];
 
-Route::group(['middleware' => ['api']], function () use ($crudRoutes) {
-    Route::group(['prefix' => 'auth'], function () {
-        Route::post('', 'Auth\LoginController@login');
-    });
-    
+Route::group(['namespace' => 'Api', 'middleware' => ['api']], function () use ($crudRoutes) {
     foreach ($crudRoutes as $route) {
         Route::group(['prefix' => $route['prefix']], function() use ($route) {
             Route::get("", "{$route['controller']}@index");

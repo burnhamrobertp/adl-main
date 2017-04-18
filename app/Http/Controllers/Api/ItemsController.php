@@ -1,46 +1,47 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Data\User;
+use App\Http\Controllers\Controller;
+use App\Models\Data\Item;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ItemsController extends Controller
 {
     /**
-     * Fetches all Users
+     * Fetches all Items
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $sorted = User::all()->sortBy('order');
+        $sorted = Item::all()->sortBy('order');
 
         return $sorted->values()->all();
     }
 
     /**
-     * Fetches a specific User by id
+     * Fetches a specific Item by id
      *
-     * @param User $user
+     * @param Item $item
      * @return \Illuminate\Http\Response
      */
-    public function get(User $user)
+    public function get(Item $item)
     {
-        return $user;
+        return $item;
     }
 
     /**
-     * Store a newly created User
+     * Store a newly created Item
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $success = $user->save();
+        $item = new Item();
+        $item->name = $request->name;
+        $success = $item->save();
 
         return response()->json([
             'success' => $success
@@ -48,16 +49,16 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified User in storage
+     * Update the specified Item in storage
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  User  $user
+     * @param  Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Item $item)
     {
-        $user->name = $request->name;
-        $success = $user->save();
+        $item->name = $request->name;
+        $success = $item->save();
 
         return response()->json([
             'success' => $success
@@ -65,14 +66,14 @@ class UsersController extends Controller
     }
 
     /**
-     * Remove the specified User from storage
+     * Remove the specified Item from storage
      *
-     * @param  User  $user
+     * @param  Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Item $item)
     {
-        $success = $user->delete();
+        $success = $item->delete();
 
         return response()->json([
             'success' => $success
