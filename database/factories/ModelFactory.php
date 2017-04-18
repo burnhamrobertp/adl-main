@@ -61,9 +61,12 @@ $factory->define(App\Models\Data\ModuleRating::class, function (Faker\Generator 
 $factory->define(App\Models\Data\User::class, function (Faker\Generator $faker) {
     static $password;
 
+    $email = $faker->unique()->safeEmail;
+
     return [
         'display' => $faker->firstName,
-        'email' => $faker->unique()->safeEmail,
+        'avatar' => md5(strtolower(trim($email))),
+        'email' => $email,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
