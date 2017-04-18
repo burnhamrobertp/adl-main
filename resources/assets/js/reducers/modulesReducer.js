@@ -5,11 +5,7 @@ const DEFAULT_STATE = {
     moduleHistory: [],
 
     currentModule: (moduleHistory) => {
-        const
-            historyLength = moduleHistory.length,
-            hasHistory = historyLength > 0;
-
-        return hasHistory ? moduleHistory[historyLength - 1] : {};
+        return moduleHistory.length > 0 ? moduleHistory[0] : {};
     }
 };
 
@@ -29,8 +25,14 @@ export default function (state = DEFAULT_STATE, action) {
                 index: action.payload
             });
         case 'GET_MODULE_DETAIL':
-            let moduleHistory = state.moduleHistory;
-            moduleHistory.push(action.payload);
+            let moduleHistory = state.moduleHistory.slice(0);
+            moduleHistory.unshift(action.payload);
+            // reduce any resulting duplications
+            moduleHistory = moduleHistory.filter((value, index, self) => {
+                const foundValue = self.findIndex(m => m.id === value.id);
+
+                return foundValue === index;
+            });
 
             return Object.assign({}, state, {
                 isFetchingModule: false,
