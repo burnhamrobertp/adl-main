@@ -40,6 +40,8 @@ export default function (state = DEFAULT_STATE, action) {
                     email: action.payload
                 })
             });
+        case 'GET_USER':
+            return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
             return Object.assign({}, DEFAULT_STATE);
         case 'GET_LOGIN_SUCCESS':

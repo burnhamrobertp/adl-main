@@ -29,21 +29,21 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div id="adl-navbar">
+            <div id="adl-navbar-container">
                 <div className="container">
                     <nav className="navbar navbar-toggleable-md navbar-light">
                         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                data-target="#adl-navitems" aria-controls="adl-navitems"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"/>
                         </button>
 
                         <a className="navbar-brand" href="#">
-                            <img src="/media/adl_logo.svg" className="d-inline-block align-top" alt=""/>
+                            <img src="/media/adl_logo.svg" className="d-inline-block" alt=""/>
                             Adventure Lookup
                         </a>
 
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div id="adl-navitems">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
                                     <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>

@@ -3,9 +3,17 @@ import {connect} from 'react-redux'
 
 import LoginRegisterModal from 'js/Components/LoginRegisterModal/LoginRegisterModal'
 
-import {setLoginRegisterOpen, getLogout} from 'js/actions/user';
+import {
+    setLoginRegisterOpen,
+    getUser,
+    getLogout
+} from 'js/actions/user';
 
 class NavProfile extends React.Component {
+    componentDidMount() {
+        this.props.getUser();
+    }
+
     openLoginRegisterModal() {
         this.props.setLoginRegisterOpen(true);
     }
@@ -14,12 +22,20 @@ class NavProfile extends React.Component {
         this.props.getLogout();
     }
 
+    renderAvatar() {
+        return (
+            <img src={"https://www.gravatar.com/avatar/" + this.props.user.avatar + "?s=40&d=mm"}
+                 className="d-inline-block"/>
+        )
+    }
+
     renderProfile() {
         return (
             <ul className="navbar-nav dropdown">
                 <li className="nav-item">
-                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
+                    <a id="adl-navbar-profile-link" className="nav-link dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {this.renderAvatar()}
                         {this.props.user.display}
                     </a>
                     <div className="dropdown-menu">
@@ -35,7 +51,7 @@ class NavProfile extends React.Component {
             <div>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="#" onClick={this.openLoginRegisterModal.bind(this)}>Register /
+                        <a className="nav-link" onClick={this.openLoginRegisterModal.bind(this)}>Register /
                             Login</a>
                     </li>
                 </ul>
@@ -60,4 +76,8 @@ function MapStateToProps(state) {
     }
 }
 
-export default connect(MapStateToProps, {setLoginRegisterOpen, getLogout})(NavProfile)
+export default connect(MapStateToProps, {
+    setLoginRegisterOpen,
+    getUser,
+    getLogout
+})(NavProfile)

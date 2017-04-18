@@ -1,8 +1,10 @@
-#adl-navbar {
+#adl-navbar-container {
   @extend .container-fluid;
   @extend .py-2;
 
   background-color: $adl-gray-darker;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 
   a {
     cursor: pointer;
@@ -12,7 +14,22 @@
 
       img {
         @extend .mr-2;
-        height: 30px;
+        height: 50px;
+      }
+    }
+  }
+
+  #adl-navitems {
+    @extend .collapse;
+    @extend .navbar-collapse;
+
+    #adl-navbar-profile-link {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      img {
+        border: 2px solid $adl-gray-dark;
+        margin-right: 8px;
       }
     }
   }
