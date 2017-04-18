@@ -19,9 +19,4 @@ class HomeController
 
         return view('default', $out);
     }
-
-    public function user(Request $request)
-    {
-        return response()->json($request->user());
-    }
 }
