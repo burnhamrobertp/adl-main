@@ -1,5 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
+const
+    path = require('path'),
+    webpack = require('webpack'),
+    CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     context: path.resolve(__dirname, './resources/assets/js/'),
@@ -49,6 +51,13 @@ module.exports = {
             name: 'commons',
             filename: 'commons.js',
             minChunks: 2,
+        }),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|html)$/,
+            threshold: 10240,
+            minRatio: 0.8
         }),
     ]
 };
