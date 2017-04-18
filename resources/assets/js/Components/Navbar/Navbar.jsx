@@ -16,11 +16,11 @@ class Navbar extends React.Component {
     renderModuleHistory() {
         return (
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="recentModulesDropdownLink" href="javascript:void(0)"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Recently Viewed
                 </a>
-                <div className="dropdown-menu" aria-labelledby="recentModulesDropdownLink">
+                <div className="dropdown-menu">
                     {this.renderRecentModules()}
                 </div>
             </li>

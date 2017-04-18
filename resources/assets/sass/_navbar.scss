@@ -4,12 +4,16 @@
 
   background-color: $adl-gray-darker;
 
-  a.navbar-brand {
-    padding: 3px;
+  a {
+    cursor: pointer;
 
-    img {
-      @extend .mr-2;
-      height: 30px;
+    &.navbar-brand {
+      padding: 3px;
+
+      img {
+        @extend .mr-2;
+        height: 30px;
+      }
     }
   }
 }

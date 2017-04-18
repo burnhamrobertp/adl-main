@@ -10,7 +10,9 @@ use Lcobucci\JWT\Builder;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
 
     /**
      * Create a new controller instance
@@ -20,6 +22,25 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    /**
+     * Logout but don't redirect
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request) {
+        $this->performLogout($request);
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * After a user is authenticated, generate a json response with a JWT
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function authenticated(Request $request, User $user)
     {
         $token = $this->generateToken($request);
@@ -33,6 +54,12 @@ class LoginController extends Controller
         ]);
     }
 
+    /**
+     * Build the JWT used for authenticating API requests
+     *
+     * @param Request $request
+     * @return \Lcobucci\JWT\Token
+     */
     protected function generateToken(Request $request)
     {
         return (new Builder())->setIssuer(config('app.url'))

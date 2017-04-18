@@ -14,6 +14,15 @@ export function setLoginRegisterEmail(data) {
     }
 }
 
+export function getLogout() {
+    const data = Axios.post('/logout');
+
+    return {
+        type: 'GET_LOGOUT',
+        payload: data
+    }
+}
+
 export function getLogin(email, password) {
     const data = Axios.post('/login', {
         email: email,
