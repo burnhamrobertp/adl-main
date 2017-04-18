@@ -17,8 +17,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['token'];
+
     public function ratings()
     {
         return $this->hasMany('App\Models\Data\ModuleRating');
+    }
+
+    /**
+     * Fetches the JWT for an authenticated user
+     *
+     * @return string
+     */
+    public function getTokenAttribute(): string
+    {
+        return session('jwt');
     }
 }

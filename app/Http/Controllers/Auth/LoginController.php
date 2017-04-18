@@ -46,12 +46,7 @@ class LoginController extends Controller
         $token = $this->generateToken($request);
         $request->session()->put('jwt', $token);
 
-        return response()->json([
-            'id' => $user->id,
-            'token' => (string) $token,
-            'email' => $user->email,
-            'display' => $user->display
-        ]);
+        return response()->json($user);
     }
 
     /**

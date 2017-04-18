@@ -22,6 +22,6 @@ class HomeController
 
     public function user(Request $request)
     {
-        dd($request->user(), $request->session()->get('jwt'));
+        return response()->json($request->user());
     }
 }
