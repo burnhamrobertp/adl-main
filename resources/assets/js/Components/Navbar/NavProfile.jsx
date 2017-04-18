@@ -1,23 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import LoginRegisterModal from 'js/Components/LoginRegisterModal/LoginRegisterModal'
-
-import {
-    setLoginRegisterOpen,
-    getUser,
-    getLogout
-} from 'js/actions/user';
+import {getLogout} from 'js/actions/user';
 
 class NavProfile extends React.Component {
-    componentDidMount() {
-        this.props.getUser();
-    }
-
-    openLoginRegisterModal() {
-        this.props.setLoginRegisterOpen(true);
-    }
-
     logout() {
         this.props.getLogout();
     }
@@ -29,7 +15,7 @@ class NavProfile extends React.Component {
         )
     }
 
-    renderProfile() {
+    render() {
         return (
             <ul className="navbar-nav dropdown">
                 <li className="nav-item">
@@ -43,29 +29,7 @@ class NavProfile extends React.Component {
                     </div>
                 </li>
             </ul>
-        );
-    }
-
-    renderLoginRegister() {
-        return (
-            <div>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a className="nav-link" onClick={this.openLoginRegisterModal.bind(this)}>Register /
-                            Login</a>
-                    </li>
-                </ul>
-
-                <LoginRegisterModal />
-            </div>
-        );
-    }
-
-    render() {
-        if (this.props.user.id)
-            return this.renderProfile();
-        else
-            return this.renderLoginRegister();
+        )
     }
 
 }
@@ -76,8 +40,4 @@ function MapStateToProps(state) {
     }
 }
 
-export default connect(MapStateToProps, {
-    setLoginRegisterOpen,
-    getUser,
-    getLogout
-})(NavProfile)
+export default connect(MapStateToProps, {getLogout})(NavProfile)

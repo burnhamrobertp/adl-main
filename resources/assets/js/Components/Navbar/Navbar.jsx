@@ -1,30 +1,23 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import NavRecentModules from './NavRecentModules'
 import NavProfile from './NavProfile'
+import NavLogin from './NavLogin'
+
+import {getUser} from 'js/actions/user';
 
 class Navbar extends React.Component {
-    renderRecentModules() {
-        return this.props.recentModules.map((module) =>
-            <Link key={module.id} to={"/module/" + module.id } className="dropdown-item">
-                {module.name}
-            </Link>
-        );
+    componentDidMount() {
+        this.props.getUser();
     }
 
-    renderModuleHistory() {
-        return (
-            <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
-                    Recently Viewed
-                </a>
-                <div className="dropdown-menu">
-                    {this.renderRecentModules()}
-                </div>
-            </li>
-        )
+    renderLoginProfile() {
+        if (this.props.user.id)
+            return <NavProfile />;
+        else
+            return <NavLogin />;
     }
 
     render() {
@@ -48,12 +41,13 @@ class Navbar extends React.Component {
                                 <li className="nav-item">
                                     <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
                                 </li>
-                                {this.renderModuleHistory()}
+
+                                <NavRecentModules/>
                             </ul>
 
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <NavProfile />
+                                    {this.renderLoginProfile()}
                                 </li>
                             </ul>
                         </div>
@@ -66,8 +60,8 @@ class Navbar extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        recentModules: state.modules.moduleHistory
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, {getUser})(Navbar)
