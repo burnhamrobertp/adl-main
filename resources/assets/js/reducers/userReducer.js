@@ -47,6 +47,7 @@ export default function (state = DEFAULT_STATE, action) {
         case 'GET_REGISTER_FAILURE':
             // intentional fallthrough
         case 'SET_REGISTER_MESSAGES':
+            console.log(action.payload);
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
                     register: Object.assign({}, state.loginRegisterModal.register, {

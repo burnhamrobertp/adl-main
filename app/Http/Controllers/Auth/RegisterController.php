@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Data\User;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class RegisterController extends AuthController
 {
     use RegistersUsers;
 
@@ -52,8 +52,17 @@ class RegisterController extends Controller
     {
         return User::create([
             'display' => substr($data['email'], 0, strpos($data['email'], '@')),
+            'avatar' => md5(strtolower(trim($data['email']))),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function registered(Request $request, User $user)
+    {
+        $token = $this->generateToken($request);
+        $request->session()->put('jwt', $token);
+
+        return response()->json($user);
     }
 }

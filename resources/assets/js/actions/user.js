@@ -67,7 +67,7 @@ export function getLogin(email, password) {
     }).catch((error) => {
         return {
             type: 'SET_LOGIN_MESSAGES',
-            payload: error.response.data.email
+            payload: [error.response.data.email]
         }
     });
 
@@ -90,7 +90,7 @@ export function getRegister(email, password, passwordc) {
     }).catch((error) => {
         return {
             type: 'GET_REGISTER_FAILURE',
-            payload: [...error.response.data.email, ...error.response.data.password]
+            payload: [...error.response.data.email || [], ...error.response.data.password || []]
         }
     });
 
