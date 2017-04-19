@@ -21,6 +21,21 @@ export function setUserFetching(data) {
     }
 }
 
+export function setLoginMessages(data) {
+    return {
+        type: 'SET_LOGIN_MESSAGES',
+        payload: data
+    }
+}
+
+export function setRegisterMessages(data) {
+    return {
+        type: 'SET_REGISTER_MESSAGES',
+        payload: data
+    }
+}
+
+
 export function getUser() {
     const data = Axios.get('/user')
         .then((response) => response.data);
@@ -51,11 +66,8 @@ export function getLogin(email, password) {
         }
     }).catch((error) => {
         return {
-            type: 'GET_LOGIN_FAILURE',
-            payload: {
-                flashMessage: error.response.data.error,
-                flashMessageClasses: 'danger'
-            }
+            type: 'SET_LOGIN_MESSAGES',
+            payload: error.response.data.email
         }
     });
 
@@ -65,6 +77,25 @@ export function getLogin(email, password) {
     }
 }
 
-export function getAttemptRegister(email, password) {
+export function getRegister(email, password, passwordc) {
+    const data = Axios.post('/register', {
+        email: email,
+        password: password,
+        password_confirmation: passwordc
+    }).then((response) => {
+        return {
+            type: 'GET_REGISTER_SUCCESS',
+            payload: response.data
+        }
+    }).catch((error) => {
+        return {
+            type: 'GET_REGISTER_FAILURE',
+            payload: [...error.response.data.email, ...error.response.data.password]
+        }
+    });
 
+    return {
+        type: 'IGNORED',
+        payload: data
+    }
 }

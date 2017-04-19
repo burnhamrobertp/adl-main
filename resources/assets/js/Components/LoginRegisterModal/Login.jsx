@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import renderHTML from 'react-render-html'
 
 import {
     setLoginRegisterEmail,
@@ -18,10 +19,15 @@ class Login extends React.Component {
         this.props.getLogin(email, password);
     }
 
-    renderMessage() {
+    renderMessages() {
+        if (this.props.messages.length === 0)
+            return '';
+
+        const message = this.props.messages.reduce((accum, m) => accum + '<br>' + m);
+
         return (
-            <div className={"alert alert-" + this.props.messageClass} role="alert">
-                {this.props.message}
+            <div className="alert alert-danger" role="alert">
+                {renderHTML(message)}
             </div>
         )
     }
@@ -29,7 +35,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                {this.renderMessage()}
+                {this.renderMessages()}
 
                 <label htmlFor="adl-logreg-email" className="sr-only">Email address</label>
                 <input id="adl-logreg-email" type="text" className="form-control" placeholder="Email address"
@@ -49,8 +55,7 @@ class Login extends React.Component {
 function mapStateToProps(state) {
     return {
         email: state.user.loginRegisterModal.email,
-        message: state.user.loginRegisterModal.login.flashMessage,
-        messageClass: state.user.loginRegisterModal.login.flashMessageClass
+        messages: state.user.loginRegisterModal.login.flashMessages
     }
 }
 

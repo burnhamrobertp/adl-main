@@ -12,12 +12,10 @@ const DEFAULT_STATE = {
         isOpen: false,
         email: '',
         login: {
-            flashMessage: '',
-            flashMessageClass: ''
+            flashMessages: [],
         },
         register: {
-            flashMessage: '',
-            flashMessageClass: ''
+            flashMessages: [],
         }
     }
 };
@@ -46,18 +44,34 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, state, {
                 isFetching: action.payload
             });
+        case 'GET_REGISTER_FAILURE':
+            // intentional fallthrough
+        case 'SET_REGISTER_MESSAGES':
+            return Object.assign({}, state, {
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    register: Object.assign({}, state.loginRegisterModal.register, {
+                        flashMessages: action.payload
+                    })
+                })
+            });
+        case 'GET_LOGIN_FAILURE':
+            // intentional fallthrough
+        case 'SET_LOGIN_MESSAGES':
+            return Object.assign({}, state, {
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    login: Object.assign({}, state.loginRegisterModal.login, {
+                        flashMessages: action.payload
+                    })
+                })
+            });
         case 'GET_USER':
             return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
             return Object.assign({}, DEFAULT_STATE);
         case 'GET_LOGIN_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
-        case 'GET_LOGIN_FAILURE':
-            return Object.assign({}, DEFAULT_STATE, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    login: action.payload
-                })
-            });
+        case 'GET_REGISTER_SUCCESS':
+            return Object.assign({}, DEFAULT_STATE, action.payload);
 
         default:
             return state;
