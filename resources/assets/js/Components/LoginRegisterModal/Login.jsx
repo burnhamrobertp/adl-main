@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux';
 import renderHTML from 'react-render-html'
 
+import ForgotPassword from 'js/Components/ForgotPassword/ForgotPassword'
+
 import {
     setLoginRegisterEmail,
     getLogin
@@ -43,6 +45,8 @@ class Login extends React.Component {
 
                 <label htmlFor="adl-logreg-pass" className="sr-only">Password</label>
                 <input id="adl-logreg-pass" type="password" className="form-control" placeholder="Password" />
+
+                <ForgotPassword/>
 
                 <button className="btn btn-lg btn-primary btn-block" type="submit"
                         onClick={this.submit.bind(this)}>Sign in

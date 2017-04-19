@@ -99,3 +99,16 @@ export function getRegister(email, password, passwordc) {
         payload: data
     }
 }
+
+export function getForgotPassword(email) {
+    const data = Axios.post('/password/email', {
+        email: email
+    }).then((response) => {
+        console.log(response);
+    })
+
+    return {
+        type: 'GET_RESET_PASSWORD',
+        payload: data
+    }
+}
