@@ -6,9 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
+    public function contributors()
+    {
+        return $this->belongsToMany('App\Models\Data\Contributor')->withPivot('order')->orderBy('order', 'DESC');
+    }
+    public function creatures()
+    {
+        return $this->belongsToMany('App\Models\Data\Creature')->withPivot('order')->orderBy('unique', 'DESC')->orderBy('order', 'DESC');
+    }
+
     public function edition()
     {
         return $this->belongsTo('App\Models\Data\Edition');
+    }
+    public function items()
+    {
+        return $this->belongsToMany('App\Models\Data\Item')->withPivot('order')->orderBy('order', 'DESC');
+    }
+
+    public function length()
+    {
+        return $this->belongsTo('App\Models\Data\ModuleLength');
     }
 
     public function publisher()
@@ -19,11 +37,6 @@ class Module extends Model
     public function setting()
     {
         return $this->belongsTo('App\Models\Data\Setting');
-    }
-
-    public function length()
-    {
-        return $this->belongsTo('App\Models\Data\ModuleLength');
     }
 
     public function ratings()

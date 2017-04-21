@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\Data\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Lcobucci\JWT\Builder;
 
-class LoginController extends Controller
+class LoginController extends AuthController
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
 
     /**
      * Create a new controller instance
@@ -19,32 +20,30 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-    protected function validateLogin(Request $request)
-    {
-        $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
-        ]);
+    /**
+     * Logout but don't redirect
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request) {
+        $this->performLogout($request);
+
+        return response()->json(['success' => true]);
     }
 
     /**
-     * Attempts login, returns token(s) if successful
+     * After a user is authenticated, generate a json response with a JWT
      *
      * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    protected function authenticated(Request $request, User $user)
     {
-        $this->validateLogin($request);
+        $token = $this->generateToken($request);
+        $request->session()->put('jwt', $token);
 
-        $success = $this->attemptLogin($request);
-
-        if ($success) {
-            $token = $this->generateToken($request);
-        } else {
-
-        }
-    }
-
-    protected function generateToken(Request $request)
-    {
+        return response()->json($user);
     }
 }

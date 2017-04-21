@@ -1,9 +1,14 @@
-#adl-adventures {
-  height: 100%;
-  background-color: #ffffff;
+#modules-list {
+  #search-summary {
+    @extend .col;
+    @extend .float-right;
+    @extend .text-right;
+  }
 
-  .adventure {
-    border-top: 2px solid $hr-border-color;
+  .module {
+    height: 128px;
+    overflow: hidden;
+    font-size: .85rem;
   }
 
   select {

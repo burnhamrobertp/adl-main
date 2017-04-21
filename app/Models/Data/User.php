@@ -10,15 +10,27 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'display', 'avatar', 'email', 'password',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    protected $appends = ['token'];
+
     public function ratings()
     {
         return $this->hasMany('App\Models\Data\ModuleRating');
+    }
+
+    /**
+     * Fetches the JWT for an authenticated user
+     *
+     * @return string
+     */
+    public function getTokenAttribute(): string
+    {
+        return session('jwt');
     }
 }

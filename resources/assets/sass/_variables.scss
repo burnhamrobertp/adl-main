@@ -1,6 +1,13 @@
 $white:  #fff !default;
 
-$body-bg: darken($white, 10%);
+$adl-gray-lighter: darken($white, 5%);
+$adl-gray-light: darken($white, 10%);
+$adl-gray-dark: darken($white, 15%);
+$adl-gray-darker: darken($white, 20%);
+
+$adl-primary: #ffce3a;
+
+$body-bg: $adl-gray-lighter;
 
 // Brands
 $brand-primary: #3097D1;
@@ -11,8 +18,8 @@ $brand-danger: #bf5329;
 
 $grid-gutter-width-base: 0;
 $container-max-widths: (
-  sm: 590px,
-  md: 820px,
-  lg: 1110px,
-  xl: 1340px
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1250px
 ) !default;

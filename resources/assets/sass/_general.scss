@@ -1,13 +1,42 @@
+html, body, #root, #root > div {
+  margin: 0;
+  padding: 0;
+
+  div.outerContainer {
+    @extend .container;
+
+    min-height: 100%;
+    background-color: $white;
+  }
+}
+
+/**
+ * Overridden element styles
+ */
 select {
   @extend .custom-select;
 }
 
-.row.equalH {
-  display: flex;
-}
-.col.equalH {
-  flex: 1;
-}
 div.line {
   border-bottom: 2px solid $hr-border-color;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/**
+ * Libraries
+ */
+.sk-spinner {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
 }

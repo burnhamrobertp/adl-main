@@ -1,5 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
+const
+    path = require('path'),
+    webpack = require('webpack'),
+    CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     context: path.resolve(__dirname, './resources/assets/js/'),
@@ -12,6 +14,7 @@ module.exports = {
     },
 
     resolve: {
+        extensions: ['.js', '.jsx'],
         modules: [
             path.resolve(__dirname, 'resources', 'assets', 'js'),
             path.resolve(__dirname, 'resources', 'assets'),
@@ -22,7 +25,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js[x]?$/,
                 exclude: [/node_modules/],
                 use: [{
                     loader: 'babel-loader',
@@ -30,7 +33,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(sass|scss)$/,
+                test: /\.(css|sass|scss)$/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -48,6 +51,13 @@ module.exports = {
             name: 'commons',
             filename: 'commons.js',
             minChunks: 2,
+        }),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|html)$/,
+            threshold: 10240,
+            minRatio: 0.8
         }),
     ]
 };

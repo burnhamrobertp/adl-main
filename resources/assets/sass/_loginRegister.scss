@@ -1,0 +1,11 @@
+#adl-logreg {
+  @extend .text-center;
+
+  #adl-logreg-email {
+    margin-bottom: -1px;
+  }
+
+  button[type="submit"] {
+    margin-top: 8px;
+  }
+}

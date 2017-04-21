@@ -1,12 +1,36 @@
-.bg-dark {
-  background-color: darken($body-bg, 15%);
-}
+#adl-navbar-container {
+  @extend .container-fluid;
+  @extend .py-2;
 
-a.navbar-brand {
-  padding: 3px;
+  background-color: $adl-gray-darker;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 
-  img {
-    @extend .mr-2;
-    height: 30px;
+  a {
+    cursor: pointer;
+
+    &.navbar-brand {
+      padding: 3px;
+
+      img {
+        @extend .mr-2;
+        height: 50px;
+      }
+    }
+  }
+
+  #adl-navitems {
+    @extend .collapse;
+    @extend .navbar-collapse;
+
+    #adl-navbar-profile-link {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      img {
+        border: 2px solid $adl-gray-dark;
+        margin-right: 8px;
+      }
+    }
   }
 }

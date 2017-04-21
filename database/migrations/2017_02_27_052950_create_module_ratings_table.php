@@ -19,6 +19,9 @@ class CreateModuleRatingsTable extends Migration
             $table->integer('module_id', false, true);
             $table->smallinteger('rating', false, true);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('module_id')->references('id')->on('modules');
         });
     }
 

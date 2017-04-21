@@ -1,6 +1,6 @@
 #adl-filters {
   height: 100%;
-  background-color: darken($white, 5%);
+  background-color: $adl-gray-light;
 
   .filter {
     @extend .row;
@@ -19,6 +19,10 @@
     @extend .btn-secondary;
     @extend .btn-sm;
     @extend .mr-1;
+
+    &.active {
+      background-color: lighten(#FFC107, 10%);
+    }
   }
 }
 
