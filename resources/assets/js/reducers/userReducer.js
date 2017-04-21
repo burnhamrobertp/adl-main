@@ -65,6 +65,8 @@ export default function (state = DEFAULT_STATE, action) {
                     })
                 })
             });
+        case 'GET_FORGOT_PASSWORD_FAILURE':
+            return ;
         case 'GET_USER':
             return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
@@ -73,6 +75,8 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, DEFAULT_STATE, action.payload);
         case 'GET_REGISTER_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
+        case 'GET_FORGOT_PASSWORD_SUCCESS':
+            return state;
 
         default:
             return state;

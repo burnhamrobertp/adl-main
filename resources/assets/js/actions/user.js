@@ -104,11 +104,19 @@ export function getForgotPassword(email) {
     const data = Axios.post('/password/email', {
         email: email
     }).then((response) => {
-        console.log(response);
-    })
+        return {
+            type: 'GET_FORGOT_PASSWORD_SUCCESS',
+            payload: response.data
+        }
+    }).catch((error) => {
+        return {
+            type: 'GET_FORGOT_PASSWORD_FAILURE',
+            payload: [error.response.data.email]
+        }
+    });
 
     return {
-        type: 'GET_RESET_PASSWORD',
+        type: 'IGNORED',
         payload: data
     }
 }
