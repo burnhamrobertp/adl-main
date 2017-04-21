@@ -55,11 +55,10 @@ export function getLogout() {
     }
 }
 
-export function getLogin(email, password) {
-    const data = Axios.post('/login', {
-        email: email,
-        password: password
-    }).then((response) => {
+export function getLogin(form) {
+    const data = Axios.post('/login',
+        form
+    ).then((response) => {
         return {
             type: 'GET_LOGIN_SUCCESS',
             payload: response.data
@@ -77,12 +76,10 @@ export function getLogin(email, password) {
     }
 }
 
-export function getRegister(email, password, passwordc) {
-    const data = Axios.post('/register', {
-        email: email,
-        password: password,
-        password_confirmation: passwordc
-    }).then((response) => {
+export function getRegister(form) {
+    const data = Axios.post('/register',
+        form
+    ).then((response) => {
         return {
             type: 'GET_REGISTER_SUCCESS',
             payload: response.data

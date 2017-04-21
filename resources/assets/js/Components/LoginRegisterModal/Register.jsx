@@ -19,11 +19,13 @@ class Register extends React.Component {
     }
 
     submit() {
-        const email = this.props.email,
-            password = document.getElementById('adl-logreg-pass').value,
-            passwordc = document.getElementById('adl-logreg-passc').value;
+        const form = {
+            email: this.props.email,
+            password: document.getElementById('adl-logreg-pass').value,
+            password_confirmation: document.getElementById('adl-logreg-passc').value
+        };
 
-        this.props.getRegister(email, password, passwordc);
+        this.props.getRegister(form);
     }
 
     render() {
@@ -45,8 +47,8 @@ class Register extends React.Component {
 
                 <hr />
 
-                <div className="registerButton">
-                    <div className="registerButtonHeader">Have an account?</div>
+                <div className="switchComponent">
+                    <div>Have an account?</div>
                     <button onClick={this.clickLogin.bind(this)}>Log in</button>
                 </div>
             </div>

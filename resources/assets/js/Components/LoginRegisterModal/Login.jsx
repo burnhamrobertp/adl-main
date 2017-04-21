@@ -12,15 +12,22 @@ class Login extends React.Component {
         this.props.setActiveComponent('register');
     }
 
+    clickForgot() {
+        this.props.setActiveComponent('forgot');
+    }
+
     changeEmail(event) {
         this.props.setLoginRegisterEmail(event.target.value)
     }
 
     submit() {
-        const email = this.props.email,
-            password = document.querySelector('#adl-logreg-pass').value;
+        const data = {
+            email: this.props.email,
+            password: document.querySelector('#adl-logreg-pass').value,
+            remember: document.querySelector('#adl-logreg-remember').value || 0
+        };
 
-        this.props.getLogin(email, password);
+        this.props.getLogin(data);
     }
 
     render() {
@@ -29,18 +36,26 @@ class Login extends React.Component {
                 <div>Have an account?</div>
 
                 <label htmlFor="adl-logreg-email" className="sr-only">Email address</label>
-                <input id="adl-logreg-email" type="text"  placeholder="Email address"
-                       onChange={this.changeEmail.bind(this)} value={this.props.email} />
+                <input id="adl-logreg-email" type="text" placeholder="Email address"
+                       onChange={this.changeEmail.bind(this)} value={this.props.email}/>
 
                 <label htmlFor="adl-logreg-pass" className="sr-only">Password</label>
-                <input id="adl-logreg-pass" type="password" placeholder="Password" />
+                <input id="adl-logreg-pass" type="password" placeholder="Password"/>
+
+                <label className="remember-me">
+                    <input id="adl-logreg-remember" type="checkbox" className="custom-control-input" value="1"/>
+                    <span className="custom-control-indicator"/>
+                    <span className="custom-control-description">Remember me</span>
+                </label>
+
+                <a className="forgot-password" href="#" onClick={this.clickForgot.bind(this)}>Forgot password</a>
 
                 <button className="submit" type="submit" onClick={this.submit.bind(this)}>Log in</button>
 
                 <hr />
 
-                <div className="registerButton">
-                    <div className="registerButtonHeader">New to Adventure Lookup?</div>
+                <div className="switchComponent">
+                    <div>New to Adventure Lookup?</div>
                     <button onClick={this.clickRegister.bind(this)}>Sign Up</button>
                 </div>
             </div>

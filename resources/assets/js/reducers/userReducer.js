@@ -12,7 +12,8 @@ const DEFAULT_STATE = {
         isOpen: false,
         activeComponent: '',
         email: '',
-        flashMessages: []
+        flashMessages: [],
+        flashMessageClass: ''
     }
 };
 
@@ -44,25 +45,33 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
                     activeComponent: action.payload,
-                    flashMessages: []
+                    flashMessages: [],
+                    flashMessageClass: ''
                 })
             });
         case 'SET_MESSAGES':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    flashMessages: action.payload
+                    flashMessages: action.payload,
+                    flashMessageClass: 'danger'
                 })
             });
         case 'GET_USER':
             return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
-            return Object.assign({}, DEFAULT_STATE);
+            location.reload();
+            break;
         case 'GET_LOGIN_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
         case 'GET_REGISTER_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
         case 'GET_FORGOT_PASSWORD_SUCCESS':
-            return state;
+            return Object.assign({}, state, {
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    flashMessages: ['Check your e-mail for your password reset.'],
+                    flashMessageClass: 'info'
+                })
+            });
 
         default:
             return state;

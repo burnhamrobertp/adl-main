@@ -1,16 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getForgotPassword} from 'js/actions/user';
+import {
+    setLoginRegisterEmail,
+    getForgotPassword
+} from 'js/actions/user';
 
 class ForgotPassword extends React.Component {
-    click() {
+    submit() {
         this.props.getForgotPassword(this.props.email);
+    }
+
+    changeEmail(event) {
+        this.props.setLoginRegisterEmail(event.target.value)
     }
 
     render() {
         return (
-            <a onClick={this.click.bind(this)}>Forgot Password</a>
+            <div>
+                <div>Forgot password?</div>
+
+                <label htmlFor="adl-logreg-email" className="sr-only">Email address</label>
+                <input id="adl-logreg-email" type="text" placeholder="Email address"
+                       onChange={this.changeEmail.bind(this)} value={this.props.email}/>
+
+                <button className="submit" type="submit" onClick={this.submit.bind(this)}>Reset</button>
+            </div>
         )
     }
 }
@@ -21,4 +36,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {getForgotPassword})(ForgotPassword)
+export default connect(mapStateToProps, {
+    setLoginRegisterEmail,
+    getForgotPassword
+})(ForgotPassword)

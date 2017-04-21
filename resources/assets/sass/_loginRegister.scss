@@ -4,22 +4,35 @@
   #adl-logreg-passc
   {
     @extend .form-control;
-    margin-top: 10px;
+    margin-top: .8rem;
+  }
+
+  label.remember-me {
+    @extend .custom-control;
+    @extend .custom-checkbox;
+
+    margin-top: .8rem;
+  }
+
+  a.forgot-password {
+    @extend .float-right;
+
+    margin-top: .8rem;
   }
 
   button {
     @extend .btn;
     @extend .btn-block;
 
-    margin-top: 10px;
+    margin-top: .8rem;
 
     &.submit {
       @extend .btn-primary;
     }
   }
 
-  .registerButton {
-    margin-top: 14px;
+  div.switchComponent {
+    margin-top: 1rem;
 
     button {
       @extend .btn;

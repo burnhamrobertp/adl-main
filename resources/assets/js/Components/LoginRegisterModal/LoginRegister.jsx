@@ -14,7 +14,7 @@ class LoginRegister extends React.Component {
         const message = this.props.messages.reduce((accum, m) => accum + '<br>' + m);
 
         return (
-            <div className="alert alert-danger" role="alert">
+            <div className={"alert alert-" + this.props.messageClass} role="alert">
                 {renderHTML(message)}
             </div>
         )
@@ -45,6 +45,7 @@ class LoginRegister extends React.Component {
 function mapStateToProps(state) {
     return {
         messages: state.user.loginRegisterModal.flashMessages,
+        messageClass: state.user.loginRegisterModal.flashMessageClass,
         activeComponent: state.user.loginRegisterModal.activeComponent
     }
 }
