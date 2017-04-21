@@ -1,16 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import renderHTML from 'react-render-html'
 
 import {haveValue, equalHasValue} from 'js/functions/validation'
 
 import {
     setLoginRegisterEmail,
-    setRegisterMessages,
+    setActiveComponent,
     getRegister
 } from 'js/actions/user'
 
 class Register extends React.Component {
+    clickLogin() {
+        this.props.setActiveComponent('login');
+    }
+
     changeEmail(event) {
         this.props.setLoginRegisterEmail(event.target.value)
     }
@@ -23,38 +26,29 @@ class Register extends React.Component {
         this.props.getRegister(email, password, passwordc);
     }
 
-    renderMessages() {
-        if (this.props.messages.length === 0)
-            return '';
-
-        const message = this.props.messages.reduce((accum, m) => accum + '<br>' + m);
-
-        return (
-            <div className="alert alert-danger" role="alert">
-                {renderHTML(message)}
-            </div>
-        )
-    }
-
     render() {
         return (
             <div>
-                {this.renderMessages()}
-
+                <div>New to Adventure Lookup?</div>
                 <label htmlFor="adl-logreg-email" className="sr-only">Email address</label>
                 <input id="adl-logreg-email" type="text" className="form-control" placeholder="Email address"
                        onChange={this.changeEmail.bind(this)}
-                       value={this.props.email} />
+                       value={this.props.email}/>
 
                 <label htmlFor="adl-logreg-pass" className="sr-only">Password</label>
-                <input id="adl-logreg-pass" type="password" className="form-control" placeholder="Password" />
+                <input id="adl-logreg-pass" type="password" className="form-control" placeholder="Password"/>
 
                 <label htmlFor="adl-logreg-passc" className="sr-only">Confirm Password</label>
-                <input id="adl-logreg-passc" type="password" className="form-control" placeholder="Confirm Password" />
+                <input id="adl-logreg-passc" type="password" className="form-control" placeholder="Confirm Password"/>
 
-                <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.submit.bind(this)}>
-                    Register
-                </button>
+                <button className="submit" type="submit" onClick={this.submit.bind(this)}>Sign Up</button>
+
+                <hr />
+
+                <div className="registerButton">
+                    <div className="registerButtonHeader">Have an account?</div>
+                    <button onClick={this.clickLogin.bind(this)}>Log in</button>
+                </div>
             </div>
         )
     }
@@ -62,13 +56,12 @@ class Register extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        email: state.user.loginRegisterModal.email,
-        messages: state.user.loginRegisterModal.register.flashMessages
+        email: state.user.loginRegisterModal.email
     }
 }
 
 export default connect(mapStateToProps, {
     setLoginRegisterEmail,
-    setRegisterMessages,
+    setActiveComponent,
     getRegister
 })(Register);

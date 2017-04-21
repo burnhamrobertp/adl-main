@@ -1,11 +1,30 @@
 #adl-logreg {
-  @extend .text-center;
-
-  #adl-logreg-email {
-    margin-bottom: -1px;
+  #adl-logreg-email,
+  #adl-logreg-pass,
+  #adl-logreg-passc
+  {
+    @extend .form-control;
+    margin-top: 10px;
   }
 
-  button[type="submit"] {
-    margin-top: 8px;
+  button {
+    @extend .btn;
+    @extend .btn-block;
+
+    margin-top: 10px;
+
+    &.submit {
+      @extend .btn-primary;
+    }
+  }
+
+  .registerButton {
+    margin-top: 14px;
+
+    button {
+      @extend .btn;
+      @extend .btn-block;
+      @extend .btn-info;
+    }
   }
 }

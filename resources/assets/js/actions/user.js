@@ -21,16 +21,16 @@ export function setUserFetching(data) {
     }
 }
 
-export function setLoginMessages(data) {
+export function setMessages(data) {
     return {
-        type: 'SET_LOGIN_MESSAGES',
+        type: 'SET_MESSAGES',
         payload: data
     }
 }
 
-export function setRegisterMessages(data) {
+export function setActiveComponent(data) {
     return {
-        type: 'SET_REGISTER_MESSAGES',
+        type: 'SET_ACTIVE_COMPONENT',
         payload: data
     }
 }
@@ -66,7 +66,7 @@ export function getLogin(email, password) {
         }
     }).catch((error) => {
         return {
-            type: 'SET_LOGIN_MESSAGES',
+            type: 'SET_MESSAGES',
             payload: [error.response.data.email]
         }
     });
@@ -89,7 +89,7 @@ export function getRegister(email, password, passwordc) {
         }
     }).catch((error) => {
         return {
-            type: 'GET_REGISTER_FAILURE',
+            type: 'SET_MESSAGES',
             payload: [...error.response.data.email || [], ...error.response.data.password || []]
         }
     });
@@ -110,7 +110,7 @@ export function getForgotPassword(email) {
         }
     }).catch((error) => {
         return {
-            type: 'GET_FORGOT_PASSWORD_FAILURE',
+            type: 'SET_MESSAGES',
             payload: [error.response.data.email]
         }
     });

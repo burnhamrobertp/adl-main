@@ -12,7 +12,7 @@ class NavLogin extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="adl-navbar-login">
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <a className="nav-link" onClick={this.openLoginRegisterModal.bind(this)}>Register /

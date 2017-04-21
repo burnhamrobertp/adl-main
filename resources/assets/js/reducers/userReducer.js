@@ -10,13 +10,9 @@ const DEFAULT_STATE = {
 
     loginRegisterModal: {
         isOpen: false,
+        activeComponent: '',
         email: '',
-        login: {
-            flashMessages: [],
-        },
-        register: {
-            flashMessages: [],
-        }
+        flashMessages: []
     }
 };
 
@@ -44,29 +40,19 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, state, {
                 isFetching: action.payload
             });
-        case 'GET_REGISTER_FAILURE':
-            // intentional fallthrough
-        case 'SET_REGISTER_MESSAGES':
-            console.log(action.payload);
+        case 'SET_ACTIVE_COMPONENT':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    register: Object.assign({}, state.loginRegisterModal.register, {
-                        flashMessages: action.payload
-                    })
+                    activeComponent: action.payload,
+                    flashMessages: []
                 })
             });
-        case 'GET_LOGIN_FAILURE':
-            // intentional fallthrough
-        case 'SET_LOGIN_MESSAGES':
+        case 'SET_MESSAGES':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    login: Object.assign({}, state.loginRegisterModal.login, {
-                        flashMessages: action.payload
-                    })
+                    flashMessages: action.payload
                 })
             });
-        case 'GET_FORGOT_PASSWORD_FAILURE':
-            return ;
         case 'GET_USER':
             return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
