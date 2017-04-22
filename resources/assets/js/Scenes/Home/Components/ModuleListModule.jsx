@@ -32,15 +32,15 @@ class ModuleListModule extends React.Component {
                 <div className="module">
                     <div className="line"/>
                     <div className="p-2 row">
-                        <div className="col-8">
+                        <div className="col">
                             <h5>{this.props.module.name}</h5>
                             <div className="module-subheader">{this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}</div>
                             <div className="module-summary">{this.props.module.summary}</div>
                         </div>
-                        <div className="col-2">
+                        <div className="col-2 text-center">
                             <ModuleStarRating current={this.currentRating()} readonly />
                         </div>
-                        <div className="col">
+                        <div className="col-2 text-center">
                             <img src={this.props.module.small_cover} />
                         </div>
                     </div>
