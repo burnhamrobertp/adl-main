@@ -1,9 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
+
 class ModuleListModule extends React.Component {
     moduleLink() {
         return '/module/'+this.props.module.id;
+    }
+
+    currentRating() {
+        return parseFloat(this.props.module.avg_rating[0].aggregate);
     }
 
     renderLevel() {
@@ -32,7 +38,7 @@ class ModuleListModule extends React.Component {
                             <div className="module-summary">{this.props.module.summary}</div>
                         </div>
                         <div className="col-2">
-                            Rating
+                            <ModuleStarRating current={this.currentRating()} readonly />
                         </div>
                         <div className="col">
                             <img src={this.props.module.small_cover} />
@@ -44,4 +50,4 @@ class ModuleListModule extends React.Component {
     }
 }
 
-export default ModuleListModule;
+export default ModuleListModule

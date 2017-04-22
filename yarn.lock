@@ -2914,6 +2914,10 @@ react-modal@^1.7.7:
     lodash.assign "^4.2.0"
     prop-types "^15.5.7"
 
+react-rating@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-rating/-/react-rating-0.7.0.tgz#12db057552a20114a57055d74b7f3c7f43e597bd"
+
 react-redux@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.3.tgz#86c3b68d56e74294a42e2a740ab66117ef6c019f"

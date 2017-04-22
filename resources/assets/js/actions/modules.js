@@ -38,3 +38,17 @@ export function getModule(id) {
         payload: data
     }
 }
+
+export function getChangeModuleRating(id, rating) {
+    const data = Axios.post('', {
+        module_id: id,
+        rating: rating
+    }).then((response) =>
+        response.data
+    );
+
+    return {
+        type: 'GET_CHANGE_MODULE_RATING',
+        payload: data
+    }
+}

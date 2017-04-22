@@ -51,7 +51,7 @@ $factory->define(App\Models\Data\ModuleRating::class, function (Faker\Generator 
         'module_id' => function() {
             return App\Models\Data\Module::all()->random()->id;
         },
-        'rating' => $faker->biasedNumberBetween(1, 10),
+        'rating' => $faker->biasedNumberBetween(1, 5),
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
     ];
