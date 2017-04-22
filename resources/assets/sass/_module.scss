@@ -15,6 +15,14 @@
   @extend .container-fluid;
 }
 
+.moduleBox {
+  @extend .m-2;
+  @extend .p-2;
+  @extend .rounded;
+
+  background-color: $adl-gray-light;
+}
+
 .moduleSidebar {
   @extend .p-2;
 

@@ -25,11 +25,11 @@ class ModuleSidebar extends React.Component {
                 <div className="cover">
                     {this.renderCover()}
                 </div>
-                <div className="m-2 p-2 bg-dark rounded">
+                <div className="moduleBox">
                     <h6>Writers / Artists</h6>
                     {this.renderContributors()}
                 </div>
-                <div className="m-2 p-2 bg-dark rounded">
+                <div className="moduleBox">
                     {this.renderActions()}
                 </div>
             </div>

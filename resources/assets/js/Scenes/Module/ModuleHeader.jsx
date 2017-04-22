@@ -1,5 +1,7 @@
 import React from 'react'
 
+import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
+
 class ModuleHeader extends React.Component {
     renderPublishedYear() {
         if (!this.props.module.published_date)
@@ -79,7 +81,7 @@ class ModuleHeader extends React.Component {
         )
     }
 
-    renderRating() {
+    renderTextRating() {
         if (!this.props.module.avg_rating)
             return;
 
@@ -90,6 +92,17 @@ class ModuleHeader extends React.Component {
                 <h4>{rating}</h4>
                 <h5 className="small text-capitalize">Rating</h5>
             </div>
+        )
+    }
+
+    renderStarRating() {
+        if (!this.props.module.avg_rating)
+            return;
+
+        const rating = parseFloat(this.props.module.avg_rating[0].aggregate);
+
+        return (
+            <ModuleStarRating current={rating} />
         )
     }
 
@@ -105,12 +118,15 @@ class ModuleHeader extends React.Component {
                             <h3>{this.props.module.name}</h3>
                             {this.renderSubTitle()}
                         </div>
+                        <div className="col-2 text-center">
+                            {this.renderStarRating()}
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-3 text-center">{this.renderEdition()}</div>
-                        <div className="col-3 text-center">{this.renderLevelRange()}</div>
-                        <div className="col-3 text-center">{this.renderModuleLength()}</div>
-                        <div className="col-3 text-center">{this.renderRating()}</div>
+                    <div className="row justify-content-between">
+                        <div className="col-2 text-center">{this.renderEdition()}</div>
+                        <div className="col-2 text-center">{this.renderLevelRange()}</div>
+                        <div className="col-2 text-center">{this.renderModuleLength()}</div>
+                        <div className="col-2 text-center">{this.renderTextRating()}</div>
                     </div>
                 </div>
             </div>

@@ -33,11 +33,11 @@ class ModuleDetail extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col m-2 p-2 bg-dark rounded">
+                    <div className="col moduleBox">
                         <h6>NPCs & Creatures</h6>
                         {this.renderCreatures()}
                     </div>
-                    <div className="col m-2 p-2 bg-dark rounded">
+                    <div className="col moduleBox">
                         <h6>Items</h6>
                         {this.renderItems()}
                     </div>
