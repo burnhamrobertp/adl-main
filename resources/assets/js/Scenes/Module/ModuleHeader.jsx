@@ -1,6 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
+
+import {userIsVerified} from 'js/functions/stateHelpers'
 
 class ModuleHeader extends React.Component {
     renderPublishedYear() {
@@ -102,7 +105,7 @@ class ModuleHeader extends React.Component {
         const rating = parseFloat(this.props.module.avg_rating[0].aggregate);
 
         return (
-            <ModuleStarRating current={rating} />
+            <ModuleStarRating id={this.props.module.id} current={rating} readonly={!this.props.canRate} />
         )
     }
 
@@ -134,4 +137,10 @@ class ModuleHeader extends React.Component {
     }
 }
 
-export default ModuleHeader;
+function mapStateToProps(state) {
+    return {
+        canRate: userIsVerified(state)
+    }
+}
+
+export default connect(mapStateToProps)(ModuleHeader)

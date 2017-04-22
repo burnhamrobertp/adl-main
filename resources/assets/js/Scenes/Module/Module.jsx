@@ -3,6 +3,7 @@ import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux'
 
 import {getModule, setModuleFetching} from 'js/actions/modules'
+import {currentModule} from 'js/functions/stateHelpers'
 
 import ModuleDetail from './ModuleDetail'
 import ModuleHeader from './ModuleHeader'
@@ -46,7 +47,7 @@ class Module extends BaseComponent {
 function mapStateToProps(state) {
     return {
         isFetching: state.modules.isFetchingModule,
-        module: state.modules.currentModule(state.modules.moduleHistory)
+        module: currentModule(state)
     }
 }
 
