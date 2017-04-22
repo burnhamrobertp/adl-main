@@ -2,11 +2,7 @@ const DEFAULT_STATE = {
     isFetchingIndex: false,
     isFetchingModule: false,
     index: [],
-    moduleHistory: [],
-
-    currentModule: (moduleHistory) => {
-        return moduleHistory.length > 0 ? moduleHistory[0] : {};
-    }
+    moduleHistory: []
 };
 
 export default function (state = DEFAULT_STATE, action) {
