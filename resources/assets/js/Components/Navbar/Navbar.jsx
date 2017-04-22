@@ -36,10 +36,10 @@ class Navbar extends React.Component {
                             <span className="navbar-toggler-icon"/>
                         </button>
 
-                        <a className="navbar-brand" href="/">
+                        <NavLink className="navbar-brand" to="/">
                             <img src="/media/adl_logo.svg" className="d-inline-block" alt=""/>
                             Adventure Lookup
-                        </a>
+                        </NavLink>
 
                         <div id="adl-navitems">
                             <ul className="navbar-nav mr-auto">
