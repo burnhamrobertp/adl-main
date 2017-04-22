@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
 
     <title>Adventure Lookup</title>
 
+    <script src="https://use.fontawesome.com/fe7d8161a9.js"></script>
     <script>
         window.contributorTypes = {!! $contributorTypes !!};
         window.creatureTypes = {!! $creatureTypes !!};
