@@ -36,7 +36,7 @@ class Navbar extends React.Component {
                             <span className="navbar-toggler-icon"/>
                         </button>
 
-                        <a className="navbar-brand" href="#">
+                        <a className="navbar-brand" href="/">
                             <img src="/media/adl_logo.svg" className="d-inline-block" alt=""/>
                             Adventure Lookup
                         </a>
