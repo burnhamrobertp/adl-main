@@ -12,6 +12,9 @@ class NavRecentModules extends React.Component {
     }
 
     render() {
+        if (this.props.recentModules.length === 0)
+            return null;
+
         return (
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
