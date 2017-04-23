@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Data\Module;
 use App\Models\ModuleListFilter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class ModulesController extends Controller
@@ -67,6 +68,10 @@ class ModulesController extends Controller
      */
     public function update(Request $request, Module $module)
     {
+        if ($request->rating) {
+            $this->handleRating($module, $request->user(), $request->rating);
+        }
+
         $module->name = $request->name;
         $success = $module->save();
 
@@ -88,5 +93,16 @@ class ModulesController extends Controller
         return response()->json([
             'success' => $success
         ]);
+    }
+
+    /**
+     * Upserts a moduleRating for the current user
+     *
+     * @param Module $module
+     * @param int $rating
+     */
+    protected function handleRating(Module $module, User $user, int $rating)
+    {
+
     }
 }

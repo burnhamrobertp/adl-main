@@ -26,10 +26,10 @@ class ModuleStarRating extends React.Component {
     }
 
     onChange(rate) {
-        if (typeof props.id !== 'number')
+        if (typeof this.props.id !== 'number')
             throw `ModuleStarRating - onChange failed, invalid module id: '${props.id}' of type '${typeof props.id}' provided; Expected 'number'`;
 
-        this.getChangeModuleRating(this.props.id, rate);
+        this.props.getChangeModuleRating(this.props.id, rate);
     }
 
     onRate(rate) {

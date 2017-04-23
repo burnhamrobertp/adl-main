@@ -28,7 +28,7 @@ export function getModules(filters = {}) {
 }
 
 export function getModule(id) {
-    const data = Axios.get('/api/modules/'+id)
+    const data = Axios.get(`/api/modules/${id}`)
         .then((response) =>
             response.data
         );
@@ -40,8 +40,7 @@ export function getModule(id) {
 }
 
 export function getChangeModuleRating(id, rating) {
-    const data = Axios.post('', {
-        module_id: id,
+    const data = Axios.post(`/api/modules/${id}`, {
         rating: rating
     }).then((response) =>
         response.data
