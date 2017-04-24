@@ -15,7 +15,7 @@ export function setModuleFetching(isFetching) {
 }
 
 export function getModules(filters = {}) {
-    const data = Axios.get('/api/modules/', {
+    const data = Axios.get('/modules/', {
         params: filters
     }).then((response) =>
         response.data
@@ -28,7 +28,7 @@ export function getModules(filters = {}) {
 }
 
 export function getModule(id) {
-    const data = Axios.get(`/api/modules/${id}`)
+    const data = Axios.get(`/modules/${id}`)
         .then((response) =>
             response.data
         );
@@ -40,7 +40,7 @@ export function getModule(id) {
 }
 
 export function getChangeModuleRating(id, rating) {
-    const data = Axios.post(`/api/modules/${id}`, {
+    const data = Axios.post(`/modules/${id}`, {
         rating: rating
     }).then((response) =>
         response.data

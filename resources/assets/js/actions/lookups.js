@@ -5,7 +5,7 @@ import Axios from 'Axios';
  * @returns {{type: string, payload: *}}
  */
 export function getEditions() {
-    const data = Axios.get('api/editions/').then((response) => response.data);
+    const data = Axios.get('editions/').then((response) => response.data);
 
     return {
         type: 'GET_LOOKUP_EDITIONS',
@@ -18,7 +18,7 @@ export function getEditions() {
  * @returns {{type: string, payload: *}}
  */
 export function getSettings() {
-    const data = Axios.get('api/settings/').then((response) => response.data);
+    const data = Axios.get('settings/').then((response) => response.data);
 
     return {
         type: 'GET_LOOKUP_SETTINGS',
@@ -31,7 +31,7 @@ export function getSettings() {
  * @returns {{type: string, payload: *}}
  */
 export function getAdventureLengths() {
-    const data = Axios.get('api/moduleLengths/').then((response) => response.data);
+    const data = Axios.get('moduleLengths/').then((response) => response.data);
 
     return {
         type: 'GET_LOOKUP_LENGTHS',
