@@ -37,7 +37,7 @@ export function setActiveComponent(data) {
 
 
 export function getUser() {
-    const data = Axios.get('/profile')
+    const data = Axios.get('/user')
         .then((response) => response.data);
 
     return {

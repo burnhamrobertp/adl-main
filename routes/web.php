@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::get('/profile', 'ProfileController@index');
+Route::get('/user', 'ProfileController@index');
 
 // Users controller is entirely restricted to administrators
 Route::group(['middleware' => 'is:administrator', 'prefix' => 'users'], function() {
