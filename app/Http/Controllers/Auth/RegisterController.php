@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Data\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends AuthController
+class RegisterController extends Controller
 {
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Create a new controller instance
      */
     public function __construct()
     {
@@ -60,9 +52,6 @@ class RegisterController extends AuthController
 
     protected function registered(Request $request, User $user)
     {
-        $token = $this->generateToken($request);
-        $request->session()->put('jwt', $token);
-
         return response()->json($user);
     }
 }
