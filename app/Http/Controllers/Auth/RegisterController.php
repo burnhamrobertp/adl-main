@@ -7,17 +7,19 @@ use App\Models\Data\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
+    use RegistersUsers, VerifiesUsers;
 
     /**
      * Create a new controller instance
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
     /**
@@ -52,6 +54,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, User $user)
     {
+        UserVerification::generate($user);
+        UserVerification::send($user, 'AdventureLookup E-mail Verification');
+
         return response()->json($user);
     }
 }
