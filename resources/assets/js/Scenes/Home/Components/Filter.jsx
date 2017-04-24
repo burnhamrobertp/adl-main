@@ -33,7 +33,7 @@ class Filter extends React.Component {
                     </div>
                 </div>
 
-                <div className="line" />
+                <hr className="b-2" />
             </div>
         )
     }
