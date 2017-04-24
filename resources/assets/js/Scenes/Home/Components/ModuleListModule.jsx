@@ -30,7 +30,6 @@ class ModuleListModule extends React.Component {
         return (
             <Link to={this.moduleLink()}>
                 <div className="module">
-                    <hr className="b-2"/>
                     <div className="p-2 row">
                         <div className="col">
                             <h5>{this.props.module.name}</h5>
