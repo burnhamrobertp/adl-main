@@ -17,6 +17,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Data\Role');
+    }
+
     public function ratings()
     {
         return $this->hasMany('App\Models\Data\ModuleRating');
