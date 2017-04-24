@@ -6,7 +6,7 @@ import ModuleItem from './Components/ModuleItem'
 class ModuleDetail extends React.Component {
     renderFormats() {
         return (
-            <div>
+            <div className="moduleUnbox">
                 <h6>Available Formats</h6>
             </div>
         )
