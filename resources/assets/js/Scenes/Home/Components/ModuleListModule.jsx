@@ -5,7 +5,7 @@ import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
 
 class ModuleListModule extends React.Component {
     moduleLink() {
-        return '/module/'+this.props.module.id;
+        return '/module/' + this.props.module.id;
     }
 
     currentRating() {
@@ -33,14 +33,16 @@ class ModuleListModule extends React.Component {
                     <div className="p-2 row">
                         <div className="col">
                             <h5>{this.props.module.name}</h5>
-                            <div className="module-subheader">{this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}</div>
+                            <div className="module-subheader">
+                                {this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}
+                            </div>
                             <div className="module-summary">{this.props.module.summary}</div>
                         </div>
                         <div className="col-2 text-center">
-                            <ModuleStarRating current={this.currentRating()} readonly />
+                            <ModuleStarRating current={this.currentRating()} readonly/>
                         </div>
                         <div className="col-2 text-center">
-                            <img src={this.props.module.small_cover} />
+                            <img src={this.props.module.small_cover}/>
                         </div>
                     </div>
                 </div>
