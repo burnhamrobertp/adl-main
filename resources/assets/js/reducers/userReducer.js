@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     display: '',
     avatar: '',
     email: '',
-    verified: false,
+    verified: 0,
 
     isFetching: false,
 

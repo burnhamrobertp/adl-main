@@ -5,7 +5,7 @@
  * @returns {boolean}
  */
 export function userIsVerified(state) {
-    return typeof state.user.id === 'number' && state.user.verified === true;
+    return typeof state.user.id === 'number' && state.user.verified === 1;
 }
 
 /**
