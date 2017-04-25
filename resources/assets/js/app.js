@@ -17,8 +17,8 @@ const App = () => (
     <Router>
         <div>
             <Navbar/>
-            <Route exact path="/" component={Home} />
-            <Route path="/module/:id" component={Module} />
+            <Route exact path="/" component={Home}/>
+            <Route path="/module/:id" component={Module}/>
         </div>
     </Router>
 );

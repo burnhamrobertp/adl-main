@@ -23,6 +23,18 @@ class RegisterController extends Controller
     }
 
     /**
+     * Verifies a user's e-mail address
+     *
+     * @param Request $request
+     * @param string $code
+     * @return \Illuminate\Http\Response
+     */
+    public function verify(Request $request, string $code)
+    {
+        return $this->getVerification($request, $code);
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -52,6 +64,12 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Send the user their verification e-mail
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function registered(Request $request, User $user)
     {
         UserVerification::generate($user);
