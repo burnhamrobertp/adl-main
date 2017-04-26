@@ -3,7 +3,11 @@ import {connect} from 'react-redux'
 
 import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
 
-import {userIsVerified} from 'js/functions/stateHelpers'
+import {
+    userIsVerified,
+    currentModule,
+    userRatingForModule
+} from 'js/functions/stateHelpers'
 
 class ModuleHeader extends React.Component {
     renderPublishedYear() {
@@ -105,7 +109,12 @@ class ModuleHeader extends React.Component {
         const rating = parseFloat(this.props.module.avg_rating[0].aggregate);
 
         return (
-            <ModuleStarRating id={this.props.module.id} current={rating} readonly={!this.props.canRate} />
+            <ModuleStarRating
+                id={this.props.module.id}
+                current={rating}
+                userRating={this.props.userRating}
+                readonly={!this.props.canRate}
+            />
         )
     }
 
@@ -139,7 +148,8 @@ class ModuleHeader extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        canRate: userIsVerified(state)
+        canRate: userIsVerified(state),
+        userRating: userRatingForModule(state, currentModule(state).id)
     }
 }
 

@@ -16,7 +16,9 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json($request->user());
+        $user = $request->user()->with('ratings')->find($request->user()->id);
+
+        return response()->json($user);
     }
 
     public function update(Request $request, User $user)

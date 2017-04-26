@@ -20,3 +20,24 @@ export function currentModule(state) {
 
     return hasModuleHistory ? state.modules.moduleHistory[0] : {};
 }
+
+/**
+ * Fetches the current user's rating for the specified module, or null if no rating exists
+ *
+ * @param state
+ * @param moduleId
+ * @returns {*}
+ */
+export function userRatingForModule(state, moduleId) {
+    let rating = null;
+
+    rating = state.user.ratings.reduce((acc, val) => {
+
+        if (rating !== null)
+            return acc;
+        else
+            return val.module_id === moduleId ? val.rating : acc;
+    }, rating);
+
+    return rating;
+}

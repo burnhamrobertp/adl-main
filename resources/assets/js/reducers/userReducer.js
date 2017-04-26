@@ -5,6 +5,7 @@ const DEFAULT_STATE = {
     avatar: '',
     email: '',
     verified: 0,
+    ratings: [],
 
     isFetching: false,
 

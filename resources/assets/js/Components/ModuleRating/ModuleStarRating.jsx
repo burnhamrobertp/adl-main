@@ -11,6 +11,10 @@ class ModuleStarRating extends React.Component {
         this.state = {rating: false};
     }
 
+    initialRate() {
+        return this.props.userRating || this.props.current;
+    }
+
     emptyClasses() {
         let c = ['fa', 'fa-star-o', 'text-color-secondary'];
         return c.join(' ');
@@ -46,7 +50,7 @@ class ModuleStarRating extends React.Component {
     render() {
         return (
             <Rating
-                initialRate={this.props.current}
+                initialRate={this.initialRate()}
                 readonly={this.props.readonly}
                 onChange={this.onChange.bind(this)}
                 onRate={this.onRate.bind(this)}
