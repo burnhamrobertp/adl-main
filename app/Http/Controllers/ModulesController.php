@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data\Module;
+use App\Models\Data\ModuleRating;
+use App\Models\Data\User;
 use App\Models\ModuleListFilter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -43,7 +45,7 @@ class ModulesController extends Controller
     /**
      * Store a newly created Module
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,18 +62,18 @@ class ModulesController extends Controller
     /**
      * Update the specified Module in storage
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Module  $module
+     * @param  \Illuminate\Http\Request $request
+     * @param  Module $module
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Module $module)
     {
         if ($request->rating) {
-            $this->handleRating($module, $request->user(), $request->rating);
+            $success  = $this->handleRating($module, $request->user(), $request->rating);
+        } else {
+            $module->name = $request->name;
+            $success = $module->save();
         }
-
-        $module->name = $request->name;
-        $success = $module->save();
 
         return response()->json([
             'success' => $success
@@ -81,7 +83,7 @@ class ModulesController extends Controller
     /**
      * Remove the specified Module from storage
      *
-     * @param  Module  $module
+     * @param  Module $module
      * @return \Illuminate\Http\Response
      */
     public function destroy(Module $module)
@@ -98,9 +100,16 @@ class ModulesController extends Controller
      *
      * @param Module $module
      * @param int $rating
+     * @return bool
      */
     protected function handleRating(Module $module, User $user, int $rating)
     {
+        // Find an existing rating for this module and user or create a new one
+        $moduleRating = $module->ratings()->where('user_id', $user->id)->first() ?: new ModuleRating();
 
+        $moduleRating->module()->associate($module);
+        $moduleRating->user()->associate($user);
+        $moduleRating->rating = $rating;
+        return $moduleRating->save();
     }
 }
