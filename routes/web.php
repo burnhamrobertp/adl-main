@@ -6,7 +6,7 @@ Route::get('/user', 'ProfileController@index');
 Route::get('/user/verify/{code}', 'Auth\RegisterController@verify');
 
 // Users controller is entirely restricted to administrators
-Route::group(['middleware' => 'role:Administrator', 'prefix' => 'users'], function() {
+Route::group(['middleware' => 'role:administrator', 'prefix' => 'users'], function() {
     Route::get('', 'UsersController@index');
     Route::get('{user}', 'UsersController@get');
     Route::post('', 'UsersController@store');

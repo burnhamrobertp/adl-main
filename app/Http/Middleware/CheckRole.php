@@ -16,10 +16,10 @@ class CheckRole
     public function handle($request, Closure $next, string $role)
     {
         if (!$request->user())
-            return response()->json(['message' => 'You must be logged in to access this resource.'], 401);
+            return response()->json(['message' => __('auth.login')], 401);
 
         if (!$request->user()->hasRole($role)) {
-            return response()->json(['message' => 'Unauthorized access'], 403);
+            return response()->json(['message' => __('auth.unauthorized')], 403);
         }
 
         return $next($request);

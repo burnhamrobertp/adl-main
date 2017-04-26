@@ -33,18 +33,23 @@ class User extends Authenticatable
         $userRole = $this->role()->first();
 
         $hasRole = false;
-        switch($role) {
-            case 'User':
+        switch (strtolower($role)) {
+            case 'user':
                 $hasRole = $hasRole || $userRole->name === UserRoles::USER;
-            case 'Contributor':
+            case 'contributor':
                 $hasRole = $hasRole || $userRole->name === UserRoles::CONTRIBUTOR;
-            case 'Moderator':
+            case 'moderator':
                 $hasRole = $hasRole || $userRole->name === UserRoles::MODERATOR;
-            case 'Administrator':
+            case 'administrator':
                 $hasRole = $hasRole || $userRole->name === UserRoles::ADMINISTRATOR;
                 break;
             default:
-                throw new \Exception('');
+                throw new \Exception(
+                    __('role.invalid', [
+                        'role' => $role,
+                        'valid_roles' => implode(', ', UserRoles::all())
+                    ])
+                );
         }
 
         return $hasRole;
