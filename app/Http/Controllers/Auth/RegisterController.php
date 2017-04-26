@@ -58,7 +58,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'role_id' => UserRoles::CONTRIBUTOR,
+            'role_id' => UserRoles::CONTRIBUTOR()->getOrdinal(),
             'display' => substr($data['email'], 0, strpos($data['email'], '@')),
             'avatar' => md5(strtolower(trim($data['email']))),
             'email' => $data['email'],
@@ -77,6 +77,6 @@ class RegisterController extends Controller
         UserVerification::generate($user);
         UserVerification::send($user, 'AdventureLookup E-mail Verification');
 
-        return response()->json($user);
+        return response()->json($user->load('role'));
     }
 }

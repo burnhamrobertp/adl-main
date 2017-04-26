@@ -4,7 +4,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'role:user', 'prefix' => 'user'], function() {
     Route::get('', 'ProfileController@index');
-    Route::post('verify', 'ProfileController@sendVerificationEmail');
+    Route::post('verify', ['as' => 'user.verify', 'uses' =>'ProfileController@sendVerificationEmail']);
     Route::get('verify/{code}', 'Auth\RegisterController@verify');
 });
 

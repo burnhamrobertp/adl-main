@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $user = null;
         if ($request->user())
-            $user = $request->user()->with('ratings', 'role')->find($request->user()->id);
+            $user = $request->user()->load('ratings', 'role');
 
         return response()->json($user);
     }
