@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 import {getModule, setModuleFetching} from 'js/actions/modules'
 import {currentModule} from 'js/functions/stateHelpers'
 
-import ModuleDetail from './ModuleDetail'
 import ModuleHeader from './ModuleHeader'
-import ModuleSidebar from './ModuleSidebar'
 import ModuleSummary from './ModuleSummary'
+import ModuleDetail from './ModuleDetail'
+import ModuleSidebar from './ModuleSidebar'
 
 class Module extends BaseComponent {
     componentDidMount() {

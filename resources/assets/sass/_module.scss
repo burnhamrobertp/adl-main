@@ -19,8 +19,10 @@
 }
 
 .moduleUnbox {
-  @extend .m-3;
-  @extend .p-2
+  @extend .ml-3;
+  @extend .mr-3;
+  @extend .mt-1;
+  @extend .p-2;
 }
 
 .moduleSidebar {

@@ -6,15 +6,15 @@ class ModuleSummary extends React.Component {
             <div>
                 <div className="moduleUnbox">
                     <h6>Summary</h6>
-                    <p>
+                    <div>
                         {this.props.module.summary}
-                    </p>
+                    </div>
                 </div>
                 <div className="moduleUnbox">
                     <h6>Description</h6>
-                    <p>
+                    <div>
                         {this.props.module.description}
-                    </p>
+                    </div>
                 </div>
             </div>
         );
