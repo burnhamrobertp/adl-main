@@ -16,7 +16,9 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user()->with('ratings')->find($request->user()->id);
+        $user = null;
+        if ($request->user())
+            $user = $request->user()->with('ratings')->find($request->user()->id);
 
         return response()->json($user);
     }
