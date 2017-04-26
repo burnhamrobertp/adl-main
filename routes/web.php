@@ -33,9 +33,12 @@ foreach ($crudRoutes as $route) {
         Route::get("", "{$route['controller']}@index");
         Route::get("{{$route['parameter']}}", "{$route['controller']}@get");
 
-        Route::post("", "{$route['controller']}@store");
-        Route::post("{{$route['parameter']}}", "{$route['controller']}@update");
-        Route::delete("{{$route['parameter']}}", "{$route['controller']}@destroy");
+        Route::post("", "{$route['controller']}@store")
+            ->middleware('role:contributor');
+        Route::post("{{$route['parameter']}}", "{$route['controller']}@update")
+            ->middleware('role:contributor');
+        Route::delete("{{$route['parameter']}}", "{$route['controller']}@destroy")
+            ->middleware('role:moderator');
     });
 }
 
