@@ -19,7 +19,7 @@ class NavProfile extends React.Component {
         if (this.props.user.verified)
             return '';
         else
-            return <a className="dropdown-item" onClick={this.props.getVerificationEmail}>Send Verification E-mail</a>;
+            return <a className="dropdown-item" onClick={this.props.getVerificationEmail}>Resend Verification E-mail</a>;
     }
 
     renderRole() {
@@ -36,9 +36,9 @@ class NavProfile extends React.Component {
                         {this.props.user.display}
                     </a>
                     <div className="dropdown-menu">
+                        {this.renderVerificationButton()}
                         <a className="dropdown-item" onClick={this.logout.bind(this)}>Logout</a>
                         <div className="dropdown-divider"/>
-                        {this.renderVerificationButton()}
                         {this.renderRole()}
                     </div>
                 </li>
