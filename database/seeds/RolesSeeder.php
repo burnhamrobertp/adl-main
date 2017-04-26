@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Enum\UserRoles;
 
 class RolesSeeder extends Seeder
 {
@@ -11,11 +12,11 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
-            ['name' => 'User'],
-            ['name' => 'Contributor'],
-            ['name' => 'Moderator'],
-            ['name' => 'Administrator'],
-        ]);
+        $roles = [];
+        foreach(UserRoles::getEnumerators() as $role) {
+            $roles[] = ['id' => $role->getOrdinal(), 'name' => $role->getValue()];
+        }
+
+        DB::table('roles')->insert($roles);
     }
 }

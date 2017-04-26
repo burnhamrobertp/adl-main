@@ -64,13 +64,11 @@ $factory->define(App\Models\Data\User::class, function (Faker\Generator $faker) 
     $email = $faker->unique()->safeEmail;
 
     return [
-        'role_id' => function() {
-            return \App\Models\Data\Role::where('name', 'User')->get()->first()->id;
-        },
+        'role_id' => \App\Models\Enum\UserRoles::USER()->getOrdinal(),
         'display' => $faker->firstName,
         'avatar' => md5(strtolower(trim($email))),
         'email' => $email,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'remember_token' => '',
     ];
 });
