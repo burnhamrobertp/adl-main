@@ -6,7 +6,7 @@ Route::get('/user', 'ProfileController@index');
 Route::get('/user/verify/{code}', 'Auth\RegisterController@verify');
 
 // Users controller is entirely restricted to administrators
-Route::group(['middleware' => 'is:administrator', 'prefix' => 'users'], function() {
+Route::group(['prefix' => 'users'], function() {
     Route::get('', 'UsersController@index');
     Route::get('{user}', 'UsersController@get');
     Route::post('', 'UsersController@store');
@@ -33,12 +33,9 @@ foreach ($crudRoutes as $route) {
         Route::get("", "{$route['controller']}@index");
         Route::get("{{$route['parameter']}}", "{$route['controller']}@get");
 
-        Route::post("", "{$route['controller']}@store")
-            ->middleware('is:contributor');
-        Route::post("{{$route['parameter']}}", "{$route['controller']}@update")
-            ->middleware('is:contributor');
-        Route::delete("{{$route['parameter']}}", "{$route['controller']}@destroy")
-            ->middleware('is:moderator');
+        Route::post("", "{$route['controller']}@store");
+        Route::post("{{$route['parameter']}}", "{$route['controller']}@update");
+        Route::delete("{{$route['parameter']}}", "{$route['controller']}@destroy");
     });
 }
 
