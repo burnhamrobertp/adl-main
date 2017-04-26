@@ -28,6 +28,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Data\ModuleRating');
     }
 
+    /**
+     * Checks that the user has a specified role
+     *
+     * Used primarily (exclusively?) in the CheckRole middleware
+     *
+     * @param string $role
+     * @return bool
+     * @throws \Exception
+     */
     public function hasRole(string $role)
     {
         $userRole = $this->role()->first();
