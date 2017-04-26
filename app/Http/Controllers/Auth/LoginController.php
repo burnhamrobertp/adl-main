@@ -42,6 +42,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, User $user)
     {
-        return response()->json($user);
+        return response()->json($user->load('role', 'ratings'));
     }
 }
