@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $user = null;
         if ($request->user())
-            $user = $request->user()->with('ratings')->find($request->user()->id);
+            $user = $request->user()->with('ratings', 'role')->find($request->user()->id);
 
         return response()->json($user);
     }
@@ -28,9 +28,9 @@ class ProfileController extends Controller
 
     }
 
-    public function sendVerificationEmail(User $user)
+    public function sendVerificationEmail(Request $request)
     {
-        UserVerification::generate($user);
-        UserVerification::send($user, 'AdventureLookup E-mail Verification');
+        UserVerification::generate($request->user());
+        UserVerification::send($request->user(), 'AdventureLookup E-mail Verification');
     }
 }

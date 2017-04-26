@@ -117,3 +117,17 @@ export function getForgotPassword(email) {
         payload: data
     }
 }
+
+export function getVerficiationEmail() {
+    const data = Axios.post('/user/verify')
+        .then((response) => {
+            return {}
+        }).catch((error) => {
+            return {}
+        });
+
+    return {
+        type: '',
+        payload: data
+    }
+}

@@ -47,3 +47,16 @@ hr {
 .ReactModal__Body--open {
   overflow: hidden;
 }
+
+.dropdown-display {
+  @extend .dropdown-item;
+
+  font-size: 0.9rem;
+  font-style: italic;
+
+  &:hover {
+    color: inherit !important;
+    text-decoration: inherit !important;
+    background-color: inherit !important;
+  }
+}
