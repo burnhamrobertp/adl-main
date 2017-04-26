@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Data\User;
+use App\Models\Enum\UserRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -57,6 +58,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'role_id' => UserRoles::CONTRIBUTOR,
             'display' => substr($data['email'], 0, strpos($data['email'], '@')),
             'avatar' => md5(strtolower(trim($data['email']))),
             'email' => $data['email'],
