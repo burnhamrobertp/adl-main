@@ -6,7 +6,6 @@ import {getChangeModuleRating} from 'js/actions/modules'
 
 class ModuleStarRating extends React.Component {
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {rating: false};
     }
