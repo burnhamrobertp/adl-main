@@ -14,6 +14,7 @@
         window.creatureTypes = {!! $creatureTypes !!};
         window.editions = {!! $editions !!};
         window.moduleLengths = {!! $moduleLengths !!};
+        window.publishers = {!! $publishers !!}
         window.settings = {!! $settings !!};
     </script>
 </head>

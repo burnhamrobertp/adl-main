@@ -8,6 +8,7 @@ import promise from 'redux-promise'
 
 import Home from './Scenes/Home/Home'
 import Module from './Scenes/Module/Module'
+import ModuleEdit from './Scenes/ModuleEdit/ModuleEdit'
 import Navbar from './Components/Navbar/Navbar'
 import reducers from './reducers/index.js'
 
@@ -18,7 +19,8 @@ const App = () => (
         <div>
             <Navbar/>
             <Route exact path="/" component={Home}/>
-            <Route path="/module/:id" component={Module}/>
+            <Route exact path="/module/:id" component={Module}/>
+            <Route path="/module/edit/:id" component={ModuleEdit}/>
         </div>
     </Router>
 );
