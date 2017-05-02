@@ -10,6 +10,22 @@ class ModuleEdit extends React.Component {
         )
     }
 
+    renderEditions() {
+        return (
+            this.props.editions.map((edition) =>
+                <option value={edition.id}>{edition.name}</option>
+            )
+        )
+    }
+
+    renderSettings() {
+        return (
+            this.props.settings.map((setting) =>
+                <option value={setting.id}>{setting.name}</option>
+            )
+        )
+    }
+
     renderForm() {
         return (
             <form>
@@ -21,19 +37,48 @@ class ModuleEdit extends React.Component {
                 </div>
 
                 <div className="form-group row">
-                    <label htmlFor="published_date" className="col-2 col-form-label">Published Date</label>
-                    <div className="col">
-                        <input type="date" className="form-control" id="published_date"
+                    <label htmlFor="publisher" className="col-2 col-form-label">Publisher</label>
+                    <div className="col-2">
+                        <select id="publisher">
+                            <option/>
+                            {this.renderPublishers()}
+                        </select>
+                    </div>
+
+                    <label htmlFor="published_date" className="col-2 col-form-label pl-2">Published Date</label>
+                    <div className="col-3">
+                        <input type="date" className="form-control" id="publishedDate"
                                value={this.props.module.published_date}/>
+                    </div>
+
+                    <label htmlFor="edition" className="col-1 col-form-label pl-2">Edition</label>
+                    <div className="col-2">
+                        <select id="edition" defaultValue="3">
+                            <option/>
+                            {this.renderEditions()}
+                        </select>
                     </div>
                 </div>
 
                 <div className="form-group row">
-                    <label htmlFor="publisher" className="col-2 col-form-label">Publisher</label>
-                    <div className="col">
-                        <select id="publisher">
-                            {this.renderPublishers()}
+                    <label htmlFor="setting" className="col-2 col-form-label pl-2">Setting</label>
+                    <div className="col-2">
+                        <select id="setting">
+                            <option/>
+                            {this.renderSettings()}
                         </select>
+                    </div>
+
+                    <label htmlFor="minLevel" className="col-2 col-form-label pl-2">Min Level</label>
+                    <div className="col-1">
+                        <input type="text" className="form-control" id="minLevel"
+                               value={this.props.module.min_level}/>
+                    </div>
+
+                    <label htmlFor="minLevel" className="col-2 col-form-label pl-2">Max Level</label>
+                    <div className="col-1">
+                        <input type="text" className="form-control" id="minLevel"
+                               value={this.props.module.max_level}/>
                     </div>
                 </div>
             </form>
@@ -64,7 +109,9 @@ ModuleEdit.defaultProps = {
 
 function mapStateToProps(state) {
     return {
-        publishers: state.lookups.publishers
+        editions: state.lookups.editions,
+        publishers: state.lookups.publishers,
+        settings: state.lookups.settings
     }
 }
 
