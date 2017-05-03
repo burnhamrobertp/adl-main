@@ -1,7 +1,7 @@
 import '../sass/app.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import promise from 'redux-promise'
@@ -18,9 +18,12 @@ const App = () => (
     <Router>
         <div>
             <Navbar/>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/module/:id" component={Module}/>
-            <Route path="/module/edit/:id" component={ModuleEdit}/>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/module/new" component={ModuleEdit}/>
+                <Route exact path="/module/:id" component={Module}/>
+                <Route exact path="/module/edit/:id" component={ModuleEdit}/>
+            </Switch>
         </div>
     </Router>
 );
