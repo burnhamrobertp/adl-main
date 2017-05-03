@@ -14,6 +14,13 @@ export function setModuleFetching(isFetching) {
     }
 }
 
+export function setModuleVisited(id) {
+    return {
+        type: 'SET_MODULE_VISITED',
+        payload: id
+    }
+}
+
 export function getModules(filters = {}) {
     const data = Axios.get('/modules/', {
         params: filters

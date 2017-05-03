@@ -44,8 +44,8 @@ class ModulesList extends BaseComponent {
 
 function mapStateToProps(state) {
     return {
-        isFetching: state.modules.isFetchingIndex,
-        modules: state.modules.index
+        isFetching: state.modules.isFetchingList,
+        modules: state.modules.list
     };
 }
 

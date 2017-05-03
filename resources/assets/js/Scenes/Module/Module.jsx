@@ -1,8 +1,8 @@
 import React from 'react'
-import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux'
+import BaseComponent from 'js/Components/BaseComponent'
 
-import {getModule, setModuleFetching} from 'js/actions/modules'
+import {getModule, setModuleFetching, setModuleVisited} from 'js/actions/modules'
 import {currentModule} from 'js/functions/stateHelpers'
 
 import ModuleHeader from './ModuleHeader'
@@ -11,24 +11,34 @@ import ModuleDetail from './ModuleDetail'
 import ModuleSidebar from './ModuleSidebar'
 
 class Module extends BaseComponent {
+    hasModule() {
+        return this.props.module && this.props.module.id;
+    }
+
     componentDidMount() {
-        this.props.setModuleFetching(true);
-        this.props.getModule(this.props.match.params.id);
+        const id = parseInt(this.props.match.params.id);
+        // does the index already have this
+        if (!this.props.index[id]) {
+            this.props.setModuleFetching(true);
+            this.props.getModule(id);
+        } else {
+            this.props.setModuleVisited(id);
+        }
     }
 
     renderComponent() {
-        if (this.props.isFetching || this.props.module.id === undefined) {
+        if (this.props.isFetching || !this.hasModule()) {
             return this.renderLoading();
         } else {
             return (
                 <div className="row">
                     <div className="col-8">
-                        <ModuleHeader module={this.props.module} />
-                        <ModuleSummary module={this.props.module} />
-                        <ModuleDetail module={this.props.module} />
+                        <ModuleHeader module={this.props.module}/>
+                        <ModuleSummary module={this.props.module}/>
+                        <ModuleDetail module={this.props.module}/>
                     </div>
                     <div className="col">
-                        <ModuleSidebar module={this.props.module} />
+                        <ModuleSidebar module={this.props.module}/>
                     </div>
                 </div>
             )
@@ -47,8 +57,13 @@ class Module extends BaseComponent {
 function mapStateToProps(state) {
     return {
         isFetching: state.modules.isFetchingModule,
+        index: state.modules.index,
         module: currentModule(state)
     }
 }
 
-export default connect(mapStateToProps, {getModule, setModuleFetching})(Module);
+export default connect(mapStateToProps, {
+    getModule,
+    setModuleFetching,
+    setModuleVisited
+})(Module);

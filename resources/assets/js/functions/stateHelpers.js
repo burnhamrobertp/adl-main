@@ -15,10 +15,12 @@ export function userIsVerified(state) {
  * @returns {{}}
  */
 export function currentModule(state) {
-    const hasModuleHistory = state.modules.moduleHistory &&
-        state.modules.moduleHistory.length > 0;
+    const hasModuleHistory = state.modules.moduleHistory && state.modules.moduleHistory.length > 0;
 
-    return hasModuleHistory ? state.modules.moduleHistory[0] : {};
+    if (hasModuleHistory)
+        return state.modules.index[state.modules.moduleHistory[0]];
+    else
+        return {};
 }
 
 /**

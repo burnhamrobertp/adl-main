@@ -3,15 +3,25 @@ import {Link} from 'react-router-dom'
 import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux'
 
-import {getModule, setModuleFetching} from 'js/actions/modules'
+import {getModule, setModuleFetching, setModuleVisited} from 'js/actions/modules'
 import {currentModule} from 'js/functions/stateHelpers'
 
 class ModuleEdit extends BaseComponent {
+    hasModule() {
+        return this.props.module && this.props.module.id;
+    }
+
     componentDidMount() {
-        const id = this.props.match.params.id;
+        const id = parseInt(this.props.match.params.id);
         // editing a module but not passed its data
-        if (id && (!this.props.module || this.props.module.id !== id)) {
-            this.props.getModule(id);
+        if (id) {
+            // does the index already have this
+            if (!this.props.index[id]) {
+                this.props.setModuleFetching(true);
+                this.props.getModule(id);
+            } else {
+                this.props.setModuleVisited(id);
+            }
         }
     }
 
@@ -143,7 +153,7 @@ class ModuleEdit extends BaseComponent {
     }
 
     render() {
-        if (this.props.isFetching || this.props.module.id === undefined) {
+        if (this.props.isFetching || !this.hasModule()) {
             return this.renderLoading();
         } else {
             return (
@@ -165,12 +175,14 @@ class ModuleEdit extends BaseComponent {
 }
 
 ModuleEdit.defaultProps = {
+    index: {},
     module: {}
 };
 
 function mapStateToProps(state) {
     return {
         isFetching: state.modules.isFetchingModule,
+        index: state.modules.index,
         module: currentModule(state),
 
         editions: state.lookups.editions,
@@ -179,4 +191,8 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {getModule, setModuleFetching})(ModuleEdit)
+export default connect(mapStateToProps, {
+    getModule,
+    setModuleFetching,
+    setModuleVisited
+})(ModuleEdit)

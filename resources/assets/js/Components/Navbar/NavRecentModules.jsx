@@ -4,9 +4,9 @@ import {connect} from 'react-redux'
 
 class NavRecentModules extends React.Component {
     renderRecentModules() {
-        return this.props.recentModules.map((module) =>
-            <Link key={module.id} to={"/module/" + module.id } className="dropdown-item">
-                {module.name}
+        return this.props.recentModules.map((id) =>
+            <Link key={id} to={"/module/" + id } className="dropdown-item">
+                {this.props.index[id].name}
             </Link>
         );
     }
@@ -31,7 +31,8 @@ class NavRecentModules extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        recentModules: state.modules.moduleHistory
+        recentModules: state.modules.moduleHistory,
+        index: state.modules.index
     }
 }
 
