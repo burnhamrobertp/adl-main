@@ -15,19 +15,33 @@ class Module extends BaseComponent {
         return this.props.module && this.props.module.id;
     }
 
-    componentDidMount() {
-        const id = parseInt(this.props.match.params.id);
+    validModule() {
+        return this.props.module && this.props.module.id == this.props.match.params.id;
+    }
+
+    getModule(id) {
         // does the index already have this
         if (!this.props.index[id]) {
-            this.props.setModuleFetching(true);
             this.props.getModule(id);
         } else {
             this.props.setModuleVisited(id);
         }
     }
 
+    componentDidMount() {
+        const id = this.props.match.params.id;
+
+        this.getModule(id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.module)
+            return;
+        console.log(nextProps);
+    }
+
     renderComponent() {
-        if (this.props.isFetching || !this.hasModule()) {
+        if (!this.hasModule() || !this.validModule()) {
             return this.renderLoading();
         } else {
             return (

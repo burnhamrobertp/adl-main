@@ -17,7 +17,7 @@ export function setModuleFetching(isFetching) {
 export function setModuleVisited(id) {
     return {
         type: 'SET_MODULE_VISITED',
-        payload: id
+        payload: parseInt(id)
     }
 }
 

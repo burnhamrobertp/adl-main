@@ -25,6 +25,10 @@ class ModuleEdit extends BaseComponent {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+
     renderSelect(items) {
         return items.map((item) =>
             <option key={item.id} value={item.id}>{item.name}</option>
