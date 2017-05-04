@@ -34,10 +34,18 @@ class Module extends BaseComponent {
         this.getModule(id);
     }
 
+    /**
+     * Handles the instance of going from /module/23 to /module/22 via `recently viewed`
+     * @param nextProps
+     */
     componentWillReceiveProps(nextProps) {
-        if (!this.props.module)
+        const id = this.props.module.id;
+        const paramId = nextProps.match.params.id;
+
+        if (!this.props.module || id === undefined || id == paramId)
             return;
-        console.log(nextProps);
+
+        this.getModule(paramId);
     }
 
     renderComponent() {
