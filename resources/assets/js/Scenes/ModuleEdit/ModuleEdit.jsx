@@ -9,7 +9,9 @@ import Loading from 'js/Components/Loading/Loading'
 
 class ModuleEdit extends React.Component {
     get hasModule() {
-        return this.props.module && this.props.module.id && this.props.module.id == this.props.match.params.id;
+        let hasStateModule = this.props.module.id && this.props.module.id === this.props.moduleId,
+            hasIndexModule = this.props.indexModule.id && this.props.indexModule.id === this.props.moduleId;
+        return hasStateModule || hasIndexModule;
     }
 
     get module() {

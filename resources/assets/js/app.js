@@ -26,9 +26,8 @@ const App = () => (
                 <Route exact path="/module/new" component={ModuleEdit}/>
                 <Route exact path="/module/:id" render={
                     ({match}) => {
-                        const state = store.getState(),
-                            moduleId = parseInt(match.params.id),
-                            module = state.modules.index[moduleId] || {};
+                        let moduleId = parseInt(match.params.id),
+                            module = store.getState().modules.index[moduleId] || {};
 
                         if (!module.id)
                             store.dispatch(getModule(moduleId));
@@ -36,7 +35,17 @@ const App = () => (
                         return <Module moduleId={moduleId} indexModule={module}/>
                     }
                 }/>
-                <Route exact path="/module/edit/:id" component={ModuleEdit}/>
+                <Route exact path="/module/edit/:id" render={
+                    ({match}) => {
+                        let moduleId = parseInt(match.params.id),
+                            module = store.getState().modules.index[moduleId] || {};
+
+                        if (!module.id)
+                            store.dispatch(getModule(moduleId));
+
+                        return <ModuleEdit moduleId={moduleId} indexModule={module}/>
+                    }
+                }/>
             </Switch>
         </div>
     </Router>
