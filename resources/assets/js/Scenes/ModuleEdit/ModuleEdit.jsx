@@ -1,32 +1,19 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux'
 
 import {getModule, setModuleFetching, setModuleVisited} from 'js/actions/modules'
 import {currentModule} from 'js/functions/stateHelpers'
 
-class ModuleEdit extends BaseComponent {
-    hasModule() {
-        return this.props.module && this.props.module.id;
+import Loading from 'js/Components/Loading/Loading'
+
+class ModuleEdit extends React.Component {
+    get hasModule() {
+        return this.props.module && this.props.module.id && this.props.module.id == this.props.match.params.id;
     }
 
-    componentDidMount() {
-        const id = parseInt(this.props.match.params.id);
-        // editing a module but not passed its data
-        if (id) {
-            // does the index already have this
-            if (!this.props.index[id]) {
-                this.props.setModuleFetching(true);
-                this.props.getModule(id);
-            } else {
-                this.props.setModuleVisited(id);
-            }
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+    get module() {
+        return this.props.indexModule.id ? this.props.indexModule : this.props.module;
     }
 
     renderSelect(items) {
@@ -58,7 +45,7 @@ class ModuleEdit extends BaseComponent {
     }
 
     renderForm() {
-        const module = this.props.module;
+        const module = this.module;
         return (
             <form>
                 <div className="form-group row">
@@ -157,9 +144,7 @@ class ModuleEdit extends BaseComponent {
     }
 
     render() {
-        if (this.props.isFetching || !this.hasModule()) {
-            return this.renderLoading();
-        } else {
+        if (this.hasModule) {
             return (
                 <div className="outerContainer p-2">
                     <div className="row">
@@ -174,19 +159,18 @@ class ModuleEdit extends BaseComponent {
                     </div>
                 </div>
             )
+        } else {
+            return <Loading/>
         }
     }
 }
 
 ModuleEdit.defaultProps = {
-    index: {},
     module: {}
 };
 
 function mapStateToProps(state) {
     return {
-        isFetching: state.modules.isFetchingModule,
-        index: state.modules.index,
         module: currentModule(state),
 
         editions: state.lookups.editions,
