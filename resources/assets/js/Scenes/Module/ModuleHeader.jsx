@@ -89,7 +89,7 @@ class ModuleHeader extends React.Component {
     }
 
     renderTextRating() {
-        if (!this.props.module.avg_rating)
+        if (!this.props.module.avg_rating.length)
             return;
 
         const rating = parseFloat(this.props.module.avg_rating[0].aggregate).toFixed(2);
@@ -103,7 +103,7 @@ class ModuleHeader extends React.Component {
     }
 
     renderStarRating() {
-        if (!this.props.module.avg_rating)
+        if (!this.props.module.avg_rating.length)
             return;
 
         const rating = parseFloat(this.props.module.avg_rating[0].aggregate);

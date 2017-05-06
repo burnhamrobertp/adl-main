@@ -58,3 +58,15 @@ export function getChangeModuleRating(id, rating) {
         payload: data
     }
 }
+
+export function putModule(moduleForm) {
+    const data = Axios.post(`/modules/${moduleForm.get('id') || ''}`, moduleForm)
+        .then((response) => {
+            console.log(response);
+        });
+
+    return {
+        type: 'PUT_MODULE',
+        payload: data
+    }
+}

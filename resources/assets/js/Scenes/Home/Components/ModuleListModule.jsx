@@ -9,7 +9,8 @@ class ModuleListModule extends React.Component {
     }
 
     currentRating() {
-        return parseFloat(this.props.module.avg_rating[0].aggregate);
+        const avgRating = this.props.module.avg_rating;
+        return avgRating.length ? parseFloat(avgRating[0].aggregate) : null;
     }
 
     renderLevel() {

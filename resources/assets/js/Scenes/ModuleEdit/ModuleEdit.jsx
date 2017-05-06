@@ -2,7 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {getModule, setModuleFetching, setModuleVisited} from 'js/actions/modules'
+import {
+    getModule,
+    setModuleFetching,
+    setModuleVisited,
+    putModule
+} from 'js/actions/modules'
 import {currentModule} from 'js/functions/stateHelpers'
 
 import Loading from 'js/Components/Loading/Loading'
@@ -35,6 +40,12 @@ class ModuleEdit extends React.Component {
             return this.props.module;
         else
             return {};
+    }
+
+    save() {
+        let form = new FormData(document.getElementById('moduleEdit'));
+
+        this.props.putModule(form);
     }
 
     renderSelect(items) {
@@ -74,18 +85,20 @@ class ModuleEdit extends React.Component {
     renderForm() {
         const module = this.module;
         return (
-            <form>
+            <form id="moduleEdit">
+                <input type="hidden" id="id" name="id" value={module.id} />
+
                 <div className="form-group row">
                     <label htmlFor="name" className="col-lg-2 col-3 col-form-label">Name</label>
                     <div className="col">
-                        <input type="text" className="form-control" id="name" defaultValue={module.name}/>
+                        <input type="text" className="form-control" id="name" name="name" defaultValue={module.name}/>
                     </div>
                 </div>
 
                 <div className="form-group row">
                     <label htmlFor="publisher" className="col-lg-2 col-3 col-form-label">Publisher</label>
                     <div className="col-lg-2 col-9 pr-2">
-                        <select id="publisher" defaultValue={module.publisher_id}>
+                        <select id="publisher" name="publisher" defaultValue={module.publisher_id}>
                             <option/>
                             {this.renderSelect(this.props.publishers)}
                         </select>
@@ -93,7 +106,7 @@ class ModuleEdit extends React.Component {
 
                     <label htmlFor="published_date" className="col-lg-2 col-3 col-form-label">Published Date</label>
                     <div className="col-lg-3 col-9 pr-2">
-                        <input type="date" className="form-control" id="publishedDate"
+                        <input type="date" className="form-control" id="publishedDate" name="publishedDate"
                                defaultValue={module.published_date}/>
                     </div>
                 </div>
@@ -101,14 +114,14 @@ class ModuleEdit extends React.Component {
                 <div className="form-group row">
                     <label htmlFor="edition" className="col-lg-2 col-3 col-form-label">Edition</label>
                     <div className="col-lg-2 pr-2">
-                        <select id="edition" defaultValue={module.edition_id}>
+                        <select id="edition" name="edition" defaultValue={module.edition_id}>
                             <option/>
                             {this.renderSelect(this.props.editions)}
                         </select>
                     </div>
                     <label htmlFor="setting" className="col-lg-2 col-3 col-form-label">Setting</label>
                     <div className="col-lg-3 pr-2">
-                        <select id="setting" defaultValue={module.setting_id}>
+                        <select id="setting" name="setting" defaultValue={module.setting_id}>
                             <option/>
                             {this.renderSelect(this.props.settings)}
                         </select>
@@ -116,27 +129,36 @@ class ModuleEdit extends React.Component {
                 </div>
 
                 <div className="form-group row">
+                    <label htmlFor="length" className="col-lg-2 col-form-label">Length</label>
+                    <div className="col-lg-2 pr-2">
+                        <select id="length" name="length" defaultValue={module.length_id}>
+                            <option/>
+                            {this.renderSelect(this.props.lengths)}
+                        </select>
+                    </div>
                     <label htmlFor="minLevel" className="col-lg-2 col-form-label">Min Level</label>
                     <div className="col-lg-2 pr-2">
-                        <input type="text" className="form-control" id="minLevel"
+                        <input type="text" className="form-control" id="minLevel" name="minLevel"
                                defaultValue={module.min_level}/>
                     </div>
 
-                    <label htmlFor="minLevel" className="col-lg-2 col-form-label">Max Level</label>
+                    <label htmlFor="maxLevel" className="col-lg-2 col-form-label">Max Level</label>
                     <div className="col-lg-2">
-                        <input type="text" className="form-control" id="minLevel"
+                        <input type="text" className="form-control" id="maxLevel" name="maxLevel"
                                defaultValue={module.max_level}/>
                     </div>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="summary">Summary</label>
-                    <textarea className="form-control" id="summary" defaultValue={module.summary} rows="4"/>
+                    <textarea className="form-control" id="summary" name="summary" defaultValue={module.summary}
+                              rows="4"/>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <textarea className="form-control" id="description" defaultValue={module.description} rows="10"/>
+                    <textarea className="form-control" id="description" name="description"
+                              defaultValue={module.description} rows="10"/>
                 </div>
 
                 <div className="form-group row">
@@ -158,9 +180,7 @@ class ModuleEdit extends React.Component {
         return (
             <div className="moduleSidebar">
                 <div className="mb-2 text-center">
-                    <Link to={`edit/${this.props.module.id}`}>
-                        <button className="btn btn-primary" disabled>Save</button>
-                    </Link>
+                    <button className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
                     {' '}
                     <Link to={`../${this.props.module.id}`}>
                         <button className="btn btn-danger">Cancel</button>
@@ -197,6 +217,7 @@ function mapStateToProps(state) {
         module: currentModule(state),
 
         editions: state.lookups.editions,
+        lengths: state.lookups.moduleLengths,
         publishers: state.lookups.publishers,
         settings: state.lookups.settings
     }
@@ -205,5 +226,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     getModule,
     setModuleFetching,
-    setModuleVisited
+    setModuleVisited,
+    putModule
 })(ModuleEdit)

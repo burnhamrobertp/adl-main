@@ -51,7 +51,7 @@ class ModulesController extends Controller
     public function store(Request $request)
     {
         $module = new Module();
-        $module->name = $request->name;
+        $module = $this->assignRequestProperties($request, $module);
         $success = $module->save();
 
         return response()->json([
@@ -71,7 +71,7 @@ class ModulesController extends Controller
         if ($request->rating) {
             $success  = $this->handleRating($module, $request->user(), $request->rating);
         } else {
-            $module->name = $request->name;
+            $module = $this->assignRequestProperties($request, $module);
             $success = $module->save();
         }
 
@@ -111,5 +111,28 @@ class ModulesController extends Controller
         $moduleRating->user()->associate($user);
         $moduleRating->rating = $rating;
         return $moduleRating->save();
+    }
+
+    /**
+     * Makes the assignment of request properties to the provided module instance
+     *
+     * @param Request $request
+     * @param Module $module
+     * @return Module
+     */
+    protected function assignRequestProperties(Request $request, Module $module)
+    {
+        $module->name = $request->name;
+        $module->edition_id = $request->edition;
+        $module->setting_id = $request->setting;
+        $module->length_id = $request->length;
+        $module->min_level = $request->minLevel;
+        $module->max_level = $request->maxLevel;
+        $module->publisher_id = $request->publisher;
+        $module->published_date = $request->publishedDate;
+        $module->summary = $request->summary;
+        $module->description = $request->description;
+
+        return $module;
     }
 }
