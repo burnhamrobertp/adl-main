@@ -11,8 +11,11 @@ import ModuleSidebar from './ModuleSidebar'
 
 class Module extends React.Component {
     get hasModule() {
-        let hasStateModule = this.props.module.id && this.props.module.id === this.props.moduleId,
-            hasIndexModule = this.props.indexModule.id && this.props.indexModule.id === this.props.moduleId;
+        const module = this.props.module;
+        const index = this.props.indexModule;
+
+        let hasStateModule = module && module.id && module.id === this.props.moduleId,
+            hasIndexModule = index && index.id && index.id === this.props.moduleId;
         return hasStateModule || hasIndexModule;
     }
 

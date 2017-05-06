@@ -8,14 +8,26 @@ import {currentModule} from 'js/functions/stateHelpers'
 import Loading from 'js/Components/Loading/Loading'
 
 class ModuleEdit extends React.Component {
+    get isNewModule() {
+        return this.props.moduleId === 'new';
+    }
+
     get hasModule() {
-        let hasStateModule = this.props.module.id && this.props.module.id === this.props.moduleId,
-            hasIndexModule = this.props.indexModule.id && this.props.indexModule.id === this.props.moduleId;
+        const module = this.props.module;
+        const index = this.props.indexModule;
+
+        let hasStateModule = module && module.id && module.id === this.props.moduleId,
+            hasIndexModule = index && index.id && index.id === this.props.moduleId;
         return hasStateModule || hasIndexModule;
     }
 
     get module() {
-        return this.props.indexModule.id ? this.props.indexModule : this.props.module;
+        if (this.props.indexModule && this.props.indexModule.id)
+            return this.props.indexModule;
+        else if (this.props.module && this.props.module.id)
+            return this.props.module;
+        else
+            return {};
     }
 
     renderSelect(items) {
@@ -25,6 +37,9 @@ class ModuleEdit extends React.Component {
     }
 
     renderCreatures() {
+        if (!this.props.module.creatures)
+            return null;
+
         return this.props.module.creatures.map((creature) =>
             <div key={creature.id} className="row">
                 <div className="col-11">{creature.name}</div>
@@ -36,6 +51,9 @@ class ModuleEdit extends React.Component {
     }
 
     renderItems() {
+        if (!this.props.module.items)
+            return null;
+
         return this.props.module.items.map((item) =>
             <div key={item.id} className="row">
                 <div className="col-11">{item.name}</div>
@@ -146,7 +164,7 @@ class ModuleEdit extends React.Component {
     }
 
     render() {
-        if (this.hasModule) {
+        if (this.hasModule || this.isNewModule) {
             return (
                 <div className="outerContainer p-2">
                     <div className="row">
@@ -166,10 +184,6 @@ class ModuleEdit extends React.Component {
         }
     }
 }
-
-ModuleEdit.defaultProps = {
-    module: {}
-};
 
 function mapStateToProps(state) {
     return {

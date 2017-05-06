@@ -44,7 +44,12 @@ class Navbar extends React.Component {
                         <div id="adl-navitems">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
+                                    <NavLink exact to="/" className="nav-link" activeClassName="active">Home</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink exact to="/module/new" className="nav-link" activeClassName="active">
+                                        New Adventure
+                                    </NavLink>
                                 </li>
 
                                 <NavRecentModules/>
