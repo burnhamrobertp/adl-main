@@ -9,6 +9,9 @@ import ModuleSummary from './ModuleSummary'
 import ModuleDetail from './ModuleDetail'
 import ModuleSidebar from './ModuleSidebar'
 
+/**
+ * Displays detailed information about a specific Module (Adventure)
+ */
 class Module extends React.Component {
     get hasModule() {
         const module = this.props.module;

@@ -7,6 +7,13 @@ import {currentModule} from 'js/functions/stateHelpers'
 
 import Loading from 'js/Components/Loading/Loading'
 
+/**
+ * Displays the form and inputs for modifying and creating modules
+ *
+ * In addition to standard forms, also displays functionality for uploading module images, performs lookup
+ * for creatures, items, contributors, etc. to facilitate tying them to a module. Lastly, interfaces with
+ * other components for creating new creatures, items, contributors, etc. that do not already exist in ADL.
+ */
 class ModuleEdit extends React.Component {
     get isNewModule() {
         return this.props.moduleId === 'new';
