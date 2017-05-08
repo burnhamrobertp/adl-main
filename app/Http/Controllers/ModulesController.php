@@ -50,6 +50,8 @@ class ModulesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateModule($request);
+
         $module = new Module();
         $module = $this->assignRequestProperties($request, $module);
         $success = $module->save();
@@ -71,6 +73,7 @@ class ModulesController extends Controller
         if ($request->rating) {
             $success  = $this->handleRating($module, $request->user(), $request->rating);
         } else {
+            $this->validateModule($request);
             $module = $this->assignRequestProperties($request, $module);
             $success = $module->save();
         }
@@ -111,6 +114,27 @@ class ModulesController extends Controller
         $moduleRating->user()->associate($user);
         $moduleRating->rating = $rating;
         return $moduleRating->save();
+    }
+
+    /**
+     * Validates provided fields for module model work
+     *
+     * @param Request $request
+     */
+    protected function validateModule(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string',
+            'edition' => 'required|integer',
+            'setting' => 'required|integer',
+            'length' => 'required|integer',
+            'minLevel' => 'required|integer|between:0,20',
+            'maxLevel' => 'required|integer|between:0,20',
+            'publisher' => 'required|integer',
+            'publishedDate' => '',
+            'summary' => 'required|string',
+            'description' => 'required|string',
+        ]);
     }
 
     /**
