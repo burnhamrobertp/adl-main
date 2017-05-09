@@ -45,6 +45,9 @@ class ModuleEdit extends React.Component {
     save() {
         let form = new FormData(document.getElementById('moduleEdit'));
 
+        this.props.module.creatures.map((e) => form.append('creatures[]', JSON.stringify(e)));
+        this.props.module.items.map((e) => form.append('items[]', JSON.stringify(e)));
+
         this.props.putModule(form);
     }
 
@@ -56,7 +59,7 @@ class ModuleEdit extends React.Component {
 
     renderCreatures() {
         if (!this.props.module.creatures)
-            return null;
+            return [];
 
         return this.props.module.creatures.map((creature) =>
             <div key={creature.id} className="row">

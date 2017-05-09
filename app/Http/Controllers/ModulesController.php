@@ -123,6 +123,14 @@ class ModulesController extends Controller
      */
     protected function validateModule(Request $request)
     {
+        // clean up json creatures/items
+        $request->creatures = array_map(function($e) {
+            return json_decode($e);
+        }, $request->creatures);
+        $request->items = array_map(function($e) {
+            return json_decode($e);
+        }, $request->items);
+
         $this->validate($request, [
             'name' => 'required|string',
             'edition' => 'required|integer',
@@ -134,6 +142,8 @@ class ModulesController extends Controller
             'publishedDate' => '',
             'summary' => 'required|string',
             'description' => 'required|string',
+            'items' => 'required|array',
+            'creatures' => 'required|array',
         ]);
     }
 
