@@ -20,33 +20,28 @@ import Loading from 'js/Components/Loading/Loading'
  * other components for creating new creatures, items, contributors, etc. that do not already exist in ADL.
  */
 class ModuleEdit extends React.Component {
-    get isNewModule() {
-        return this.props.moduleId === 'new';
-    }
-
-    get hasModule() {
-        const module = this.props.module;
-        const index = this.props.indexModule;
-
-        let hasStateModule = module && module.id && module.id === this.props.moduleId,
-            hasIndexModule = index && index.id && index.id === this.props.moduleId;
-        return hasStateModule || hasIndexModule;
-    }
-
     get module() {
         if (this.props.indexModule && this.props.indexModule.id)
             return this.props.indexModule;
-        else if (this.props.module && this.props.module.id)
-            return this.props.module;
+        else if (this.props.stateModule && this.props.stateModule.id)
+            return this.props.stateModule;
         else
             return {};
+    }
+
+    get hasModule() {
+        return this.module && this.module.id;
+    }
+
+    get isNewModule() {
+        return this.props.moduleId === 'new';
     }
 
     save() {
         let form = new FormData(document.getElementById('moduleEdit'));
 
-        this.props.module.creatures.map((e) => form.append('creatures[]', JSON.stringify(e)));
-        this.props.module.items.map((e) => form.append('items[]', JSON.stringify(e)));
+        this.module.creatures.map((e) => form.append('creatures[]', JSON.stringify(e)));
+        this.module.items.map((e) => form.append('items[]', JSON.stringify(e)));
 
         this.props.putModule(form);
     }
@@ -57,29 +52,39 @@ class ModuleEdit extends React.Component {
         );
     }
 
+    removeCreature(id) {
+        creatures = this.module.creatures.filter((e) => e.id !== id);
+    }
+
     renderCreatures() {
-        if (!this.props.module.creatures)
+        if (!this.module.creatures)
             return [];
 
-        return this.props.module.creatures.map((creature) =>
+        return this.module.creatures.map((creature) =>
             <div key={creature.id} className="row">
                 <div className="col-11">{creature.name}</div>
                 <div className="col-1 text-right">
-                    <a href="#"><i className="fa fa-times" aria-hidden="true"/></a>
+                    <i className="fa fa-times" aria-hidden="true"
+                       onClick={this.removeCreature.bind(this, creature.id)}/>
                 </div>
             </div>
         );
     }
 
+    removeItem(id) {
+        items = this.module.items.filter((e) => e.id != id);
+    }
+
     renderItems() {
-        if (!this.props.module.items)
+        if (!this.module.items)
             return null;
 
-        return this.props.module.items.map((item) =>
+        return this.module.items.map((item) =>
             <div key={item.id} className="row">
                 <div className="col-11">{item.name}</div>
                 <div className="col-1 text-right">
-                    <a href="#"><i className="fa fa-times" aria-hidden="true"/></a>
+                    <i className="fa fa-times" aria-hidden="true"
+                    onClick={this.removeItem.bind(this, item.id)}/>
                 </div>
             </div>
         );
@@ -89,7 +94,7 @@ class ModuleEdit extends React.Component {
         const module = this.module;
         return (
             <form id="moduleEdit">
-                <input type="hidden" id="id" name="id" value={module.id} />
+                <input type="hidden" id="id" name="id" value={module.id}/>
 
                 <div className="form-group row">
                     <label htmlFor="name" className="col-lg-2 col-3 col-form-label">Name</label>
@@ -185,7 +190,7 @@ class ModuleEdit extends React.Component {
                 <div className="mb-2 text-center">
                     <button className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
                     {' '}
-                    <Link to={`../${this.props.module.id}`}>
+                    <Link to={`../${this.module.id}`}>
                         <button className="btn btn-danger">Cancel</button>
                     </Link>
                 </div>
@@ -217,7 +222,7 @@ class ModuleEdit extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        module: currentModule(state),
+        stateModule: currentModule(state),
 
         editions: state.lookups.editions,
         lengths: state.lookups.moduleLengths,
