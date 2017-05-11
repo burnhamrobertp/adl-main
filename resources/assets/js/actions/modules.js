@@ -1,5 +1,11 @@
 import Axios from 'Axios';
 
+/**
+ * Sets the value of modules.isFetchingList
+ *
+ * @param isFetching
+ * @returns {{type: string, payload: *}}
+ */
 export function setModulesFetching(isFetching) {
     return {
         type: 'SET_MODULES_FETCHING',
@@ -7,6 +13,12 @@ export function setModulesFetching(isFetching) {
     }
 }
 
+/**
+ * Sets the value of modules.isFetchingModule
+ *
+ * @param isFetching
+ * @returns {{type: string, payload: *}}
+ */
 export function setModuleFetching(isFetching) {
     return {
         type: 'SET_MODULE_FETCHING',
@@ -14,6 +26,12 @@ export function setModuleFetching(isFetching) {
     }
 }
 
+/**
+ * Adds a module to the moduleHistory
+ *
+ * @param id
+ * @returns {{type: string, payload: Number}}
+ */
 export function setModuleVisited(id) {
     return {
         type: 'SET_MODULE_VISITED',
