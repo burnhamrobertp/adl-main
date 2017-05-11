@@ -24,6 +24,10 @@
       background-color: lighten(#FFC107, 10%);
     }
   }
+
+  #applyFilters {
+    @extend .btn-primary;
+  }
 }
 
 #adl-description {

@@ -1,4 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
+import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
+
+import {
+    userIsVerified,
+    currentModule,
+    userRatingForModule
+} from 'js/functions/stateHelpers'
 
 class ModuleHeader extends React.Component {
     renderPublishedYear() {
@@ -79,8 +88,8 @@ class ModuleHeader extends React.Component {
         )
     }
 
-    renderRating() {
-        if (!this.props.module.avg_rating)
+    renderTextRating() {
+        if (!this.props.module.avg_rating.length)
             return;
 
         const rating = parseFloat(this.props.module.avg_rating[0].aggregate).toFixed(2);
@@ -90,6 +99,22 @@ class ModuleHeader extends React.Component {
                 <h4>{rating}</h4>
                 <h5 className="small text-capitalize">Rating</h5>
             </div>
+        )
+    }
+
+    renderStarRating() {
+        if (!this.props.module.avg_rating.length)
+            return;
+
+        const rating = parseFloat(this.props.module.avg_rating[0].aggregate);
+
+        return (
+            <ModuleStarRating
+                id={this.props.module.id}
+                current={rating}
+                userRating={this.props.userRating}
+                readonly={!this.props.canRate}
+            />
         )
     }
 
@@ -105,12 +130,15 @@ class ModuleHeader extends React.Component {
                             <h3>{this.props.module.name}</h3>
                             {this.renderSubTitle()}
                         </div>
+                        <div className="col-2 text-center">
+                            {this.renderStarRating()}
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-3 text-center">{this.renderEdition()}</div>
-                        <div className="col-3 text-center">{this.renderLevelRange()}</div>
-                        <div className="col-3 text-center">{this.renderModuleLength()}</div>
-                        <div className="col-3 text-center">{this.renderRating()}</div>
+                    <div className="row justify-content-between">
+                        <div className="col-2 text-center">{this.renderEdition()}</div>
+                        <div className="col-2 text-center">{this.renderLevelRange()}</div>
+                        <div className="col-2 text-center">{this.renderModuleLength()}</div>
+                        <div className="col-2 text-center">{this.renderTextRating()}</div>
                     </div>
                 </div>
             </div>
@@ -118,4 +146,11 @@ class ModuleHeader extends React.Component {
     }
 }
 
-export default ModuleHeader;
+function mapStateToProps(state) {
+    return {
+        canRate: userIsVerified(state),
+        userRating: userRatingForModule(state, currentModule(state).id)
+    }
+}
+
+export default connect(mapStateToProps)(ModuleHeader)

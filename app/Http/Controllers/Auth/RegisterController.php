@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Data\User;
+use App\Models\Enum\UserRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 
-class RegisterController extends AuthController
+class RegisterController extends Controller
 {
-    use RegistersUsers;
+    use RegistersUsers, VerifiesUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Create a new controller instance
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
+    }
+
+    /**
+     * Verifies a user's e-mail address
+     *
+     * @param Request $request
+     * @param string $code
+     * @return \Illuminate\Http\Response
+     */
+    public function verify(Request $request, string $code)
+    {
+        return $this->getVerification($request, $code);
     }
 
     /**
@@ -51,6 +58,7 @@ class RegisterController extends AuthController
     protected function create(array $data)
     {
         return User::create([
+            'role_id' => UserRoles::CONTRIBUTOR()->getOrdinal(),
             'display' => substr($data['email'], 0, strpos($data['email'], '@')),
             'avatar' => md5(strtolower(trim($data['email']))),
             'email' => $data['email'],
@@ -58,11 +66,17 @@ class RegisterController extends AuthController
         ]);
     }
 
+    /**
+     * Send the user their verification e-mail
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function registered(Request $request, User $user)
     {
-        $token = $this->generateToken($request);
-        $request->session()->put('jwt', $token);
+        UserVerification::generate($user);
+        UserVerification::send($user, 'AdventureLookup E-mail Verification');
 
-        return response()->json($user);
+        return response()->json($user->load('role'));
     }
 }

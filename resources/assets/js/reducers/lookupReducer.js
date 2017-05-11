@@ -1,7 +1,8 @@
 const DEFAULT_STATE = {
     editions: window.editions,
+    moduleLengths: window.moduleLengths,
+    publishers: window.publishers,
     settings: window.settings,
-    moduleLengths: window.moduleLengths
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -17,6 +18,10 @@ export default function (state = DEFAULT_STATE, action) {
         case 'GET_LOOKUP_LENGTHS':
             return Object.assign({}, state, {
                 adventureLengths: action.payload
+            });
+        case 'GET_LOOKUP_PUBLISHERS':
+            return Object.assign({}, state, {
+                publishers: action.payload
             });
         default:
             return state;

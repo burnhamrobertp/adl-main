@@ -4,19 +4,18 @@ const DEFAULT_STATE = {
     display: '',
     avatar: '',
     email: '',
-    verified: false,
+    verified: 0,
+    role: [],
+    ratings: [],
 
     isFetching: false,
 
     loginRegisterModal: {
         isOpen: false,
+        activeComponent: '',
         email: '',
-        login: {
-            flashMessages: [],
-        },
-        register: {
-            flashMessages: [],
-        }
+        flashMessages: [],
+        flashMessageClass: ''
     }
 };
 
@@ -44,39 +43,38 @@ export default function (state = DEFAULT_STATE, action) {
             return Object.assign({}, state, {
                 isFetching: action.payload
             });
-        case 'GET_REGISTER_FAILURE':
-            // intentional fallthrough
-        case 'SET_REGISTER_MESSAGES':
-            console.log(action.payload);
+        case 'SET_ACTIVE_COMPONENT':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    register: Object.assign({}, state.loginRegisterModal.register, {
-                        flashMessages: action.payload
-                    })
+                    activeComponent: action.payload,
+                    flashMessages: [],
+                    flashMessageClass: ''
                 })
             });
-        case 'GET_LOGIN_FAILURE':
-            // intentional fallthrough
-        case 'SET_LOGIN_MESSAGES':
+        case 'SET_MESSAGES':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    login: Object.assign({}, state.loginRegisterModal.login, {
-                        flashMessages: action.payload
-                    })
+                    flashMessages: action.payload,
+                    flashMessageClass: 'danger'
                 })
             });
-        case 'GET_FORGOT_PASSWORD_FAILURE':
-            return ;
         case 'GET_USER':
             return Object.assign({}, state, action.payload);
         case 'GET_LOGOUT':
-            return Object.assign({}, DEFAULT_STATE);
+            location.reload();
+            return state;
+            break;
         case 'GET_LOGIN_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
         case 'GET_REGISTER_SUCCESS':
             return Object.assign({}, DEFAULT_STATE, action.payload);
         case 'GET_FORGOT_PASSWORD_SUCCESS':
-            return state;
+            return Object.assign({}, state, {
+                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
+                    flashMessages: ['Check your e-mail for your password reset.'],
+                    flashMessageClass: 'info'
+                })
+            });
 
         default:
             return state;

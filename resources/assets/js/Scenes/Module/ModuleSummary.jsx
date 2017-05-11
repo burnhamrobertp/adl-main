@@ -3,11 +3,19 @@ import React from 'react'
 class ModuleSummary extends React.Component {
     render() {
         return (
-            <div className="moduleSummary">
-                <h6>Summary</h6>
-                <p>
-                    {this.props.module.summary}
-                </p>
+            <div>
+                <div className="moduleUnbox">
+                    <h6>Summary</h6>
+                    <div>
+                        {this.props.module.summary}
+                    </div>
+                </div>
+                <div className="moduleUnbox">
+                    <h6>Description</h6>
+                    <div>
+                        {this.props.module.description}
+                    </div>
+                </div>
             </div>
         );
     }

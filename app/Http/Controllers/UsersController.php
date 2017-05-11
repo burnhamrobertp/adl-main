@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Data\User;
 use Illuminate\Http\Request;
 
@@ -21,14 +20,14 @@ class UsersController extends Controller
     }
 
     /**
-     * Fetches a specific User by id
+     * Fetches the specified user
      *
      * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function get(User $user)
     {
-        return $user;
+        return response()->json($user);
     }
 
     /**

@@ -1,53 +1,57 @@
 import React from 'react'
-import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux'
 
-import {getModule, setModuleFetching} from 'js/actions/modules'
+import {currentModule} from 'js/functions/stateHelpers'
 
-import ModuleDetail from './ModuleDetail'
+import Loading from 'js/Components/Loading/Loading'
 import ModuleHeader from './ModuleHeader'
-import ModuleSidebar from './ModuleSidebar'
 import ModuleSummary from './ModuleSummary'
+import ModuleDetail from './ModuleDetail'
+import ModuleSidebar from './ModuleSidebar'
 
-class Module extends BaseComponent {
-    componentDidMount() {
-        this.props.setModuleFetching(true);
-        this.props.getModule(this.props.match.params.id);
+/**
+ * Displays detailed information about a specific Module (Adventure)
+ */
+class Module extends React.Component {
+    get hasModule() {
+        const module = this.props.module;
+        const index = this.props.indexModule;
+
+        let hasStateModule = module && module.id && module.id === this.props.moduleId,
+            hasIndexModule = index && index.id && index.id === this.props.moduleId;
+        return hasStateModule || hasIndexModule;
+    }
+
+    get module() {
+        return this.props.indexModule.id ? this.props.indexModule : this.props.module;
     }
 
     renderComponent() {
-        if (this.props.isFetching || this.props.module.id === undefined) {
-            return this.renderLoading();
-        } else {
-            return (
+        return (
+            <div className="outerContainer p-2">
                 <div className="row">
                     <div className="col-8">
-                        <ModuleHeader module={this.props.module} />
-                        <ModuleSummary module={this.props.module} />
-                        <ModuleDetail module={this.props.module} />
+                        <ModuleHeader module={this.module}/>
+                        <ModuleSummary module={this.module}/>
+                        <ModuleDetail module={this.module}/>
                     </div>
                     <div className="col">
-                        <ModuleSidebar module={this.props.module} />
+                        <ModuleSidebar module={this.module}/>
                     </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 
     render() {
-        return (
-            <div className="outerContainer p-2">
-                {this.renderComponent()}
-            </div>
-        )
+        return this.hasModule ? this.renderComponent() : <Loading/>;
     }
 }
 
 function mapStateToProps(state) {
     return {
-        isFetching: state.modules.isFetchingModule,
-        module: state.modules.currentModule(state.modules.moduleHistory)
+        module: currentModule(state)
     }
 }
 
-export default connect(mapStateToProps, {getModule, setModuleFetching})(Module);
+export default connect(mapStateToProps)(Module);

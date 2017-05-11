@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getLogout} from 'js/actions/user';
+import {getLogout, getVerficiationEmail} from 'js/actions/user';
 
 class NavProfile extends React.Component {
     logout() {
@@ -15,6 +15,17 @@ class NavProfile extends React.Component {
         )
     }
 
+    renderVerificationButton() {
+        if (this.props.user.verified)
+            return '';
+        else
+            return <a className="dropdown-item" onClick={this.props.getVerificationEmail}>Resend Verification E-mail</a>;
+    }
+
+    renderRole() {
+        return <div className="dropdown-display">Role: {this.props.user.role.name}</div>;
+    }
+
     render() {
         return (
             <ul className="navbar-nav dropdown">
@@ -25,7 +36,10 @@ class NavProfile extends React.Component {
                         {this.props.user.display}
                     </a>
                     <div className="dropdown-menu">
+                        {this.renderVerificationButton()}
                         <a className="dropdown-item" onClick={this.logout.bind(this)}>Logout</a>
+                        <div className="dropdown-divider"/>
+                        {this.renderRole()}
                     </div>
                 </li>
             </ul>
@@ -40,4 +54,4 @@ function MapStateToProps(state) {
     }
 }
 
-export default connect(MapStateToProps, {getLogout})(NavProfile)
+export default connect(MapStateToProps, {getLogout, getVerficiationEmail})(NavProfile)

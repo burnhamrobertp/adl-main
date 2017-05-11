@@ -21,16 +21,16 @@ export function setUserFetching(data) {
     }
 }
 
-export function setLoginMessages(data) {
+export function setMessages(data) {
     return {
-        type: 'SET_LOGIN_MESSAGES',
+        type: 'SET_MESSAGES',
         payload: data
     }
 }
 
-export function setRegisterMessages(data) {
+export function setActiveComponent(data) {
     return {
-        type: 'SET_REGISTER_MESSAGES',
+        type: 'SET_ACTIVE_COMPONENT',
         payload: data
     }
 }
@@ -55,18 +55,17 @@ export function getLogout() {
     }
 }
 
-export function getLogin(email, password) {
-    const data = Axios.post('/login', {
-        email: email,
-        password: password
-    }).then((response) => {
+export function getLogin(form) {
+    const data = Axios.post('/login',
+        form
+    ).then((response) => {
         return {
             type: 'GET_LOGIN_SUCCESS',
             payload: response.data
         }
     }).catch((error) => {
         return {
-            type: 'SET_LOGIN_MESSAGES',
+            type: 'SET_MESSAGES',
             payload: [error.response.data.email]
         }
     });
@@ -77,19 +76,17 @@ export function getLogin(email, password) {
     }
 }
 
-export function getRegister(email, password, passwordc) {
-    const data = Axios.post('/register', {
-        email: email,
-        password: password,
-        password_confirmation: passwordc
-    }).then((response) => {
+export function getRegister(form) {
+    const data = Axios.post('/register',
+        form
+    ).then((response) => {
         return {
             type: 'GET_REGISTER_SUCCESS',
             payload: response.data
         }
     }).catch((error) => {
         return {
-            type: 'GET_REGISTER_FAILURE',
+            type: 'SET_MESSAGES',
             payload: [...error.response.data.email || [], ...error.response.data.password || []]
         }
     });
@@ -110,13 +107,27 @@ export function getForgotPassword(email) {
         }
     }).catch((error) => {
         return {
-            type: 'GET_FORGOT_PASSWORD_FAILURE',
+            type: 'SET_MESSAGES',
             payload: [error.response.data.email]
         }
     });
 
     return {
         type: 'IGNORED',
+        payload: data
+    }
+}
+
+export function getVerficiationEmail() {
+    const data = Axios.post('/user/verify')
+        .then((response) => {
+            return {}
+        }).catch((error) => {
+            return {}
+        });
+
+    return {
+        type: '',
         payload: data
     }
 }

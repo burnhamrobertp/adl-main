@@ -1,0 +1,12 @@
+.text-color-primary {
+  color: $adl-primary;
+}
+
+.text-color-secondary {
+  color: $adl-secondary;
+}
+
+.text-border-gray {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $adl-secondary;
+}

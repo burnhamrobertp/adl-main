@@ -1,9 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+import ModuleStarRating from 'js/Components/ModuleRating/ModuleStarRating'
+
 class ModuleListModule extends React.Component {
     moduleLink() {
-        return '/module/'+this.props.module.id;
+        return '/module/' + this.props.module.id;
+    }
+
+    currentRating() {
+        const avgRating = this.props.module.avg_rating;
+        return avgRating.length ? parseFloat(avgRating[0].aggregate) : null;
     }
 
     renderLevel() {
@@ -24,18 +31,19 @@ class ModuleListModule extends React.Component {
         return (
             <Link to={this.moduleLink()}>
                 <div className="module">
-                    <div className="line"/>
                     <div className="p-2 row">
-                        <div className="col-8">
+                        <div className="col">
                             <h5>{this.props.module.name}</h5>
-                            <div className="module-subheader">{this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}</div>
+                            <div className="module-subheader">
+                                {this.props.module.edition.name} {this.renderLevel()} {this.renderLength()}
+                            </div>
                             <div className="module-summary">{this.props.module.summary}</div>
                         </div>
-                        <div className="col-2">
-                            Rating
+                        <div className="col-2 text-center">
+                            <ModuleStarRating current={this.currentRating()} readonly/>
                         </div>
-                        <div className="col">
-                            <img src={this.props.module.small_cover} />
+                        <div className="col-2 text-center">
+                            <img src={this.props.module.small_cover}/>
                         </div>
                     </div>
                 </div>
@@ -44,4 +52,4 @@ class ModuleListModule extends React.Component {
     }
 }
 
-export default ModuleListModule;
+export default ModuleListModule

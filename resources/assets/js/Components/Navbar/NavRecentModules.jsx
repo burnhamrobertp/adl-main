@@ -4,14 +4,17 @@ import {connect} from 'react-redux'
 
 class NavRecentModules extends React.Component {
     renderRecentModules() {
-        return this.props.recentModules.map((module) =>
-            <Link key={module.id} to={"/module/" + module.id } className="dropdown-item">
-                {module.name}
+        return this.props.recentModules.map((id) =>
+            <Link key={id} to={"/module/" + id } className="dropdown-item">
+                {this.props.index[id].name}
             </Link>
         );
     }
 
     render() {
+        if (this.props.recentModules.length === 0)
+            return null;
+
         return (
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -28,7 +31,8 @@ class NavRecentModules extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        recentModules: state.modules.moduleHistory
+        recentModules: state.modules.moduleHistory,
+        index: state.modules.index
     }
 }
 

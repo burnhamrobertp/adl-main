@@ -51,7 +51,7 @@ $factory->define(App\Models\Data\ModuleRating::class, function (Faker\Generator 
         'module_id' => function() {
             return App\Models\Data\Module::all()->random()->id;
         },
-        'rating' => $faker->biasedNumberBetween(1, 10),
+        'rating' => $faker->biasedNumberBetween(1, 5),
         'created_at' => $faker->unixTime,
         'updated_at' => $faker->unixTime
     ];
@@ -64,10 +64,11 @@ $factory->define(App\Models\Data\User::class, function (Faker\Generator $faker) 
     $email = $faker->unique()->safeEmail;
 
     return [
+        'role_id' => \App\Models\Enum\UserRoles::USER()->getOrdinal(),
         'display' => $faker->firstName,
         'avatar' => md5(strtolower(trim($email))),
         'email' => $email,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'remember_token' => '',
     ];
 });

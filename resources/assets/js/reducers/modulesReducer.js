@@ -1,41 +1,56 @@
 const DEFAULT_STATE = {
-    isFetchingIndex: false,
+    isFetchingList: false,
     isFetchingModule: false,
-    index: [],
-    moduleHistory: [],
-
-    currentModule: (moduleHistory) => {
-        return moduleHistory.length > 0 ? moduleHistory[0] : {};
-    }
+    // ordered list of lite module data
+    list: [],
+    // id-indexed object of full module data
+    index: {},
+    // history of modules viewed / edited
+    moduleHistory: []
 };
 
 export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
         case 'SET_MODULES_FETCHING':
             return Object.assign({}, state, {
-                isFetchingIndex: action.payload
+                isFetchingList: action.payload
             });
         case 'SET_MODULE_FETCHING':
             return Object.assign({}, state, {
                 isFetchingModule: action.payload
             });
+        case 'SET_MODULE_VISITED':
+            let visitedHistory = state.moduleHistory.slice(0);
+            visitedHistory.unshift(action.payload);
+
+            visitedHistory = visitedHistory.filter((id, index, self) =>
+                self.findIndex(moduleId => moduleId === id) === index
+            );
+
+            return Object.assign({}, state, {
+                moduleHistory: visitedHistory
+            });
         case 'GET_MODULES':
             return Object.assign({}, state, {
-                isFetchingIndex: false,
-                index: action.payload
+                isFetchingList: false,
+                list: action.payload
             });
         case 'GET_MODULE_DETAIL':
+            let index = Object.assign({}, state.index);
+            index[action.payload.id] = action.payload;
+            // copy the history - do not modify it in place - and then add this module to the front
             let moduleHistory = state.moduleHistory.slice(0);
-            moduleHistory.unshift(action.payload);
-            // reduce any resulting duplications
-            moduleHistory = moduleHistory.filter((value, index, self) => {
-                const foundValue = self.findIndex(m => m.id === value.id);
-
-                return foundValue === index;
-            });
+            moduleHistory.unshift(action.payload.id);
+            // reduce any resulting duplications by looping through the history and on each iteration, search
+            // itself for the index of the first instance of this iteration's id. If that index is not the
+            // index of the current item, the outer closure will return false and the item will be removed
+            moduleHistory = moduleHistory.filter((id, index, self) =>
+                self.findIndex(moduleId => moduleId === id) === index
+            );
 
             return Object.assign({}, state, {
                 isFetchingModule: false,
+                index: index,
                 moduleHistory: moduleHistory
             });
 

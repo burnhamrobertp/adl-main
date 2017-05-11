@@ -1,11 +1,12 @@
 import React from 'react'
-import BaseComponent from 'js/Components/BaseComponent'
 import {connect} from 'react-redux';
 
-import Module from './Components/ModuleListModule'
 import {getModules, setModulesFetching} from 'js/actions/modules';
 
-class ModulesList extends BaseComponent {
+import Loading from 'js/Components/Loading/Loading'
+import Module from './Components/ModuleListModule'
+
+class ModulesList extends React.Component {
     componentDidMount() {
         this.props.setModulesFetching(true);
         this.props.getModules();
@@ -13,7 +14,7 @@ class ModulesList extends BaseComponent {
 
     renderModuleList() {
         if (this.props.isFetching)
-            return this.renderLoading();
+            return <Loading/>
         else
             return this.props.modules.map((module) =>
                 <Module key={module.id} module={module}/>
@@ -44,8 +45,8 @@ class ModulesList extends BaseComponent {
 
 function mapStateToProps(state) {
     return {
-        isFetching: state.modules.isFetchingIndex,
-        modules: state.modules.index
+        isFetching: state.modules.isFetchingList,
+        modules: state.modules.list
     };
 }
 

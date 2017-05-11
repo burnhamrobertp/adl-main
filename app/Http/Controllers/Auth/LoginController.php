@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Data\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends AuthController
+class LoginController extends Controller
 {
     use AuthenticatesUsers {
         logout as performLogout;
@@ -41,9 +42,6 @@ class LoginController extends AuthController
      */
     protected function authenticated(Request $request, User $user)
     {
-        $token = $this->generateToken($request);
-        $request->session()->put('jwt', $token);
-
-        return response()->json($user);
+        return response()->json($user->load('role', 'ratings'));
     }
 }

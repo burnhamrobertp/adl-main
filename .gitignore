@@ -2,8 +2,8 @@
 /public/storage
 /public/hot
 /public/css/app*.css
-/public/js/app*.js*
-/public/js/commons.js
+/public/js/*
+!/public/js/bootstrap.min.js
 /storage/*.key
 /vendor
 /.vagrant

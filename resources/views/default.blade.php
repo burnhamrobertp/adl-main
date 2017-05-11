@@ -8,11 +8,13 @@
 
     <title>Adventure Lookup</title>
 
+    <script src="https://use.fontawesome.com/fe7d8161a9.js"></script>
     <script>
         window.contributorTypes = {!! $contributorTypes !!};
         window.creatureTypes = {!! $creatureTypes !!};
         window.editions = {!! $editions !!};
         window.moduleLengths = {!! $moduleLengths !!};
+        window.publishers = {!! $publishers !!}
         window.settings = {!! $settings !!};
     </script>
 </head>

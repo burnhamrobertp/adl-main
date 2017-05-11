@@ -6,13 +6,23 @@
   background-color: $adl-gray-light;
 }
 
-.moduleSummary {
-  @extend .m-3;
-  @extend .p-2
-}
-
 .moduleDetail {
   @extend .container-fluid;
+}
+
+.moduleBox {
+  @extend .m-2;
+  @extend .p-2;
+  @extend .rounded;
+
+  background-color: $adl-gray-light;
+}
+
+.moduleUnbox {
+  @extend .ml-3;
+  @extend .mr-3;
+  @extend .mt-1;
+  @extend .p-2;
 }
 
 .moduleSidebar {

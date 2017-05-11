@@ -14,6 +14,7 @@ class HomeController
             'creatureTypes' => \App\Models\Data\CreatureType::all()->sortBy('name')->values()->toJson(),
             'editions' => \App\Models\Data\Edition::all()->sortBy('order')->values()->toJson(),
             'moduleLengths' => \App\Models\Data\ModuleLength::all()->sortBy('order')->values()->toJson(),
+            'publishers' => \App\Models\Data\Publisher::all()->sortBy('name')->values()->toJson(),
             'settings' => \App\Models\Data\Setting::all()->sortBy('name')->values()->toJson(),
         ];
 
