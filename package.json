@@ -26,6 +26,7 @@
     "react-router-dom": "^4.0.0",
     "react-spinkit": "^2.1.1",
     "redux": "^3.6.0",
+    "redux-actions": "^2.0.3",
     "redux-promise": "^0.5.3",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.0",
