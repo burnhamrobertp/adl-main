@@ -64,11 +64,11 @@ export default function (state = DEFAULT_STATE, action) {
             location.reload();
             return state;
             break;
-        case 'GET_LOGIN_SUCCESS':
+        case 'GET_LOGIN':
             return Object.assign({}, DEFAULT_STATE, action.payload.data);
-        case 'GET_REGISTER_SUCCESS':
+        case 'GET_REGISTER':
             return Object.assign({}, DEFAULT_STATE, action.payload.data);
-        case 'GET_FORGOT_PASSWORD_SUCCESS':
+        case 'GET_FORGOT_PASSWORD':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
                     flashMessages: ['Check your e-mail for your password reset.'],

@@ -20,7 +20,7 @@ export const getLogout = createAction('GET_LOGOUT', () =>
     Axios.post('/logout')
 );
 
-export const getLogin = createAction('GET_LOGIN_SUCCESS', form =>
+export const getLogin = createAction('GET_LOGIN', form =>
     Axios.post('/login', form)
 );
 
@@ -28,7 +28,7 @@ export const getRegister = createAction('GET_REGISTER', form =>
     Axios.post('/register', form)
 );
 
-export const getForgotPassword = createAction('GET_FORGOT_PASSWORD_SUCCESS', email =>
+export const getForgotPassword = createAction('GET_FORGOT_PASSWORD', email =>
     Axios.post('/password/email', {
         email: email
     })
