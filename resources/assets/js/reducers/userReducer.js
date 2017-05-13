@@ -63,7 +63,6 @@ export default function (state = DEFAULT_STATE, action) {
         case 'GET_LOGOUT':
             location.reload();
             return state;
-            break;
         case 'GET_LOGIN':
             return Object.assign({}, DEFAULT_STATE, action.payload.data);
         case 'GET_REGISTER':
