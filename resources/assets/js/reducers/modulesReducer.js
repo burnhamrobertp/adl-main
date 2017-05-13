@@ -33,14 +33,16 @@ export default function (state = DEFAULT_STATE, action) {
         case 'GET_MODULES':
             return Object.assign({}, state, {
                 isFetchingList: false,
-                list: action.payload
+                list: action.payload.data
             });
         case 'GET_MODULE_DETAIL':
-            let index = Object.assign({}, state.index);
-            index[action.payload.id] = action.payload;
+            let index = Object.assign({}, state.index),
+                data = action.payload.data;
+
+            index[data.id] = data;
             // copy the history - do not modify it in place - and then add this module to the front
             let moduleHistory = state.moduleHistory.slice(0);
-            moduleHistory.unshift(action.payload.id);
+            moduleHistory.unshift(data.id);
             // reduce any resulting duplications by looping through the history and on each iteration, search
             // itself for the index of the first instance of this iteration's id. If that index is not the
             // index of the current item, the outer closure will return false and the item will be removed

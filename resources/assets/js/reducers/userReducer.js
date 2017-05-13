@@ -59,15 +59,15 @@ export default function (state = DEFAULT_STATE, action) {
                 })
             });
         case 'GET_USER':
-            return Object.assign({}, state, action.payload);
+            return Object.assign({}, state, action.payload.data);
         case 'GET_LOGOUT':
             location.reload();
             return state;
             break;
         case 'GET_LOGIN_SUCCESS':
-            return Object.assign({}, DEFAULT_STATE, action.payload);
+            return Object.assign({}, DEFAULT_STATE, action.payload.data);
         case 'GET_REGISTER_SUCCESS':
-            return Object.assign({}, DEFAULT_STATE, action.payload);
+            return Object.assign({}, DEFAULT_STATE, action.payload.data);
         case 'GET_FORGOT_PASSWORD_SUCCESS':
             return Object.assign({}, state, {
                 loginRegisterModal: Object.assign({}, state.loginRegisterModal, {

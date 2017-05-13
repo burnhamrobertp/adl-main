@@ -12,98 +12,28 @@ export const setMessages = createAction('SET_MESSAGES', data => data);
 // Which pane of the login register modal is active
 export const setActiveComponent = createAction('SET_ACTIVE_COMPONENT', data => data);
 
-export function getUser() {
-    const data = Axios.get('/user')
-        .then((response) => response.data);
+export const getUser = createAction('GET_USER', () =>
+    Axios.get('/user')
+);
 
-    return {
-        type: 'GET_USER',
-        payload: data
-    }
-}
+export const getLogout = createAction('GET_LOGOUT', () =>
+    Axios.post('/logout')
+);
 
-export function getLogout() {
-    const data = Axios.post('/logout');
+export const getLogin = createAction('GET_LOGIN_SUCCESS', form =>
+    Axios.post('/login', form)
+);
 
-    return {
-        type: 'GET_LOGOUT',
-        payload: data
-    }
-}
+export const getRegister = createAction('GET_REGISTER', form =>
+    Axios.post('/register', form)
+);
 
-export function getLogin(form) {
-    const data = Axios.post('/login',
-        form
-    ).then((response) => {
-        return {
-            type: 'GET_LOGIN_SUCCESS',
-            payload: response.data
-        }
-    }).catch((error) => {
-        return {
-            type: 'SET_MESSAGES',
-            payload: [error.response.data.email]
-        }
-    });
-
-    return {
-        type: 'IGNORED',
-        payload: data
-    }
-}
-
-export function getRegister(form) {
-    const data = Axios.post('/register',
-        form
-    ).then((response) => {
-        return {
-            type: 'GET_REGISTER_SUCCESS',
-            payload: response.data
-        }
-    }).catch((error) => {
-        return {
-            type: 'SET_MESSAGES',
-            payload: [...error.response.data.email || [], ...error.response.data.password || []]
-        }
-    });
-
-    return {
-        type: 'IGNORED',
-        payload: data
-    }
-}
-
-export function getForgotPassword(email) {
-    const data = Axios.post('/password/email', {
+export const getForgotPassword = createAction('GET_FORGOT_PASSWORD_SUCCESS', email =>
+    Axios.post('/password/email', {
         email: email
-    }).then((response) => {
-        return {
-            type: 'GET_FORGOT_PASSWORD_SUCCESS',
-            payload: response.data
-        }
-    }).catch((error) => {
-        return {
-            type: 'SET_MESSAGES',
-            payload: [error.response.data.email]
-        }
-    });
+    })
+);
 
-    return {
-        type: 'IGNORED',
-        payload: data
-    }
-}
-
-export function getVerficiationEmail() {
-    const data = Axios.post('/user/verify')
-        .then((response) => {
-            return {}
-        }).catch((error) => {
-            return {}
-        });
-
-    return {
-        type: '',
-        payload: data
-    }
-}
+export const getVerficiationEmail = createAction('IGNORED', () =>
+    Axios.post('/user/verify')
+);
