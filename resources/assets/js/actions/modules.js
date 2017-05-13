@@ -1,43 +1,12 @@
-import Axios from 'Axios';
+import Axios from 'Axios'
+import { createAction } from 'redux-actions'
 
-/**
- * Sets the value of modules.isFetchingList
- *
- * @param isFetching
- * @returns {{type: string, payload: *}}
- */
-export function setModulesFetching(isFetching) {
-    return {
-        type: 'SET_MODULES_FETCHING',
-        payload: isFetching
-    }
-}
-
-/**
- * Sets the value of modules.isFetchingModule
- *
- * @param isFetching
- * @returns {{type: string, payload: *}}
- */
-export function setModuleFetching(isFetching) {
-    return {
-        type: 'SET_MODULE_FETCHING',
-        payload: isFetching
-    }
-}
-
-/**
- * Adds a module to the moduleHistory
- *
- * @param id
- * @returns {{type: string, payload: Number}}
- */
-export function setModuleVisited(id) {
-    return {
-        type: 'SET_MODULE_VISITED',
-        payload: parseInt(id)
-    }
-}
+//Sets the value of modules.isFetchingList
+export const setModulesFetching = createAction('SET_MODULES_FETCHING', isFetching => isFetching);
+//Sets the value of modules.isFetchingModule
+export const setModuleFetching = createAction('SET_MODULE_FETCHING', isFetching => isFetching);
+//Adds a module to the moduleHistory
+export const setModuleVisited = createAction('SET_MODULE_VISITED', id => parseInt(id));
 
 export function getModules(filters = {}) {
     const data = Axios.get('/modules/', {

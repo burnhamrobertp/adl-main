@@ -1,40 +1,16 @@
 import Axios from 'Axios'
+import { createAction } from 'redux-actions'
 
-export function setLoginRegisterOpen(data) {
-    return {
-        type: 'SET_LOGIN_REGISTER_MODAL_OPEN',
-        payload: data
-    }
-}
-
-export function setLoginRegisterEmail(data) {
-    return {
-        type: 'SET_LOGIN_REGISTER_EMAIL',
-        payload: data
-    }
-}
-
-export function setUserFetching(data) {
-    return {
-        type: 'SET_USER_FETCHING',
-        payload: data
-    }
-}
-
-export function setMessages(data) {
-    return {
-        type: 'SET_MESSAGES',
-        payload: data
-    }
-}
-
-export function setActiveComponent(data) {
-    return {
-        type: 'SET_ACTIVE_COMPONENT',
-        payload: data
-    }
-}
-
+// Login & register modal is open or not
+export const setLoginRegisterOpen = createAction('SET_LOGIN_REGISTER_MODAL_OPEN', data => data);
+// Populate the e-mail field for the login / register modal
+export const setLoginRegisterEmail = createAction('SET_LOGIN_REGISTER_EMAIL', data => data);
+// Logged-in user details being fetched
+export const setUserFetching = createAction('SET_USER_FETCHING', data => data);
+// Set the user flash messages
+export const setMessages = createAction('SET_MESSAGES', data => data);
+// Which pane of the login register modal is active
+export const setActiveComponent = createAction('SET_ACTIVE_COMPONENT', data => data);
 
 export function getUser() {
     const data = Axios.get('/user')
