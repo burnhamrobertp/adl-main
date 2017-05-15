@@ -29,7 +29,6 @@ export default handleActions({
             isOpen: action.payload
         }
     }),
-
     SET_LOGIN_REGISTER_EMAIL: (state, action) => ({
         ...state,
         loginRegisterModal: {
@@ -37,12 +36,10 @@ export default handleActions({
             email: action.payload
         }
     }),
-
     SET_USER_FETCHING: (state, action) => ({
         ...state,
         isFetching: action.payload
     }),
-
     SET_ACTIVE_COMPONENT: (state, action) => ({
         ...state,
         loginRegisterModal: {
@@ -52,9 +49,7 @@ export default handleActions({
             flashMessageClass: ''
         }
     }),
-
     GET_USER: (state, action) => (action.payload.data),
-
     GET_LOGIN: (state, action) => {
         if (!action.error)
             return action.payload.data;
@@ -68,7 +63,6 @@ export default handleActions({
             }
         }
     },
-
     GET_REGISTER: (state, action) => {
         if (!action.error)
             return action.payload.data;
@@ -82,9 +76,7 @@ export default handleActions({
             }
         }
     },
-
     GET_LOGOUT: (state, action) => DEFAULT_STATE,
-
     GET_FORGOT_PASSWORD: (state, action) => ({
         ...state,
         loginRegisterModal: {
