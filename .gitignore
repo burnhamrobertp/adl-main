@@ -4,6 +4,7 @@
 /public/css/app*.css
 /public/js/*
 !/public/js/bootstrap.min.js
+!/public/js/promise-done-7.0.4.min.js
 /storage/*.key
 /vendor
 /.vagrant
