@@ -1,3 +1,5 @@
+import {handleActions} from 'redux-actions'
+
 const DEFAULT_STATE = {
     minLevel: null,
     maxLevel: null,
@@ -8,29 +10,25 @@ const DEFAULT_STATE = {
     moduleLengths: [],
 };
 
-export default function (state = DEFAULT_STATE, action) {
-    switch (action.type) {
-        case 'SET_FILTER_EDITIONS':
-            return Object.assign({}, state, {
-                editions: action.payload
-            });
-        case 'SET_FILTER_SETTING':
-            return Object.assign({}, state, {
-                setting: action.payload
-            });
-        case 'SET_FILTER_MINLEVEL':
-            return Object.assign({}, state, {
-                minLevel: action.payload
-            });
-        case 'SET_FILTER_MAXLEVEL':
-            return Object.assign({}, state, {
-                maxLevel: action.payload
-            });
-        case 'SET_FILTER_LENGTHS':
-            return Object.assign({}, state, {
-                moduleLengths: action.payload
-            });
-        default:
-            return state;
-    }
-}
+export default handleActions({
+    SET_FILTER_EDITIONS: (state, action) => ({
+        ...state,
+        editions: action.payload
+    }),
+    SET_FILTER_SETTING: (state, action) => ({
+        ...state,
+        setting: action.payload
+    }),
+    SET_FILTER_MINLEVEL: (state, action) => ({
+        ...state,
+        minLevel: action.payload
+    }),
+    SET_FILTER_MAXLEVEL: (state, action) => ({
+        ...state,
+        maxLevel: action.payload
+    }),
+    SET_FILTER_LENGTHS: (state, action) => ({
+        ...state,
+        moduleLengths: action.payload
+    })
+}, DEFAULT_STATE);
