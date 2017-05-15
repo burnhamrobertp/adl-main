@@ -8,7 +8,7 @@ import {
     setModuleVisited,
     putModule
 } from 'js/actions/modules'
-import {currentModule} from 'js/functions/stateHelpers'
+import {currentModule, moduleFromIndex} from 'js/functions/stateHelpers'
 
 import Loading from 'js/Components/Loading/Loading'
 
@@ -20,13 +20,12 @@ import Loading from 'js/Components/Loading/Loading'
  * other components for creating new creatures, items, contributors, etc. that do not already exist in ADL.
  */
 class ModuleEdit extends React.Component {
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     get module() {
-        if (this.props.indexModule && this.props.indexModule.id)
-            return this.props.indexModule;
-        else if (this.props.stateModule && this.props.stateModule.id)
-            return this.props.stateModule;
-        else
-            return {};
+        return this.props.module;
     }
 
     get hasModule() {
@@ -222,7 +221,7 @@ class ModuleEdit extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        stateModule: currentModule(state),
+        module: state.modules.editing,
 
         editions: state.lookups.editions,
         lengths: state.lookups.moduleLengths,

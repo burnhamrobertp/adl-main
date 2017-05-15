@@ -36,6 +36,7 @@ export default handleActions({
             email: action.payload
         }
     }),
+    SET_USER: (state, action) => action.payload,
     SET_USER_FETCHING: (state, action) => ({
         ...state,
         isFetching: action.payload
@@ -49,40 +50,13 @@ export default handleActions({
             flashMessageClass: ''
         }
     }),
-    GET_USER: (state, action) => (action.payload.data),
-    GET_LOGIN: (state, action) => {
-        if (!action.error)
-            return action.payload.data;
-
-        return {
-            ...state,
-            loginRegisterModal: {
-                ...state.loginRegisterModal,
-                flashMessages: action.payload.response.data,
-                flashMessageClass: 'danger'
-            }
-        }
-    },
-    GET_REGISTER: (state, action) => {
-        if (!action.error)
-            return action.payload.data;
-
-        return {
-            ...state,
-            loginRegisterModal: {
-                ...state.loginRegisterModal,
-                flashMessages: [...action.payload.response.data.email || [], ...action.payload.response.data.password || []],
-                flashMessageClass: 'danger'
-            }
-        }
-    },
-    GET_LOGOUT: (state, action) => DEFAULT_STATE,
-    GET_FORGOT_PASSWORD: (state, action) => ({
+    SET_MESSAGES: (state, action) => ({
         ...state,
         loginRegisterModal: {
             ...state.loginRegisterModal,
-            flashMessages: ['Check your e-mail for your password reset.'],
-            flashMessageClass: 'info'
+            flashMessages: action.payload.messages,
+            flashMessageClass: action.payload.class
         }
-    })
+    }),
+    GET_LOGOUT: (state, action) => DEFAULT_STATE,
 }, DEFAULT_STATE);

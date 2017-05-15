@@ -23,6 +23,10 @@ export function currentModule(state) {
         return {};
 }
 
+export function moduleFromIndex(state, moduleId) {
+    return state.modules.index[moduleId] || {};
+}
+
 /**
  * Fetches the current user's rating for the specified module, or null if no rating exists
  *

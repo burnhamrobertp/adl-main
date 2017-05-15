@@ -5,31 +5,83 @@ import {createAction} from 'redux-actions'
 export const setLoginRegisterOpen = createAction('SET_LOGIN_REGISTER_MODAL_OPEN', data => data);
 // Populate the e-mail field for the login / register modal
 export const setLoginRegisterEmail = createAction('SET_LOGIN_REGISTER_EMAIL', data => data);
+// Set the user data into the state
+export const setUser = createAction('SET_USER', data => data);
 // Logged-in user details being fetched
 export const setUserFetching = createAction('SET_USER_FETCHING', data => data);
 // Which pane of the login register modal is active
 export const setActiveComponent = createAction('SET_ACTIVE_COMPONENT', data => data);
-
-export const getUser = createAction('GET_USER', () =>
-    Axios.get('/user')
+// Set the flash messages and classes for the login register modal
+export const setFlashMessages = createAction('SET_MESSAGES', (flashMessages, flashClass) => ({
+        messages: flashMessages,
+        class: flashClass
+    })
 );
 
-export const getLogout = createAction('GET_LOGOUT', () =>
-    Axios.post('/logout')
-);
+export function getUser() {
+    return (dispatch) => {
+        dispatch(setUserFetching(true));
+        Axios.get('/user')
+            .then(response => {
+                dispatch(setUser(response.data));
+                dispatch(setUserFetching(false));
+            })
+            .catch(() => {
+                dispatch(setUserFetching(false));
+            });
+    }
+}
 
-export const getLogin = createAction('GET_LOGIN', form =>
-    Axios.post('/login', form)
-);
+export function getLogout() {
+    return (dispatch) => {
+        Axios.post('/logout')
+            .then(() => {
+                dispatch({type: 'GET_LOGOUT'});
+            });
+    }
+}
 
-export const getRegister = createAction('GET_REGISTER', form =>
-    Axios.post('/register', form)
-);
+export function getLogin(form) {
+    return (dispatch) => {
+        Axios.post('/login', form)
+            .then(response => {
+                dispatch(setUser(response.data));
+            })
+            .catch(error => {
+                dispatch(setFlashMessages(error.response.data, 'danger'));
+            });
+    }
+}
 
-export const getForgotPassword = createAction('GET_FORGOT_PASSWORD', email =>
-    Axios.post('/password/email', {email: email})
-);
+export function getRegister(form) {
+    return (dispatch) => {
+        Axios.post('/register', form)
+            .then(response => {
+                dispatch(setUser(response.data));
+            })
+            .catch(error => {
+                dispatch(setFlashMessages([
+                    ...error.response.data.email,
+                    ...error.response.data.password
+                ], 'danger'));
+            });
+    }
+}
 
-export const getVerficiationEmail = createAction('IGNORED', () =>
-    Axios.post('/user/verify')
-);
+export function getForgotPassword(email) {
+    return (dispatch) => {
+        Axios.post('/password/email', {email: email})
+            .then(() => {
+                dispatch(setFlashMessages(['Check your e-mail for your password reset.'], 'info'));
+            });
+    }
+}
+
+export function getVerficiationEmail() {
+    return (dispatch) => {
+        Axios.post('/user/verify')
+            .then(() => {
+                dispatch(setFlashMessages(['Check your e-mail for your verification code.'], 'info'));
+            });
+    }
+}

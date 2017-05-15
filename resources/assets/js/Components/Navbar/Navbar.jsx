@@ -10,10 +10,7 @@ import {setUserFetching, getUser} from 'js/actions/user';
 
 class Navbar extends React.Component {
     componentDidMount() {
-        this.props.setUserFetching(true);
-        this.props.getUser().then(() => {
-            this.props.setUserFetching(false);
-        });
+        this.props.getUser();
     }
 
     renderLoginProfile() {
