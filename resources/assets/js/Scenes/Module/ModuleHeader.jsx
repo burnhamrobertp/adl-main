@@ -65,12 +65,16 @@ class ModuleHeader extends React.Component {
     }
 
     renderLevelRange() {
-        if (!this.props.module.min_level || this.props.module.max_level)
+        const module = this.props.module;
+        if (!module.min_level && !module.max_level) {
             return;
+        }
+        const minLevel = module.min_level || '?';
+        const maxLevel = module.max_level || '?';
 
         return (
             <div>
-                <h4>{this.props.module.min_level}-{this.props.module.max_level}</h4>
+                <h4>{minLevel}-{maxLevel}</h4>
                 <h5 className="small text-capitalize">Level Range</h5>
             </div>
         )
