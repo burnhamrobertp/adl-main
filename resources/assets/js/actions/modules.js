@@ -19,9 +19,7 @@ export const getModule = createAction('GET_MODULE_DETAIL', id =>
 );
 
 export const getChangeModuleRating = createAction('GET_CHANGE_MODULE_RATING', (id, rating) =>
-    Axios.post(`/modules/${id}`, {
-        rating: rating
-    })
+    Axios.post(`/modules/${id}`, {rating: rating})
 );
 
 export const putModule = createAction('PUT_MODULE', moduleForm =>

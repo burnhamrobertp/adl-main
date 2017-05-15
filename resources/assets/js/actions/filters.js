@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import {createAction} from 'redux-actions'
 
 //Set selected filter editions
 export const setFilterEditions = createAction('SET_FILTER_EDITIONS', (edition, active) => {
@@ -16,10 +16,9 @@ export const setFilterMinLevel = createAction('SET_FILTER_SETTING', minLevel => 
 export const setFilterMaxLevel = createAction('SET_FILTER_SETTING', maxLevel => maxLevel);
 
 // Set selected active adventure lengths
-export const setFilterModuleLengths = createAction('SET_FILTER_LENGTHS', (length, active) => {
-    active = updateArray(active, length);
-    return active;
-});
+export const setFilterModuleLengths = createAction('SET_FILTER_LENGTHS', (length, active) =>
+    updateArray(active, length)
+);
 
 function updateArray(active, variable) {
     return new Promise((cb) => {
