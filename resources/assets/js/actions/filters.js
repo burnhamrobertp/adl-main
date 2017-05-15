@@ -1,10 +1,9 @@
 import {createAction} from 'redux-actions'
 
 //Set selected filter editions
-export const setFilterEditions = createAction('SET_FILTER_EDITIONS', (edition, active) => {
-    active = updateArray(active, edition);
-    return active;
-});
+export const setFilterEditions = createAction('SET_FILTER_EDITIONS', (edition, active) =>
+    updateArray(active, edition)
+);
 
 //Set selected filter setting
 export const setFilterSetting = createAction('SET_FILTER_SETTING', setting => setting);
