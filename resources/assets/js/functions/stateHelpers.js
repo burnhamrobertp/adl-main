@@ -23,6 +23,16 @@ export function currentModule(state) {
         return {};
 }
 
+/**
+ * Fetches a module from the index
+ *
+ * As compared to fetching a module from the API, which then should store it in the index for
+ * future requests.
+ *
+ * @param state
+ * @param moduleId
+ * @returns {{}}
+ */
 export function moduleFromIndex(state, moduleId) {
     return state.modules.index[moduleId] || {};
 }
