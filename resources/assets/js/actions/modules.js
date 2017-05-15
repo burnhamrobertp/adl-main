@@ -18,7 +18,7 @@ export const getModule = createAction('GET_MODULE_DETAIL', id =>
     Axios.get(`/modules/${id}`)
 );
 
-export const getChangeModuleRating = createAction('GET_CHANGE_MODULE_RATING', (id, rating) =>
+export const putModuleRating = createAction('GET_CHANGE_MODULE_RATING', (id, rating) =>
     Axios.post(`/modules/${id}`, {rating: rating})
 );
 
