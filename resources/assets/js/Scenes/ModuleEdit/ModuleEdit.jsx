@@ -8,6 +8,7 @@ import {
 } from 'js/actions/modules'
 
 import Loading from 'js/Components/Loading/Loading'
+import ModuleEditCreatures from './ModuleEditCreatures'
 
 /**
  * Displays the form and inputs for modifying and creating modules
@@ -48,25 +49,6 @@ class ModuleEdit extends React.Component {
     renderSelect(items) {
         return items.map((item) =>
             <option key={item.id} value={item.id}>{item.name}</option>
-        );
-    }
-
-    removeCreature(id) {
-        creatures = this.module.creatures.filter((e) => e.id !== id);
-    }
-
-    renderCreatures() {
-        if (!this.module.creatures)
-            return [];
-
-        return this.module.creatures.map((creature) =>
-            <div key={creature.id} className="row">
-                <div className="col-11">{creature.name}</div>
-                <div className="col-1 text-right">
-                    <i className="fa fa-times" aria-hidden="true"
-                       onClick={this.removeCreature.bind(this, creature.id)}/>
-                </div>
-            </div>
         );
     }
 
@@ -169,11 +151,7 @@ class ModuleEdit extends React.Component {
                 </div>
 
                 <div className="form-group row">
-                    <div className="col moduleBox">
-                        <div>NPCs & Creatures</div>
-                        {this.renderCreatures()}
-                    </div>
-
+                    <div className="col moduleBox"><ModuleEditCreatures/></div>
                     <div className="col moduleBox">
                         <div>Items</div>
                         {this.renderItems()}
