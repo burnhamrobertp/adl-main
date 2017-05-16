@@ -3,12 +3,9 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import {
-    getModule,
-    setModuleFetching,
-    setModuleVisited,
+    getModuleEdit,
     putModule
 } from 'js/actions/modules'
-import {currentModule, moduleFromIndex} from 'js/functions/stateHelpers'
 
 import Loading from 'js/Components/Loading/Loading'
 
@@ -21,7 +18,10 @@ import Loading from 'js/Components/Loading/Loading'
  */
 class ModuleEdit extends React.Component {
     componentDidMount() {
-        console.log(this.props);
+        // Fetch the module and await its return if we don't have it
+        if (!this.isNewModule) {
+            this.props.getModuleEdit(this.props.match.params.id);
+        }
     }
 
     get module() {
@@ -33,7 +33,7 @@ class ModuleEdit extends React.Component {
     }
 
     get isNewModule() {
-        return this.props.moduleId === 'new';
+        return this.props.match.path.indexOf('new') !== -1;
     }
 
     save() {
@@ -231,8 +231,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    getModule,
-    setModuleFetching,
-    setModuleVisited,
+    getModuleEdit,
     putModule
 })(ModuleEdit)

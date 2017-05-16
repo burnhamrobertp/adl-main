@@ -29,6 +29,10 @@ export default handleActions({
             [action.payload.id]: action.payload
         }
     }),
+    SET_MODULE_EDITING: (state, action) => ({
+        ...state,
+        editing: state.index[action.payload] || {}
+    }),
     SET_MODULE_VISITED: (state, action) => ({
         ...state,
         moduleHistory: [action.payload, ...state.moduleHistory].filter((id, index, self) =>

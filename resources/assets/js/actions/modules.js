@@ -9,6 +9,8 @@ export const setModuleFetching = createAction('SET_MODULE_FETCHING', isFetching 
 export const setModuleVisited = createAction('SET_MODULE_VISITED', id => parseInt(id));
 // Sets the module data to the index
 export const setModule = createAction('SET_MODULE', module => module);
+// Sets the "editing module" data from the index
+export const setModuleEditing = createAction('SET_MODULE_EDITING', moduleId => moduleId);
 
 export function getModules(filters = {}) {
     return (dispatch) => {
@@ -38,9 +40,25 @@ export function getModule(id) {
     }
 }
 
-// export const getModuleEdit = createAction('GET_MODULE_EDIT', id =>
-//
-// );
+export function getModuleEdit(id) {
+    return (dispatch, getState) => {
+        const state = getState();
+        console.log(id, state.modules.index);
+        if (state.modules.index[id] && state.modules.index[id].id) {
+            dispatch(setModuleEditing(id));
+            dispatch(setModuleVisited(id));
+        } else {
+            dispatch(setModuleFetching(true));
+            Axios.get(`/modules/${id}`)
+                .then(response => {
+                    dispatch(setModule(response.data));
+                    dispatch(setModuleEditing(response.data.id));
+                    dispatch(setModuleVisited(response.data.id));
+                    dispatch(setModuleFetching(false));
+                })
+        }
+    }
+}
 
 export const putModuleRating = createAction('GET_CHANGE_MODULE_RATING', (id, rating) =>
     Axios.post(`/modules/${id}`, {rating: rating})
