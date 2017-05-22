@@ -109,7 +109,7 @@ class ModuleEdit extends React.Component {
                         </select>
                     </div>
                     <label htmlFor="setting" className="col-lg-2 col-3 col-form-label">Setting</label>
-                    <div className="col-lg-3 pr-2">
+                    <div className="col-lg-6 pr-2">
                         <select id="setting" name="setting" defaultValue={module.setting_id}>
                             <option/>
                             {this.renderSelect(this.props.settings)}

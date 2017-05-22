@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
     index: {},
     // history of modules viewed / edited
     moduleHistory: [],
-    // module currently being edited
+    // object being edited
     editing: {}
 };
 
@@ -32,6 +32,13 @@ export default handleActions({
     SET_MODULE_EDITING: (state, action) => ({
         ...state,
         editing: state.index[action.payload] || {}
+    }),
+    SET_MODULE_EDITING_PIECE: (state, action) => ({
+        ...state,
+        editing: {
+            ...state.editing,
+            ...action.payload
+        }
     }),
     SET_MODULE_VISITED: (state, action) => ({
         ...state,

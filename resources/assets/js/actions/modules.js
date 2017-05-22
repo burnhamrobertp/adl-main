@@ -11,6 +11,8 @@ export const setModuleVisited = createAction('SET_MODULE_VISITED', id => parseIn
 export const setModule = createAction('SET_MODULE', module => module);
 // Sets the "editing module" data from the index
 export const setModuleEditing = createAction('SET_MODULE_EDITING', moduleId => moduleId);
+// Sets a piece of the editing module data
+export const setModuleEditingPiece = createAction('SET_MODULE_EDITING_PIECE', data => data);
 
 export function getModules(filters = {}) {
     return (dispatch) => {
@@ -43,7 +45,7 @@ export function getModule(id) {
 export function getModuleEdit(id) {
     return (dispatch, getState) => {
         const state = getState();
-        console.log(id, state.modules.index);
+
         if (state.modules.index[id] && state.modules.index[id].id) {
             dispatch(setModuleEditing(id));
             dispatch(setModuleVisited(id));

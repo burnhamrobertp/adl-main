@@ -20,6 +20,7 @@
     "jquery": "^3.2.1",
     "node-sass": "^4.5.1",
     "react": "^15.4.2",
+    "react-autosuggest": "^9.0.1",
     "react-dom": "^15.4.2",
     "react-modal": "^1.7.7",
     "react-rating": "^0.7.0",

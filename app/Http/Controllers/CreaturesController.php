@@ -31,6 +31,20 @@ class CreaturesController extends Controller
     }
 
     /**
+     * Searches for creatures
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $params = $request->input('params');
+        $results = Creature::where('name', 'LIKE', "%{$params['name']}%")->get();
+
+        return response()->json($results);
+    }
+
+    /**
      * Store a newly created Creature
      *
      * @param  \Illuminate\Http\Request  $request
