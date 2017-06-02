@@ -32,7 +32,7 @@ export function setFilterSetting(setting) {
  */
 export function setFilterMinLevel(minLevel) {
     return {
-        type: 'SET_FILTER_SETTING',
+        type: 'SET_FILTER_MINLEVEL',
         payload: minLevel
     };
 }
@@ -44,7 +44,7 @@ export function setFilterMinLevel(minLevel) {
  */
 export function setFilterMaxLevel(maxLevel) {
     return {
-        type: 'SET_FILTER_SETTING',
+        type: 'SET_FILTER_MAXLEVEL',
         payload: maxLevel
     };
 }
