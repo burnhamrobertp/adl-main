@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import {connect} from 'react-redux';
 
 import {getModules, setModulesFetching} from 'js/actions/modules';
+import {setModuleSort} from 'js/actions/sort';
 
-import Loading from 'js/Components/Loading/Loading'
-import Module from './Components/ModuleListModule'
+import Loading from 'js/Components/Loading/Loading';
+import Module from './Components/ModuleListModule';
 
 class ModulesList extends React.Component {
     componentDidMount() {
@@ -13,25 +14,38 @@ class ModulesList extends React.Component {
     }
 
     renderModuleList() {
-        if (this.props.isFetching)
-            return <Loading/>
-        else
-            return this.props.modules.map((module) =>
-                <Module key={module.id} module={module}/>
-            );
+        if (this.props.isFetching) {
+            return <Loading/>;
+        }
+
+        if (this._isSelected('name')) {
+            this.props.modules.sort((a, b) => this._compareNames(a, b));
+        } else if (this._isSelected('rating')) {
+            this.props.modules.sort((a, b) => this._compareRatings(a, b));
+        }
+
+        return this.props.modules.map((module) =>
+            <Module key={module.id} module={module}/>
+        );
+    }
+
+    renderSelect() {
+        return (
+            <div className="col">
+                <label htmlFor="search-sortby">Sort By:</label>
+                <select id="search-sortby" onChange={(event) => this.props.setModuleSort(event.target.value)}>
+                    <option value="name" selected={this._isSelected('name')}>Name</option>
+                    <option value="rating" selected={this._isSelected('rating')}>Rating</option>
+                </select>
+            </div>
+        );
     }
 
     render() {
         return (
             <div id="modules-list">
                 <div className="p-3 row">
-                    <div className="col">
-                        <label htmlFor="search-sortby">Sort By:</label>
-                        <select id="search-sortby">
-                            <option>Name</option>
-                            <option>Rating</option>
-                        </select>
-                    </div>
+                    {this.renderSelect()}
                     <div id="search-summary">
                         {this.props.modules.length} Adventures Found
                     </div>
@@ -39,15 +53,40 @@ class ModulesList extends React.Component {
 
                 {this.renderModuleList()}
             </div>
-        )
+        );
+    }
+
+    _isSelected(name) {
+        return this.props.sortBy === name;
+    }
+
+    _compareNames(moduleA, moduleB) {
+        if (moduleA.name < moduleB.name) {
+            return -1;
+        } else if (moduleA.name > moduleB.name) {
+            return 1;
+        }
+        return 0;
+    }
+
+    _compareRatings(moduleA, moduleB) {
+        const moduleARating = parseFloat(moduleA.avg_rating[0].aggregate) || 0;
+        const moduleBRating = parseFloat(moduleB.avg_rating[0].aggregate) || 0;
+        if (moduleARating < moduleBRating) {
+            return 1;
+        } else if (moduleARating > moduleBRating) {
+            return -1;
+        }
+        return 0;
     }
 }
 
 function mapStateToProps(state) {
     return {
         isFetching: state.modules.isFetchingList,
-        modules: state.modules.list
+        modules: state.modules.list,
+        sortBy: state.sort.sortBy
     };
 }
 
-export default connect(mapStateToProps, {getModules, setModulesFetching})(ModulesList);
+export default connect(mapStateToProps, {getModules, setModulesFetching, setModuleSort})(ModulesList);
