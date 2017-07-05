@@ -18,6 +18,6 @@ export function getCreatures(filter = {}) {
 
 export function putCreature(data) {
     return (dispatch) => {
-        Axios.put('/creature/', params: data)
+        Axios.put('/creature/', {params: data})
     }
 }

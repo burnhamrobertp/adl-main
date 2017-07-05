@@ -2,25 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {setModuleEditingPiece} from 'js/actions/modules'
-import {getCreatures} from 'js/actions/creatures'
+import {getCreatures, setCreatures} from 'js/actions/creatures'
 
-import debounce from 'debounce'
+import Autosuggest from 'react-autosuggest'
 
 class ModuleEditCreatures extends React.Component {
-    componentWillMount() {
-        this._searchCreature = debounce(event => {
-            const v = event.target.value;
-            this.props.getCreatures({name: v});
-        }, 350);
-    }
-
     get creatures() {
         return this.props.creatures;
-    }
-
-    searchCreature(event) {
-        event.persist();
-        this._searchCreature(event);
     }
 
     removeCreature(id) {
@@ -28,13 +16,29 @@ class ModuleEditCreatures extends React.Component {
         this.props.setModuleEditingPiece({creatures: creatures});
     }
 
-    renderCreatureSearchResults() {
-        if (!this.props.creatureSearch.length)
-            return null;
+    onSuggestionsFetchRequested(value) {
 
-        return this.props.creatureSearch.map(creature =>
-            <div key={creature.id}>
-                {creature.name}
+    }
+
+    onSuggestionsClearRequested() {
+        this.props.setCreatures({});
+    }
+
+    // renderCreatureSearchResults() {
+    //     if (!this.props.creatureSearch.length)
+    //         return null;
+    //
+    //     return this.props.creatureSearch.map(creature =>
+    //         <div key={creature.id}>
+    //             {creature.name}
+    //         </div>
+    //     );
+    // }
+
+    renderSuggestion(suggestion) {
+        return (
+            <div>
+                {suggestion.name}
             </div>
         );
     }
@@ -55,18 +59,30 @@ class ModuleEditCreatures extends React.Component {
     }
 
     render() {
+        const suggestProps = {
+            placeholder: '',
+            null,
+        };
+
         return (
             <div>
                 <div>
-                    <input type="text" className="form-control" placeholder="Add NPC or Creature"
-                           onChange={this.searchCreature.bind(this)}/>
+                    <Autosuggest
+                        suggestions={this.creatures}
+                        onSuggestionsFetchRequested=""
+                        onSuggestionsClearRequested=""
+                        getSuggestionValue={suggestion => suggestion.id}
+                        renderSuggestion={this.renderSuggestion}
+                        inputProps={suggestProps}
+                    />
+                    {/*<input type="text" className="form-control" placeholder="Add NPC or Creature" onChange={this.searchCreature.bind(this)}/>*/}
                 </div>
                 <div className="p-1">
                     {this.renderCreatures()}
                 </div>
-                <div className="creatureSearchResults">
-                    {this.renderCreatureSearchResults()}
-                </div>
+                {/*<div className="creatureSearchResults">*/}
+                    {/*{this.renderCreatureSearchResults()}*/}
+                {/*</div>*/}
             </div>
         )
     }
@@ -79,5 +95,6 @@ const mapState = (state) => ({
 
 export default connect(mapState, {
     setModuleEditingPiece,
-    getCreatures
+    getCreatures,
+    setCreatures
 })(ModuleEditCreatures)
