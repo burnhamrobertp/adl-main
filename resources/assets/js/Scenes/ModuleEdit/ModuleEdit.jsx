@@ -151,7 +151,7 @@ class ModuleEdit extends React.Component {
                 </div>
 
                 <div className="form-group row">
-                    <div className="col moduleBox"><ModuleEditCreatures/></div>
+                    <ModuleEditCreatures/>
                     <div className="col moduleBox">
                         <div>Items</div>
                         {this.renderItems()}
