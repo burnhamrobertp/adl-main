@@ -2,7 +2,6 @@ import Axios from 'Axios'
 import {createAction} from 'redux-actions'
 
 export const setCreatureFetching = createAction('SET_FETCHING', is => is);
-export const setCreature = createAction('SET_CREATURE', creature => creature);
 export const setCreatures = createAction('SET_CREATURES', creatures => creatures);
 
 export function getCreatures(filter = {}) {
