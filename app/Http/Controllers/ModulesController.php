@@ -74,6 +74,7 @@ class ModulesController extends Controller
             $module = $this->assignRequestProperties($request, $module);
             $success = $module->save();
             $module->creatures()->sync(Input::get('creatures'));
+            $module->items()->sync(Input::get('items'));
         }
 
         return response()->json([

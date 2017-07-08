@@ -9,6 +9,7 @@ import {
 
 import Loading from 'js/Components/Loading/Loading'
 import ModuleEditCreatures from './ModuleEditCreatures'
+import ModuleEditItems from './ModuleEditItems'
 
 /**
  * Displays the form and inputs for modifying and creating modules
@@ -152,10 +153,7 @@ class ModuleEdit extends React.Component {
 
                 <div className="form-group row">
                     <ModuleEditCreatures/>
-                    <div className="col moduleBox">
-                        <div>Items</div>
-                        {this.renderItems()}
-                    </div>
+                    <ModuleEditItems/>
                 </div>
             </form>
         )
