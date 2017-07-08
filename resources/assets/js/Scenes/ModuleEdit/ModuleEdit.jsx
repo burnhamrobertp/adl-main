@@ -3,14 +3,13 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import {
-    getModule,
-    setModuleFetching,
-    setModuleVisited,
+    getModuleEdit,
     putModule
 } from 'js/actions/modules'
-import {currentModule} from 'js/functions/stateHelpers'
 
 import Loading from 'js/Components/Loading/Loading'
+import ModuleEditCreatures from './ModuleEditCreatures'
+import ModuleEditItems from './ModuleEditItems'
 
 /**
  * Displays the form and inputs for modifying and creating modules
@@ -20,33 +19,30 @@ import Loading from 'js/Components/Loading/Loading'
  * other components for creating new creatures, items, contributors, etc. that do not already exist in ADL.
  */
 class ModuleEdit extends React.Component {
-    get isNewModule() {
-        return this.props.moduleId === 'new';
-    }
-
-    get hasModule() {
-        const module = this.props.module;
-        const index = this.props.indexModule;
-
-        let hasStateModule = module && module.id && module.id === this.props.moduleId,
-            hasIndexModule = index && index.id && index.id === this.props.moduleId;
-        return hasStateModule || hasIndexModule;
+    componentDidMount() {
+        // Fetch the module and await its return if we don't have it
+        if (!this.isNewModule) {
+            this.props.getModuleEdit(this.props.match.params.id);
+        }
     }
 
     get module() {
-        if (this.props.indexModule && this.props.indexModule.id)
-            return this.props.indexModule;
-        else if (this.props.module && this.props.module.id)
-            return this.props.module;
-        else
-            return {};
+        return this.props.module;
+    }
+
+    get hasModule() {
+        return this.module && this.module.id;
+    }
+
+    get isNewModule() {
+        return this.props.match.path.indexOf('new') !== -1;
     }
 
     save() {
         let form = new FormData(document.getElementById('moduleEdit'));
 
-        this.props.module.creatures.map((e) => form.append('creatures[]', JSON.stringify(e)));
-        this.props.module.items.map((e) => form.append('items[]', JSON.stringify(e)));
+        this.module.creatures.map((e) => form.append('creatures[]', e.id));
+        this.module.items.map((e) => form.append('items[]', e.id));
 
         this.props.putModule(form);
     }
@@ -57,29 +53,20 @@ class ModuleEdit extends React.Component {
         );
     }
 
-    renderCreatures() {
-        if (!this.props.module.creatures)
-            return [];
-
-        return this.props.module.creatures.map((creature) =>
-            <div key={creature.id} className="row">
-                <div className="col-11">{creature.name}</div>
-                <div className="col-1 text-right">
-                    <a href="#"><i className="fa fa-times" aria-hidden="true"/></a>
-                </div>
-            </div>
-        );
+    removeItem(id) {
+        items = this.module.items.filter((e) => e.id != id);
     }
 
     renderItems() {
-        if (!this.props.module.items)
+        if (!this.module.items)
             return null;
 
-        return this.props.module.items.map((item) =>
+        return this.module.items.map((item) =>
             <div key={item.id} className="row">
                 <div className="col-11">{item.name}</div>
                 <div className="col-1 text-right">
-                    <a href="#"><i className="fa fa-times" aria-hidden="true"/></a>
+                    <i className="fa fa-times" aria-hidden="true"
+                    onClick={this.removeItem.bind(this, item.id)}/>
                 </div>
             </div>
         );
@@ -89,7 +76,7 @@ class ModuleEdit extends React.Component {
         const module = this.module;
         return (
             <form id="moduleEdit">
-                <input type="hidden" id="id" name="id" value={module.id} />
+                <input type="hidden" id="id" name="id" value={module.id}/>
 
                 <div className="form-group row">
                     <label htmlFor="name" className="col-lg-2 col-3 col-form-label">Name</label>
@@ -123,7 +110,7 @@ class ModuleEdit extends React.Component {
                         </select>
                     </div>
                     <label htmlFor="setting" className="col-lg-2 col-3 col-form-label">Setting</label>
-                    <div className="col-lg-3 pr-2">
+                    <div className="col-lg-6 pr-2">
                         <select id="setting" name="setting" defaultValue={module.setting_id}>
                             <option/>
                             {this.renderSelect(this.props.settings)}
@@ -165,15 +152,8 @@ class ModuleEdit extends React.Component {
                 </div>
 
                 <div className="form-group row">
-                    <div className="col moduleBox">
-                        <div>NPCs & Creatures</div>
-                        {this.renderCreatures()}
-                    </div>
-
-                    <div className="col moduleBox">
-                        <div>Items</div>
-                        {this.renderItems()}
-                    </div>
+                    <ModuleEditCreatures/>
+                    <ModuleEditItems/>
                 </div>
             </form>
         )
@@ -185,7 +165,7 @@ class ModuleEdit extends React.Component {
                 <div className="mb-2 text-center">
                     <button className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
                     {' '}
-                    <Link to={`../${this.props.module.id}`}>
+                    <Link to={`../${this.module.id}`}>
                         <button className="btn btn-danger">Cancel</button>
                     </Link>
                 </div>
@@ -217,7 +197,7 @@ class ModuleEdit extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        module: currentModule(state),
+        module: state.modules.editing,
 
         editions: state.lookups.editions,
         lengths: state.lookups.moduleLengths,
@@ -227,8 +207,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    getModule,
-    setModuleFetching,
-    setModuleVisited,
+    getModuleEdit,
     putModule
 })(ModuleEdit)

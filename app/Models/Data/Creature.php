@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Creature extends Model
 {
-    public function type()
+    public function creatureType()
     {
         return $this->belongsTo('App\Models\Data\CreatureType');
     }

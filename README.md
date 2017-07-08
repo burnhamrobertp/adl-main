@@ -28,8 +28,15 @@ Use yarn to install front end dependencies, instead of npm. Use webpack for buil
 
 Migrations are accomplished through Laravel migrations. Use `php artisan migrate` to create the base table
 structure. Use `php artisan migrate --seed` to run both migrations and seeding simultaneously. Refer to
-laravel documentation or the artisan CLI help for more migration help.
+laravel documentation or the artisan CLI (php artisan) help for more migration help. To ensure that your local
+php configuration doesn't cause issues, it is recommended to `vagrant ssh` into the virtual machine and run
+your migrations from there.
 
 ### Seeding
 
 Seeding is accomplished through Laravel seeders. Use `php artisan seed` to seed the database.
+
+##### Debouncing in React
+Special care must be taken to do debouncing correctly in react. Refer to 
+[this](http://stackoverflow.com/questions/23123138/perform-debounce-in-react-js/24679479#24679479)
+StackOverflow post for a great reference.

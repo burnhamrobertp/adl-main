@@ -15,8 +15,7 @@ class NavLogin extends React.Component {
             <div id="adl-navbar-login">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" onClick={this.openLoginRegisterModal.bind(this)}>Register /
-                            Login</a>
+                        <a className="nav-link" onClick={this.openLoginRegisterModal.bind(this)}>Register / Login</a>
                     </li>
                 </ul>
 
@@ -26,4 +25,6 @@ class NavLogin extends React.Component {
     }
 }
 
-export default connect(() => { return {}}, {setLoginRegisterOpen})(NavLogin)
+export default connect(() => {
+    return {}
+}, {setLoginRegisterOpen})(NavLogin)

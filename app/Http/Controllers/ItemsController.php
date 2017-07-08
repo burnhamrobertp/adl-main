@@ -27,7 +27,21 @@ class ItemsController extends Controller
      */
     public function get(Item $item)
     {
-        return $item;
+        return response()->json($item);
+    }
+
+    /**
+     * Searches for items
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $params = $request->input('params');
+        $items = Item::where('name', 'LIKE', "%{$params['search']}%")->orderBy('name')->get();
+
+        return response()->json($items);
     }
 
     /**

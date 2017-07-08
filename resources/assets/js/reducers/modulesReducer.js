@@ -1,3 +1,5 @@
+import {handleActions} from 'redux-actions'
+
 const DEFAULT_STATE = {
     isFetchingList: false,
     isFetchingModule: false,
@@ -6,55 +8,46 @@ const DEFAULT_STATE = {
     // id-indexed object of full module data
     index: {},
     // history of modules viewed / edited
-    moduleHistory: []
+    moduleHistory: [],
+    // object being edited
+    editing: {}
 };
 
-export default function (state = DEFAULT_STATE, action) {
-    switch (action.type) {
-        case 'SET_MODULES_FETCHING':
-            return Object.assign({}, state, {
-                isFetchingList: action.payload
-            });
-        case 'SET_MODULE_FETCHING':
-            return Object.assign({}, state, {
-                isFetchingModule: action.payload
-            });
-        case 'SET_MODULE_VISITED':
-            let visitedHistory = state.moduleHistory.slice(0);
-            visitedHistory.unshift(action.payload);
-
-            visitedHistory = visitedHistory.filter((id, index, self) =>
-                self.findIndex(moduleId => moduleId === id) === index
-            );
-
-            return Object.assign({}, state, {
-                moduleHistory: visitedHistory
-            });
-        case 'GET_MODULES':
-            return Object.assign({}, state, {
-                isFetchingList: false,
-                list: action.payload
-            });
-        case 'GET_MODULE_DETAIL':
-            let index = Object.assign({}, state.index);
-            index[action.payload.id] = action.payload;
-            // copy the history - do not modify it in place - and then add this module to the front
-            let moduleHistory = state.moduleHistory.slice(0);
-            moduleHistory.unshift(action.payload.id);
-            // reduce any resulting duplications by looping through the history and on each iteration, search
-            // itself for the index of the first instance of this iteration's id. If that index is not the
-            // index of the current item, the outer closure will return false and the item will be removed
-            moduleHistory = moduleHistory.filter((id, index, self) =>
-                self.findIndex(moduleId => moduleId === id) === index
-            );
-
-            return Object.assign({}, state, {
-                isFetchingModule: false,
-                index: index,
-                moduleHistory: moduleHistory
-            });
-
-        default:
-            return state;
-    }
-}
+export default handleActions({
+    SET_MODULES_FETCHING: (state, action) => ({
+        ...state,
+        isFetchingList: action.payload
+    }),
+    SET_MODULE_FETCHING: (state, action) => ({
+        ...state,
+        isFetchingModule: action.payload
+    }),
+    SET_MODULE: (state, action) => ({
+        ...state,
+        index: {
+            ...state.index,
+            [action.payload.id]: action.payload
+        }
+    }),
+    SET_MODULE_EDITING: (state, action) => ({
+        ...state,
+        editing: state.index[action.payload] || {}
+    }),
+    SET_MODULE_EDITING_PIECE: (state, action) => ({
+        ...state,
+        editing: {
+            ...state.editing,
+            ...action.payload
+        }
+    }),
+    SET_MODULE_VISITED: (state, action) => ({
+        ...state,
+        moduleHistory: [action.payload, ...state.moduleHistory].filter((id, index, self) =>
+            self.findIndex(moduleId => moduleId === id) === index
+        )
+    }),
+    GET_MODULES: (state, action) => ({
+        ...state,
+        list: action.payload
+    }),
+}, DEFAULT_STATE);

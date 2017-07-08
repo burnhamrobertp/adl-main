@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data\Creature;
+use App\Models\Data\CreatureType;
 use Illuminate\Http\Request;
 
 class CreaturesController extends Controller
@@ -16,7 +17,7 @@ class CreaturesController extends Controller
     {
         $sorted = Creature::all()->sortBy('order');
 
-        return $sorted->values()->all();
+        return response()->json($sorted->values()->all());
     }
 
     /**
@@ -27,13 +28,33 @@ class CreaturesController extends Controller
      */
     public function get(Creature $creature)
     {
-        return $creature;
+        return response()->json($creature);
+    }
+
+    /**
+     * Searches for creatures
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $params = $request->input('params');
+        $byName = Creature::where('name', 'LIKE', "%{$params['search']}%")
+            ->orderBy('name')->with('creatureType')->get();
+        $byType = CreatureType::where('name', '=', "{$params['search']}")
+            ->with('creatures')->first();
+
+        $return = $byType ? $byName->merge($byType->creatures) : $byName;
+        $return = array_merge($return->sortBy('name')->toArray());
+
+        return response()->json($return);
     }
 
     /**
      * Store a newly created Creature
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,8 +71,8 @@ class CreaturesController extends Controller
     /**
      * Update the specified Creature in storage
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Creature  $creature
+     * @param  \Illuminate\Http\Request $request
+     * @param  Creature $creature
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Creature $creature)
@@ -67,7 +88,7 @@ class CreaturesController extends Controller
     /**
      * Remove the specified Creature from storage
      *
-     * @param  Creature  $creature
+     * @param  Creature $creature
      * @return \Illuminate\Http\Response
      */
     public function destroy(Creature $creature)

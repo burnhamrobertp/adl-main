@@ -12,6 +12,15 @@ html, body, #root, #root > div {
     min-height: 100%;
     background-color: $white;
   }
+
+  i.link {
+    cursor: pointer;
+    color: #3097D1;
+
+    &:hover {
+      color: #216a94;
+    }
+  }
 }
 
 /**

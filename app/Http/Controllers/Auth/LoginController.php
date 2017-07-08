@@ -44,4 +44,17 @@ class LoginController extends Controller
     {
         return response()->json($user->load('role', 'ratings'));
     }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [trans('auth.failed')];
+
+        return response()->json($errors, 422);
+    }
 }

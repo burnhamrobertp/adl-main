@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Rating from 'react-rating'
 
-import {getChangeModuleRating} from 'js/actions/modules'
+import {putModuleRating} from 'js/actions/modules'
 
 class ModuleStarRating extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class ModuleStarRating extends React.Component {
         if (typeof this.props.id !== 'number')
             throw `ModuleStarRating - onChange failed, invalid module id: '${props.id}' of type '${typeof props.id}' provided; Expected 'number'`;
 
-        this.props.getChangeModuleRating(this.props.id, rate);
+        this.props.putModuleRating(this.props.id, rate);
     }
 
     onRate(rate) {
@@ -68,4 +68,4 @@ function mapStateToProps(state) {
     return {}
 }
 
-export default connect(mapStateToProps, {getChangeModuleRating})(ModuleStarRating)
+export default connect(mapStateToProps, {putModuleRating})(ModuleStarRating)

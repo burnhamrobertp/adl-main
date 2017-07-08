@@ -9,6 +9,7 @@
     <title>Adventure Lookup</title>
 
     <script src="https://use.fontawesome.com/fe7d8161a9.js"></script>
+    <script type="text/javascript" src="/js/promise-done-7.0.4.min.js"></script>
     <script>
         window.contributorTypes = {!! $contributorTypes !!};
         window.creatureTypes = {!! $creatureTypes !!};

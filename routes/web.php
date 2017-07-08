@@ -17,6 +17,9 @@ Route::group(['middleware' => 'role:administrator', 'prefix' => 'users'], functi
     Route::delete('{user}', 'UsersController@destroy');
 });
 
+Route::post('creatures/search', 'CreaturesController@search');
+Route::post('items/search', 'ItemsController@search');
+
 // Following are CRUD controllers with similar implementations with identical route bindings.
 $crudRoutes = [
     ['prefix' => 'contributors', 'parameter' => 'contributor', 'controller' => 'ContributorsController'],

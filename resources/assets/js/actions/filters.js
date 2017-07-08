@@ -1,68 +1,31 @@
-/**
- * Set active editions
- * @param edition
- * @param active
- * @returns {{type: string, payload: *}}
- */
-export function setFilterEditions(edition, active) {
-    active = updateArray(active, edition);
+import {createAction} from 'redux-actions'
 
-    return {
-        type: 'SET_FILTER_EDITIONS',
-        payload: active
-    };
-}
+//Set selected filter editions
+export const setFilterEditions = createAction('SET_FILTER_EDITIONS', (edition, active) =>
+    updateArray(active, edition)
+);
 
-/**
- * Set filter setting
- * @param setting
- * @returns {{type: string, payload: *}}
- */
-export function setFilterSetting(setting) {
-    return {
-        type: 'SET_FILTER_SETTING',
-        payload: setting
-    };
-}
+//Set selected filter setting
+export const setFilterSetting = createAction('SET_FILTER_SETTING', setting => setting);
 
 /**
  * Set filter minLevel
  * @param minLevel
  * @returns {{type: string, payload: *}}
  */
-export function setFilterMinLevel(minLevel) {
-    return {
-        type: 'SET_FILTER_MINLEVEL',
-        payload: minLevel
-    };
-}
+export const setFilterMinLevel = createAction('SET_FILTER_SETTING', minLevel => minLevel);
 
 /**
  * Set filter maxLevel
  * @param maxLevel
  * @returns {{type: string, payload: *}}
  */
-export function setFilterMaxLevel(maxLevel) {
-    return {
-        type: 'SET_FILTER_MAXLEVEL',
-        payload: maxLevel
-    };
-}
+export const setFilterMaxLevel = createAction('SET_FILTER_SETTING', maxLevel => maxLevel);
 
-/**
- * Set active adventure lengths
- * @param length
- * @param active
- * @returns {{type: string, payload: *}}
- */
-export function setFilterModuleLengths(length, active) {
-    active = updateArray(active, length);
-
-    return {
-        type: 'SET_FILTER_LENGTHS',
-        payload: active
-    };
-}
+// Set selected active adventure lengths
+export const setFilterModuleLengths = createAction('SET_FILTER_LENGTHS', (length, active) =>
+    updateArray(active, length)
+);
 
 function updateArray(active, variable) {
     return new Promise((cb) => {

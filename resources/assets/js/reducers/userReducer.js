@@ -1,3 +1,5 @@
+import {handleActions} from 'redux-actions'
+
 const DEFAULT_STATE = {
     id: null,
     token: '',
@@ -19,64 +21,42 @@ const DEFAULT_STATE = {
     }
 };
 
-export default function (state = DEFAULT_STATE, action) {
-    // check for a nested payload as a result of promise (but no thunk middleware)
-    if (action.payload && action.payload.type) {
-        action.type = action.payload.type;
-        action.payload = action.payload.payload
-    }
-
-    switch (action.type) {
-        case 'SET_LOGIN_REGISTER_MODAL_OPEN':
-            return Object.assign({}, state, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    isOpen: action.payload
-                })
-            });
-        case 'SET_LOGIN_REGISTER_EMAIL':
-            return Object.assign({}, state, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    email: action.payload
-                })
-            });
-        case 'SET_USER_FETCHING':
-            return Object.assign({}, state, {
-                isFetching: action.payload
-            });
-        case 'SET_ACTIVE_COMPONENT':
-            return Object.assign({}, state, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    activeComponent: action.payload,
-                    flashMessages: [],
-                    flashMessageClass: ''
-                })
-            });
-        case 'SET_MESSAGES':
-            return Object.assign({}, state, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    flashMessages: action.payload,
-                    flashMessageClass: 'danger'
-                })
-            });
-        case 'GET_USER':
-            return Object.assign({}, state, action.payload);
-        case 'GET_LOGOUT':
-            location.reload();
-            return state;
-            break;
-        case 'GET_LOGIN_SUCCESS':
-            return Object.assign({}, DEFAULT_STATE, action.payload);
-        case 'GET_REGISTER_SUCCESS':
-            return Object.assign({}, DEFAULT_STATE, action.payload);
-        case 'GET_FORGOT_PASSWORD_SUCCESS':
-            return Object.assign({}, state, {
-                loginRegisterModal: Object.assign({}, state.loginRegisterModal, {
-                    flashMessages: ['Check your e-mail for your password reset.'],
-                    flashMessageClass: 'info'
-                })
-            });
-
-        default:
-            return state;
-    }
-}
+export default handleActions({
+    SET_LOGIN_REGISTER_MODAL_OPEN: (state, action) => ({
+        ...state,
+        loginRegisterModal: {
+            ...state.loginRegisterModal,
+            isOpen: action.payload
+        }
+    }),
+    SET_LOGIN_REGISTER_EMAIL: (state, action) => ({
+        ...state,
+        loginRegisterModal: {
+            ...state.loginRegisterModal,
+            email: action.payload
+        }
+    }),
+    SET_USER: (state, action) => action.payload,
+    SET_USER_FETCHING: (state, action) => ({
+        ...state,
+        isFetching: action.payload
+    }),
+    SET_ACTIVE_COMPONENT: (state, action) => ({
+        ...state,
+        loginRegisterModal: {
+            ...state.loginRegisterModal,
+            activeComponent: action.payload,
+            flashMessages: [],
+            flashMessageClass: ''
+        }
+    }),
+    SET_MESSAGES: (state, action) => ({
+        ...state,
+        loginRegisterModal: {
+            ...state.loginRegisterModal,
+            flashMessages: action.payload.messages,
+            flashMessageClass: action.payload.class
+        }
+    }),
+    GET_LOGOUT: (state, action) => DEFAULT_STATE,
+}, DEFAULT_STATE);

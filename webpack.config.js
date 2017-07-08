@@ -29,7 +29,10 @@ module.exports = {
                 exclude: [/node_modules/],
                 use: [{
                     loader: 'babel-loader',
-                    options: { presets: ['react', 'es2015'] }
+                    options: {
+                        presets: ['react', 'env'],
+                        plugins: ['transform-object-rest-spread', 'babel-plugin-transform-class-properties']
+                    }
                 }]
             },
             {

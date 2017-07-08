@@ -9,7 +9,6 @@ import Module from './Components/ModuleListModule';
 
 class ModulesList extends React.Component {
     componentDidMount() {
-        this.props.setModulesFetching(true);
         this.props.getModules();
     }
 
