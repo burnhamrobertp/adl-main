@@ -178,6 +178,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Jrean\UserVerification\UserVerificationServiceProvider::class,
+
+        /*
+         * A db query logger, disabled by default as it can fill up your logs.
+         */
+//        \App\Providers\QueryLogServiceProvider::class,
     ],
 
     /*

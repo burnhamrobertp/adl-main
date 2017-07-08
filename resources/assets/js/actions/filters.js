@@ -8,10 +8,18 @@ export const setFilterEditions = createAction('SET_FILTER_EDITIONS', (edition, a
 //Set selected filter setting
 export const setFilterSetting = createAction('SET_FILTER_SETTING', setting => setting);
 
-//Set selected filter minLevel
+/**
+ * Set filter minLevel
+ * @param minLevel
+ * @returns {{type: string, payload: *}}
+ */
 export const setFilterMinLevel = createAction('SET_FILTER_SETTING', minLevel => minLevel);
 
-//Set selected filter maxLevel
+/**
+ * Set filter maxLevel
+ * @param maxLevel
+ * @returns {{type: string, payload: *}}
+ */
 export const setFilterMaxLevel = createAction('SET_FILTER_SETTING', maxLevel => maxLevel);
 
 // Set selected active adventure lengths
