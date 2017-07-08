@@ -40,8 +40,8 @@ class ModuleEdit extends React.Component {
     save() {
         let form = new FormData(document.getElementById('moduleEdit'));
 
-        this.module.creatures.map((e) => form.append('creatures[]', JSON.stringify(e)));
-        this.module.items.map((e) => form.append('items[]', JSON.stringify(e)));
+        this.module.creatures.map((e) => form.append('creatures[]', e.id));
+        this.module.items.map((e) => form.append('items[]', e.id));
 
         this.props.putModule(form);
     }
