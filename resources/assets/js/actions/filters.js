@@ -13,14 +13,14 @@ export const setFilterSetting = createAction('SET_FILTER_SETTING', setting => se
  * @param minLevel
  * @returns {{type: string, payload: *}}
  */
-export const setFilterMinLevel = createAction('SET_FILTER_SETTING', minLevel => minLevel);
+export const setFilterMinLevel = createAction('SET_FILTER_MINLEVEL', minLevel => minLevel);
 
 /**
  * Set filter maxLevel
  * @param maxLevel
  * @returns {{type: string, payload: *}}
  */
-export const setFilterMaxLevel = createAction('SET_FILTER_SETTING', maxLevel => maxLevel);
+export const setFilterMaxLevel = createAction('SET_FILTER_MAXLEVEL', maxLevel => maxLevel);
 
 // Set selected active adventure lengths
 export const setFilterModuleLengths = createAction('SET_FILTER_LENGTHS', (length, active) =>
