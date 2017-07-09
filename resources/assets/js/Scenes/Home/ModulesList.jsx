@@ -33,7 +33,7 @@ class ModulesList extends React.Component {
             <div className="col">
                 <label htmlFor="search-sortby">Sort By:</label>
                 <select id="search-sortby"
-                        value={this.props.sortBy}
+                        defaultValue={this.props.sortBy}
                         onChange={(event) => this.props.setModuleSort(event.target.value)}>
                     <option value="name">Name</option>
                     <option value="rating">Rating</option>
