@@ -4,11 +4,7 @@
     "start": "webpack",
     "dev": "webpack -w",
     "build": "webpack -p",
-    "unittest:php": "vendor/bin/phpunit"
   },
-  "pre-commit": [
-    "unittest:php"
-  ],
   "devDependencies": {
     "assets-webpack-plugin": "^3.5.1",
     "axios": "^0.16.0",
