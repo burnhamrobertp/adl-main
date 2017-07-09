@@ -32,9 +32,11 @@ class ModulesList extends React.Component {
         return (
             <div className="col">
                 <label htmlFor="search-sortby">Sort By:</label>
-                <select id="search-sortby" onChange={(event) => this.props.setModuleSort(event.target.value)}>
-                    <option value="name" selected={this._isSelected('name')}>Name</option>
-                    <option value="rating" selected={this._isSelected('rating')}>Rating</option>
+                <select id="search-sortby"
+                        value={this.props.sortBy}
+                        onChange={(event) => this.props.setModuleSort(event.target.value)}>
+                    <option value="name">Name</option>
+                    <option value="rating">Rating</option>
                 </select>
             </div>
         );
