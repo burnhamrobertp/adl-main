@@ -28,14 +28,13 @@ export const setFilterModuleLengths = createAction('SET_FILTER_LENGTHS', (length
 );
 
 function updateArray(active, variable) {
-    return new Promise((cb) => {
-        let array = active.map((item) => item)
+    let array = active.map((item) => item);
 
-        if (array.includes(variable)) {
-            array.splice(array.indexOf(variable), 1);
-        } else {
-            array.push(variable);
-        }
-        cb(array);
-    })
+    if (array.includes(variable)) {
+        array.splice(array.indexOf(variable), 1);
+    } else {
+        array.push(variable);
+    }
+
+    return array;
 }
