@@ -7,11 +7,15 @@ import Register from './Register'
 import ForgotPassword from './ForgotPassword'
 
 class LoginRegister extends React.Component {
+    get messages() {
+        return this.props.messages
+    }
+
     renderMessages() {
-        if (this.props.messages.length === 0)
+        if (this.messages.length === 0)
             return '';
 
-        const message = this.props.messages.reduce((accum, m) => accum + '<br>' + m);
+        const message = Object.keys(this.messages).reduce((accum, k) => accum + this.messages[k]+ '<br>' , '');
 
         return (
             <div className={"alert alert-" + this.props.messageClass} role="alert">
@@ -21,7 +25,7 @@ class LoginRegister extends React.Component {
     }
 
     renderActiveComponent() {
-        switch(this.props.activeComponent) {
+        switch (this.props.activeComponent) {
             case 'register':
                 return <Register />;
             case 'forgot':

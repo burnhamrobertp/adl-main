@@ -60,10 +60,7 @@ export function getRegister(form) {
                 dispatch(setUser(response.data));
             })
             .catch(error => {
-                dispatch(setFlashMessages([
-                    ...error.response.data.email,
-                    ...error.response.data.password
-                ], 'danger'));
+                dispatch(setFlashMessages(error.response.data, 'danger'));
             });
     }
 }
