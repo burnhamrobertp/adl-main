@@ -12,7 +12,6 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'public/js')
     },
-
     resolve: {
         extensions: ['.js', '.jsx'],
         modules: [
@@ -21,7 +20,6 @@ module.exports = {
             'node_modules'
         ]
     },
-
     module: {
         rules: [
             {
@@ -45,7 +43,6 @@ module.exports = {
             }
         ]
     },
-
     plugins: [
         /**
          * Dependencies used at least minChunk times are split into a separate bundle
