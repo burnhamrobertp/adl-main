@@ -1,4 +1,4 @@
-import Axios from 'Axios'
+import Axios from 'axios'
 import { createAction } from 'redux-actions'
 
 // Update the list of editions

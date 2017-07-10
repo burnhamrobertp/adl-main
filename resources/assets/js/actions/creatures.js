@@ -1,4 +1,4 @@
-import Axios from 'Axios'
+import Axios from 'axios'
 import {createAction} from 'redux-actions'
 
 export const setCreatureFetching = createAction('SET_FETCHING', is => is);

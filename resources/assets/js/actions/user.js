@@ -1,4 +1,4 @@
-import Axios from 'Axios'
+import Axios from 'axios'
 import {createAction} from 'redux-actions'
 
 // Login & register modal is open or not
